@@ -41,6 +41,7 @@ MMCF опирается на канонические документы CDM:
 - Context / CtxL
 - Experience
 - Versioning (state-derived)
+- Claim Maturity (Conjecture/Protocol/Validated/Core)
 - Subjectivity / Doubt / Viewpoint / MetaChangeFlow / CreativeChangeFlow
 - Subjectivity Reference Agent Profile
 
@@ -108,6 +109,11 @@ MMCF использует state-derived versioning CDM:
 `EntityId@v.<inc>.<lc>.<cf>.<cfp>`
 
 Правила вычисления версии и event-log derivation задаются в соответствующих документах CDM.
+
+Статус зрелости утверждений (`Conjecture/Protocol/Validated/Core`) ведется
+как отдельная ось governance и не входит в числовые сегменты `EntityVersion`.
+Канон статусов см. в:
+- [Claim-Maturity-Canonical](./Claim-Maturity-Canonical.md)
 
 ---
 
