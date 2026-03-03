@@ -104,11 +104,14 @@ MMCF опирается на канонические документы CDM:
 
 ## 8. Версионирование
 
-MMCF использует state-derived versioning CDM:
+MMCF использует собственный канонический state-derived versioning:
 
 `EntityId@v.<inc>.<lc>.<cf>.<cfp>`
 
-Правила вычисления версии и event-log derivation задаются в соответствующих документах CDM.
+Методологические правила задаются в:
+- [Versioning-Canonical](./Versioning-Canonical.md)
+
+CDM-специфичный формат и derivation рассматриваются как профиль применения.
 
 Статус зрелости утверждений (`Conjecture/Protocol/Validated/Core`) ведется
 как отдельная ось governance и не входит в числовые сегменты `EntityVersion`.

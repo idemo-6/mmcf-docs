@@ -120,5 +120,6 @@ status: canonical-draft
 ## 8. Нормативные ссылки
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
+- [Versioning-Canonical](./Versioning-Canonical.md)
 - [CDM Versioning Canonical](../../fcdm-core/theory/cdm/Specifications/Versioning/Versioning-Canonical.md)
 - [CDM Claim Maturity Profile](../../fcdm-core/theory/cdm/Specifications/Claim-Maturity-Profile.md)
