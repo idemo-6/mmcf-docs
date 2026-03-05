@@ -24,9 +24,9 @@ status: canonical-draft
 Версия является функцией верифицированных переходов состояния, а не ручным
 тегом.
 
-\[
+$$
 \text{EntityVersion} = f(\text{EventLog},\ \text{phase-gates},\ \text{identity})
-\]
+$$
 
 ---
 
