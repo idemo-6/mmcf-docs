@@ -36,6 +36,7 @@ Engineering/architecture participation is welcome as supporting profile for impl
 3. `methodology/MMCF-Context-Coordination-and-Meta-Policy.md`
 4. `methodology/MMCF-Conflict-and-Applicability-Profile.md`
 5. `methodology/MMCF-Minimal-Working-Model.md`
+6. `methodology/delivery/MMCF-Delivery-INDEX.md`
 
 ## Contribution Format (Recommended)
 
