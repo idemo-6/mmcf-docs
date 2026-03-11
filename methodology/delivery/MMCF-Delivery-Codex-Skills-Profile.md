@@ -111,6 +111,13 @@ The versioned skill sources for this profile live in:
 
 - `mmcf-docs/codex-skills/`
 
+Private installable mirror and installer may live in:
+
+- `mmcf-code/codex-skills/`
+- `mmcf-code/scripts/install_codex_skills.sh`
+- `mmcf-code/docs/CODEX_SKILLS_QUICKSTART.md`
+- `mmcf-code/docs/LINEAR_MMCF_SETUP.md`
+
 The install target for live Codex usage is:
 
 - `$HOME/.codex/skills/`
