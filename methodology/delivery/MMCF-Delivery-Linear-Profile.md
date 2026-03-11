@@ -14,6 +14,10 @@ software and documentation work.
 
 The profile is tool-specific. It does not redefine the MMCF or CDM canon.
 
+Decomposition and boundary logic for this profile is summarized separately in:
+
+- [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+
 ---
 
 ## 2. Canonical mapping
@@ -164,6 +168,7 @@ This is acceptable in the current profile because:
 - [MMCF-Minimal-Working-Model](../MMCF-Minimal-Working-Model.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF-Conflict-and-Applicability-Profile](../MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 - [CDM LifeCycle-6](../../../fcdm-core/theory/cdm/Specifications/LifeCycle-6_v2.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM CF-LC Evaluate](../../../fcdm-core/theory/cdm/Specifications/CF-LC-Evaluate.md)

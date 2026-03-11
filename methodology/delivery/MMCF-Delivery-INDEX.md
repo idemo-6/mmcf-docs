@@ -35,6 +35,11 @@ This keeps `LifeCycle` and `ChangeFlow` distinct in operational practice.
 
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 2. [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+3. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
+4. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
+5. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
+6. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
+7. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 
 ---
 
@@ -42,11 +47,10 @@ This keeps `LifeCycle` and `ChangeFlow` distinct in operational practice.
 
 The next expected profiles in this section are:
 
-1. Software delivery profile.
-2. Documentation delivery profile.
-3. Scientific documentation delivery profile.
-4. Evidence/review profile for `evaluate`.
-5. Delivery metrics and observability profile.
+1. Evidence/review profile for `evaluate`.
+2. Delivery metrics and observability profile.
+3. Linear custom-field profile.
+4. Delivery automation/skills profile.
 
 ---
 
