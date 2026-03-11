@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear CF Close"
+  short_description: "Write CF6 and close MMCF flows"
+  default_prompt: "Use $linear-cf-close to write a CF6 summary and close a terminal ChangeFlow issue."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true

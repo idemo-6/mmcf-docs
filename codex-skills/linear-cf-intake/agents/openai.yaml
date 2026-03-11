@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear CF Intake"
+  short_description: "Create MMCF terminal ChangeFlow issues"
+  default_prompt: "Use $linear-cf-intake to create a new terminal ChangeFlow issue in Linear."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true

@@ -35,11 +35,13 @@ This keeps `LifeCycle` and `ChangeFlow` distinct in operational practice.
 
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 2. [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-3. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
-4. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
-5. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
-6. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-7. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+3. [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
+4. [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)
+5. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
+6. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
+7. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
+8. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
+9. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 
 ---
 
@@ -50,7 +52,7 @@ The next expected profiles in this section are:
 1. Evidence/review profile for `evaluate`.
 2. Delivery metrics and observability profile.
 3. Linear custom-field profile.
-4. Delivery automation/skills profile.
+4. Weekly review and escalation profile.
 
 ---
 

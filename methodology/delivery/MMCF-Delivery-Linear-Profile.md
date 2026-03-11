@@ -17,6 +17,7 @@ The profile is tool-specific. It does not redefine the MMCF or CDM canon.
 Decomposition and boundary logic for this profile is summarized separately in:
 
 - [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+- [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 
 ---
 
@@ -60,6 +61,12 @@ External influences stay in fields, labels, and evidence/comments.
 ---
 
 ## 4. Status model for terminal issues
+
+Statuses represent the phase layer of the workflow.
+
+Gateway and `PhaseTransition` observability is defined separately in:
+
+- [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 
 ### 4.1 Linear statuses
 
@@ -114,30 +121,163 @@ The `evaluate` phase must not be skipped.
 - `repeat` -> create next issue now;
 - `delayed` -> do not create next issue now; store return condition instead.
 
+Default terminal decision matrix:
+
+1. `Result=+1` and no immediate next `CF` -> `done`
+2. `Result=+1` and immediate next `CF` -> `repeat`
+3. `Result=-1` and immediate corrective/compensating `CF` -> `repeat`
+4. `Result=0` and immediate reformulated `CF` -> `repeat`
+5. `Result=0` and no immediate next `CF`, but future return is expected ->
+   `delayed`
+6. `Result=0` and no immediate next `CF`, and no return is planned -> `final`
+
+There is no separate terminal stop status for `Result=-1` without an immediate
+next flow in v1. Such cases must remain in `evaluate` until either:
+
+1. a corrective `repeat` issue is created;
+2. policy/governance reframes the case into `final` or `delayed` through an
+   explicit inapplicability decision.
+
 ---
 
 ## 6. Result and evidence
 
 `Result` is not encoded by issue status.
 
-Minimum required result fields:
+Minimum required execution trace fields:
 
 1. `Applicable`
 2. `Result`
-3. `active_context`
-4. `lc_phase_snapshot`
-5. `evidence_refs`
-6. `exit_decision`
-7. `zero_class` when `Result=0`
-8. `next_cf_issue` for `repeat`
-9. `return_condition` for `delayed`
+3. `failure_class`
+4. `active_context`
+5. `lc_phase_snapshot`
+6. `evidence_refs`
+7. `pt_trace_refs` when non-trivial or failed transitions occurred
+8. `exit_decision`
+9. `zero_class` when `Result=0`
+10. `next_cf_issue` for `repeat`
+11. `return_condition` for `delayed`
 
-The profile recommends storing these in a mandatory `evaluate` comment and
-later migrating stable parts into custom fields.
+These must be present in a mandatory `evaluate` comment.
+
+### 6.1 Custom fields v1
+
+For the first practical Linear schema, only the stable and compact subset is
+promoted into custom fields:
+
+1. `LC Phase Snapshot`
+   Allowed values: `F1 | F2 | F3 | F4 | F5 | F6`
+2. `Result`
+   Allowed values: `+1 | 0 | -1`
+3. `Artifact Type`
+   Allowed values: `software | documentation | scientific-documentation`
+4. `Claim Mode`
+   Allowed values: `claim-none | claim-optional | claim-required`
+
+These four fields are sufficient for initial filtering and reporting without
+forcing high-entropy execution data into rigid field slots.
+
+Field lifecycle note:
+
+1. set `LC Phase Snapshot`, `Artifact Type`, and `Claim Mode` when the issue is
+   created;
+2. set `Result` only in `evaluate` when the flow outcome is known.
+
+### 6.2 Data that stays outside custom fields in v1
+
+The following items are intentionally not promoted into custom fields in the
+first schema version:
+
+1. `CF phase`
+   Already encoded by issue status.
+2. `exit_decision`
+   Already encoded by terminal status.
+3. `previous_cf_issue` and `next_cf_issue`
+   Better represented by issue links.
+4. `return_condition`
+   Better stored in the `evaluate` comment because it is usually textual.
+5. `active_context`
+   Better stored in issue body and `evaluate` comment until the active context
+   taxonomy becomes more stable.
+
+### 6.3 Deferred candidates
+
+The following fields may be added later if execution practice shows stable use:
+
+1. `Zero Class`
+2. `Canon Compatibility`
+3. `Review Trigger`
 
 ---
 
-## 7. Invariants
+## 7. Labels v1
+
+Labels in this profile are issue-level cross-cutting signals.
+
+They must not replace:
+
+1. phase statuses;
+2. terminal exits;
+3. explicit `PhaseTransition` trace.
+
+### 7.1 Existing baseline labels
+
+The following existing labels remain valid as baseline issue classification:
+
+1. `Bug`
+2. `Feature`
+3. `Improvement`
+4. `Chore`
+5. `Codex`
+6. `Triage`
+7. `Blocked`
+
+### 7.2 Additional labels for v1
+
+Recommended additional labels:
+
+1. `AwaitingApproval`
+   The active bottleneck is an approval or sign-off transition.
+2. `AwaitingClaim`
+   The active bottleneck is claim/evidence/canon acceptance.
+3. `GatewayFailure`
+   The latest transition failed and requires explicit recovery.
+4. `NeedsEvidence`
+   The issue cannot validly pass `evaluate` or claim-bearing transition without
+   additional evidence.
+5. `Governance`
+   The issue requires policy, canon, or governance involvement beyond normal
+   phase execution.
+6. `ClaimUpdate`
+   The issue changes claim-bearing content or has explicit claim-status impact.
+
+### 7.3 Usage rules
+
+1. `Blocked` is reserved for non-`PT` external blockers.
+2. `AwaitingApproval`, `AwaitingClaim`, and `GatewayFailure` are issue-level
+   visibility aids for the active transition bottleneck.
+3. `AwaitingApproval`, `AwaitingClaim`, and `GatewayFailure` do not replace the
+   explicit gateway trace defined in the `PhaseTransition` profile.
+4. Normally only one active bottleneck label should be used at a time:
+   `Blocked`, `AwaitingApproval`, `AwaitingClaim`, or `GatewayFailure`.
+5. `NeedsEvidence`, `Governance`, and `ClaimUpdate` may coexist with a
+   bottleneck label.
+
+---
+
+## 8. Naming note
+
+Terminal issue titles should follow the naming convention defined in:
+
+- [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+
+The issue title identifies the stable flow objective and repeat-chain index.
+It must not encode phase status, terminal exit, or active `PhaseTransition`
+bottleneck.
+
+---
+
+## 9. Invariants
 
 1. One terminal issue equals one `ChangeFlow`.
 2. `evaluate` is mandatory before any terminal exit.
@@ -148,7 +288,7 @@ later migrating stable parts into custom fields.
 
 ---
 
-## 8. Metrics note
+## 10. Metrics note
 
 Because `final` and `delayed` are mapped to Linear `canceled` type, native
 completed metrics in Linear will count primarily applicable completed flows.
@@ -162,7 +302,7 @@ This is acceptable in the current profile because:
 
 ---
 
-## 9. References
+## 11. References
 
 - [MMCF-Canonical](../MMCF-Canonical.md)
 - [MMCF-Minimal-Working-Model](../MMCF-Minimal-Working-Model.md)

@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear MMCF"
+  short_description: "Route MMCF Linear ChangeFlow work"
+  default_prompt: "Use $linear-mmcf to manage this Linear task with the MMCF ChangeFlow model."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true

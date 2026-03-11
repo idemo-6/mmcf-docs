@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear CF Advance"
+  short_description: "Advance MMCF flows phase by phase"
+  default_prompt: "Use $linear-cf-advance to move a terminal ChangeFlow issue to its next valid phase."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true
