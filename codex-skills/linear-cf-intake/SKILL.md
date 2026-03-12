@@ -30,6 +30,7 @@ This skill is project-specific. It assumes the delivery docs live at:
      the workspace uses planning `v1.1`
 4. Build the body from the terminal issue template:
    - `Canon`
+   - `Versioning` when the carrier entity is versioned
    - `Delivery`
    - `Planning` when planning `v1.1` is in scope
    - `PT / Gateways`
@@ -52,3 +53,5 @@ This skill is project-specific. It assumes the delivery docs live at:
    call out the missing field update in the final response.
 6. When planning `v1.1` is used, keep top-level planning custom fields and the
    body `Planning` block semantically aligned.
+7. When the carrier entity is versioned, make `CF index` explicit and keep it
+   aligned with the title form `[CF#N]`.

@@ -24,6 +24,7 @@ Read these delivery docs before acting:
    - parent epic
    - base task ref
    - carrier entity
+   - version source ref
    - contour prefix
    - artifact type
    - claim mode
@@ -36,6 +37,9 @@ Read these delivery docs before acting:
 5. Create the next issue as a new sibling, not as a reopen of the old issue.
 6. Link the flows and update the source issue so its `CF6 Summary` references
    the new issue.
+7. When the carrier entity is versioned, carry forward:
+   - `CF index = previous + 1`
+   - `Input version = previous Post-CF version` when known
 
 ## Rules
 
@@ -48,3 +52,5 @@ Read these delivery docs before acting:
    do not guess; first complete or clarify `CF6`.
 6. Preserve the planning contour by default and revise it only when the repeat
    delta explicitly changes the next flow's planning assumptions.
+7. Do not preserve stale version snapshots blindly; if the source `Post-CF version`
+   is still unknown, mark the next `Input version` as pending re-derivation.

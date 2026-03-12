@@ -50,6 +50,12 @@ Issue не является узлом `LifeCycle`.
 
 `Result` не является полем intake. Он выставляется только в `evaluate`.
 
+Если задача привязана к versioned carrier entity, дополнительно задайте:
+
+1. `Carrier Entity Id`
+2. `CF Index`
+3. `Input Version`, когда он уже известен
+
 Если workspace использует planning `v1.1`, дополнительно задайте:
 
 1. `Flow Mode`
@@ -63,13 +69,15 @@ Issue не является узлом `LifeCycle`.
 1. `Parent Epic`
 2. `Base task ref`
 3. `Carrier entity`
-4. `Base intent`
-5. `Active context(s)`
-6. `LC phase snapshot`
-7. `Expected delta`
-8. `Success criteria`
-9. `Stop criteria`
-10. `Evidence refs`
+4. `CF index`, если carrier entity versioned
+5. `Input version`, если carrier entity versioned
+6. `Base intent`
+7. `Active context(s)`
+8. `LC phase snapshot`
+9. `Expected delta`
+10. `Success criteria`
+11. `Stop criteria`
+12. `Evidence refs`
 
 Рекомендуемый шаблон body задачи:
 
@@ -78,6 +86,9 @@ Issue не является узлом `LifeCycle`.
 - Parent Epic:
 - Base task ref:
 - Carrier entity:
+- CF index:
+- Input version:
+- Version source ref:
 - Base intent:
 - Active context(s):
 - LC phase snapshot:
@@ -201,6 +212,8 @@ gateway. Явные gateway traces остаются отдельными, но `
 - Active context:
 - LC phase snapshot:
 - Evidence refs:
+- Post-CF version:
+- Version outcome note:
 - PT trace refs:
 - PT summary:
 - Exit decision: done | repeat | final | delayed
@@ -236,6 +249,9 @@ gateway. Явные gateway traces остаются отдельными, но `
 5. `Repeat reason` и `Next CF issue` обязательны только для `repeat`.
 6. `Return condition` и `Review date / trigger` обязательны только для
    `delayed`.
+7. если carrier entity versioned, `CF index` должен быть согласован с title
+   `[CF#N]`, а `Input/Post-CF version` — с каноническим `cf` сегментом версии,
+   когда version snapshot уже выведен.
 
 ---
 

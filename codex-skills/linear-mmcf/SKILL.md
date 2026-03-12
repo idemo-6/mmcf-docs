@@ -17,7 +17,9 @@ Typical triggers:
 5. `PhaseTransition`, gateway, approval, or claim bottlenecks;
 6. claim-aware software or documentation delivery in Linear;
 7. task-side planning-aware intake or repeat work using `Flow Mode`,
-   `Variativity Target`, or `Decide Policy`.
+   `Variativity Target`, or `Decide Policy`;
+8. version-aware work using `Observed Version`, `CF Index`, `Input Version`, or
+   `Post-CF Version`.
 
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
@@ -66,3 +68,6 @@ If the task spans several operations, execute them in this order:
 6. Planning `v1.1` is additive: intake populates planning fields when the
    workspace uses them, repeat preserves them by default, and advance/close do
    not silently rewrite them unless the user explicitly asks.
+7. Versioning in Linear is entity-centric: `Epic` and terminal issue store
+   snapshots/windows of carrier entity version, not their own autonomous
+   work-item versions.

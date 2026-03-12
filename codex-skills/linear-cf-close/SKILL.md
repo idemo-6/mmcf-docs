@@ -25,6 +25,8 @@ Read these delivery docs before acting:
    - `Active context`
    - `LC phase snapshot`
    - `Evidence refs`
+   - `Post-CF version` when the carrier entity is versioned
+   - `Version outcome note` when the carrier entity is versioned
    - `PT trace refs`
    - `PT summary`
    - `Exit decision`
@@ -50,3 +52,5 @@ Read these delivery docs before acting:
    the same turn.
 7. Do not silently rewrite planning `v1.1` fields or body blocks while closing
    a flow unless the user explicitly asks for a planning update.
+8. When the carrier entity is versioned, do not invent `Post-CF version`; use
+   the known snapshot or mark it as pending re-derivation.
