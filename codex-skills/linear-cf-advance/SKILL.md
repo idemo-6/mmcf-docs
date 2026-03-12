@@ -29,7 +29,8 @@ Read these delivery docs before acting:
 5. If the transition is non-trivial or failed:
    - add or update the relevant bottleneck label
    - write an explicit gateway trace comment
-6. Move the issue status only when the next phase is validly ready.
+6. If the transition failed, inspect whether a PT failure policy allows retry.
+7. Move the issue status only when the next phase is validly ready.
 
 ## Rules
 
@@ -39,5 +40,9 @@ Read these delivery docs before acting:
 4. `Blocked` is for non-`PT` external blockers.
 5. `AwaitingApproval`, `AwaitingClaim`, and `GatewayFailure` are visibility
    labels, not substitutes for the gateway trace.
-6. Do not silently rewrite planning `v1.1` fields or body blocks while
+6. If PT retry policy is still active, keep the issue in the current phase and
+   do not force `evaluate` yet.
+7. Only terminal PT failure should be treated as a reason to send the flow
+   toward `CF6`.
+8. Do not silently rewrite planning `v1.1` fields or body blocks while
    advancing a flow unless the user explicitly asks for a planning update.

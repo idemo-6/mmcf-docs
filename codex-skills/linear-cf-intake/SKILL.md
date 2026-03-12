@@ -26,7 +26,7 @@ This skill is project-specific. It assumes the delivery docs live at:
    - project/team
    - labels
    - `LC Phase Snapshot`, `Artifact Type`, `Claim Mode` when supported
-   - `Flow Mode`, `Variativity Target`, `Decide Policy`, `MetaCF Risk` when
+   - `Flow Mode`, `Variativity Target`, `Decide Policy` when
      the workspace uses planning `v1.1`
 4. Build the body from the terminal issue template:
    - `Canon`

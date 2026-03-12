@@ -55,7 +55,6 @@ Issue не является узлом `LifeCycle`.
 1. `Flow Mode`
 2. `Variativity Target`
 3. `Decide Policy`
-4. `MetaCF Risk`, когда уместно
 
 ### 3.2 Обязательные поля body
 
@@ -94,7 +93,6 @@ Issue не является узлом `LifeCycle`.
 - Flow mode:
 - Variativity target:
 - Decide policy:
-- MetaCF risk:
 - max_decide_delay:
 - forced_collapse_trigger:
 - resource_cap:
@@ -103,6 +101,7 @@ Issue не является узлом `LifeCycle`.
 ## PT / Gateways
 - Default PT scenario: event
 - Non-trivial transitions:
+- PT failure policy:
 - Approval refs / owners:
 - Claim refs / evidence refs:
 
@@ -128,6 +127,7 @@ Issue не является узлом `LifeCycle`.
 - `forecast => decide: approve`
 - `implement => evaluate: approve`
 - `analyze => forecast: claim`
+- `PT failure policy: default=fail_fast; implement=>evaluate=retry_n(2)`
 
 Это дает потоку явный план переходов до появления узких мест.
 
@@ -141,7 +141,8 @@ Issue не является узлом `LifeCycle`.
 2. planned alternative width;
 3. decision-collapse policy;
 4. safety-hooks creative/delayed mode;
-5. краткое обоснование planning допущений.
+5. краткое обоснование planning допущений, включая при необходимости note о
+   риске reframing/escalation.
 
 Он не должен включать:
 
@@ -175,6 +176,10 @@ Issue не является узлом `LifeCycle`.
 передачи, переход должен следовать профилю:
 
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
+
+Attempt-level failures внутри retry policy не обязаны немедленно переводить
+flow в `evaluate`. Только terminal failure перехода завершает текущий
+`ChangeFlow` через `CF6`.
 
 ---
 
@@ -219,13 +224,14 @@ gateway. Явные gateway traces остаются отдельными, но `
 2. `PT trace refs` указывают на явные gateway traces, когда:
    - требовался approval;
    - требовалась передача результата, несущего claims;
-   - любой переход завершился неуспешно;
+   - terminal failure перехода завершился неуспешно;
    - нетривиальный переход создал основное узкое место
 3. `PT summary` является короткой итоговой заметкой, например:
    - `implicit event transitions only`
    - `implement => evaluate approve completed after owner review`
    - `forecast => decide approval stalled for 9d`
    - `implement => evaluate failed as gateway; handoff not accepted`
+   - `implement => evaluate retried twice, then accepted on third attempt`
 4. `Zero class` заполняется только когда `Result=0`.
 5. `Repeat reason` и `Next CF issue` обязательны только для `repeat`.
 6. `Return condition` и `Review date / trigger` обязательны только для
@@ -243,6 +249,8 @@ Terminal exit выбирается после `CF6` из трех независ
 
 Исходы `PhaseTransition` влияют на это решение, но не заменяют его.
 Узкое место на gateway или задержка approval сами по себе не являются terminal exit.
+Attempt-level PT failures под активной retry policy также сами по себе не
+являются terminal exit.
 
 ### 6.1 `done`
 

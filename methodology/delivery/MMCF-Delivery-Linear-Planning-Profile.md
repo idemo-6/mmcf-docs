@@ -72,9 +72,8 @@ delivery.
 | Поле | Хранение в `v1.1` | Тип | Допустимые значения | Правило |
 |---|---|---|---|---|
 | `Flow Mode` | custom field | enum | `standard / creative` | Обязательно на intake. |
-| `Variativity Target` | custom field | integer | `>=1` | Обязательно на intake; может быть пересмотрено до закрытия `CF3`. |
+| `Variativity Target` | custom field | enum | `1 / 2 / 3 / 4+` | Обязательно на intake; может быть пересмотрено до закрытия `CF3`. |
 | `Decide Policy` | custom field | enum | `normal / delayed` | Обязательно на intake. |
-| `MetaCF Risk` | custom field | enum | `low / medium / high` | Рекомендуется; может быть выведено с ручной корректировкой. |
 | `max_decide_delay` | planning block | duration/text | policy-defined | Обязательно при `Flow Mode=creative` или `Decide Policy=delayed`. |
 | `forced_collapse_trigger` | planning block | text/ref | workspace-defined | Обязательно при `Flow Mode=creative`. |
 | `resource_cap` | planning block | text/ref | workspace-defined | Рекомендуется для creative или `Variativity Target > 1`. |
@@ -83,6 +82,10 @@ delivery.
 
 - `Flow Mode`, `Variativity Target` и `Decide Policy` описывают планируемый
   контур исполнения задачи.
+- Для `Linear UI` `Variativity Target` фиксируется как enum `1 / 2 / 3 / 4+`.
+- Если фактическая рабочая потребность позже потребует более точного
+  численного `Variativity Target`, это должно быть оформлено как отдельный
+  future upgrade, а не как скрытое нарушение текущей UI-схемы.
 - `CI` из более общего creativity/variability profile по-прежнему может
   использоваться как аналитический скаляр, но в схему issue `v1.1` он не
   продвигается.
@@ -112,9 +115,8 @@ task-side planning signals задачи и работать во внешнем 
 1. `Flow Mode`
 2. `Variativity Target`
 3. `Decide Policy`
-4. `MetaCF Risk`
 
-Эти четыре пункта выносятся наверх, потому что они:
+Эти три пункта выносятся наверх, потому что они:
 
 1. относятся к стороне задачи, а не к стороне исполнителя;
 2. компактны и пригодны для отчетности;
@@ -134,19 +136,20 @@ task-side planning signals задачи и работать во внешнем 
 
 ---
 
-## 6. Guidance по `MetaCF Risk`
+## 6. Опциональная note о `MetaCF Risk`
 
-Рекомендуемый вывод по умолчанию:
+`MetaCF Risk` сохраняется как допустимый концепт методологического уровня, но
+в `delivery/linear` больше не является обязательным или рекомендуемым issue
+field.
 
-1. `low`
-   стабильная рамка, `Variativity Target=1`, не ожидается паралича решения
-2. `medium`
-   несколько правдоподобных путей или умеренное ожидаемое давление на переопределение рамки
-3. `high`
-   вероятен пересмотр рамки, высокая неопределенность в `forecast/decide` или
-   явный риск эскалации в `MetaChangeFlow`
+Если команде нужно явно отметить риск reframing/escalation, это можно делать
+только как краткую note в `Planning rationale`, а не как отдельный field.
 
-Ручная корректировка допустима, но issue должен хранить короткое обоснование.
+Рекомендуемые формулировки note:
+
+1. `Low meta-level reframing risk`
+2. `Moderate risk of reframing during forecast/decide`
+3. `High risk of escalation into MetaChangeFlow`
 
 ---
 
@@ -160,21 +163,24 @@ task-side planning signals задачи и работать во внешнем 
 Пусть:
 
 - `B` = базовая оценка терминальной задачи без planning-extension;
-- `V` = `Variativity Target`.
+- `V_map` = числовое отображение `Variativity Target`:
+  - `1 -> 1`
+  - `2 -> 2`
+  - `3 -> 3`
+  - `4+ -> 4` по умолчанию.
 
 Рекомендуемая аддитивная модель:
 
-`PlanningUnits = B + (V - 1) + ceil((V - 1) / 2) + C + D + M`
+`PlanningUnits = B + (V_map - 1) + ceil((V_map - 1) / 2) + C + D`
 
 Где:
 
-1. `(V - 1)` дает дополнительную нагрузку `forecast` для дополнительных
+1. `(V_map - 1)` дает дополнительную нагрузку `forecast` для дополнительных
    вариантов;
-2. `ceil((V - 1) / 2)` дает дополнительную нагрузку `decide` на сравнение
+2. `ceil((V_map - 1) / 2)` дает дополнительную нагрузку `decide` на сравнение
    альтернатив;
 3. `C = 1`, если `Flow Mode=creative`, иначе `0`;
-4. `D = 1`, если `Decide Policy=delayed`, иначе `0`;
-5. `M = 0/1/2` для `MetaCF Risk = low/medium/high`.
+4. `D = 1`, если `Decide Policy=delayed`, иначе `0`.
 
 Интерпретация:
 
@@ -183,11 +189,13 @@ task-side planning signals задачи и работать во внешнем 
    учета любых дополнительных альтернатив.
 3. `Decide Policy=delayed` добавляет decision overhead и требует явного
    контроля через `max_decide_delay`.
-4. `MetaCF Risk` добавляет резерв на непредвиденное, а не номинальное время
-   исполнения.
 
 Затраты на подбор исполнителя, alignment или review можно оценивать отдельно,
 но они не являются частью issue-side planning schema `v1.1`.
+
+Если `Planning rationale` явно указывает на высокий риск reframing или
+эскалации, команда может добавить contingency вручную, но это не является
+частью минимальной формулы.
 
 ### 7.2 Сводка влияния по фазам
 
@@ -198,7 +206,6 @@ task-side planning signals задачи и работать во внешнем 
 | `Flow Mode=creative` | `CF2..CF4` | более широкий поиск и контроль отложенного collapse |
 | более высокий `Variativity Target` | `CF3`, затем `CF4` | больше вариантов для генерации и сравнения |
 | `Decide Policy=delayed` | `CF4` | явное удержание альтернатив открытыми по правилам |
-| более высокий `MetaCF Risk` | резерв вокруг `CF3/CF4` | возможный reframing/escalation |
 
 ---
 
@@ -211,11 +218,10 @@ task-side planning signals задачи и работать во внешнем 
 - Flow mode: creative
 - Variativity target: 3
 - Decide policy: delayed
-- MetaCF risk: medium
 - max_decide_delay: 2 working days
 - forced_collapse_trigger: No dominant path after review of 3 candidates
 - resource_cap: CF3 exploration <= 5 person-days
-- Planning rationale:
+- Planning rationale: Moderate risk of reframing during forecast/decide
 ```
 
 ---
@@ -239,7 +245,7 @@ task-side planning signals задачи и работать во внешнем 
 
 Рекомендуемый порядок внедрения:
 
-1. внедрить четыре planning custom fields;
+1. внедрить три planning custom fields;
 2. внедрить структурированный planning-block в issue bodies;
 3. отдельно от delivery ввести внешний matching/capability layer;
 4. автоматизировать подбор assignee только после того, как matching/profile
@@ -247,6 +253,12 @@ task-side planning signals задачи и работать во внешнем 
 
 Этот порядок сохраняет чистую границу между планированием delivery и измерением
 исполнителя.
+
+TODO:
+
+- если практика покажет устойчивую пользу от точного числового `Variativity Target`
+  сверх `4+`, вернуться к вопросу о future integer-версии поля вне текущего
+  `Linear UI v1.1`.
 
 ---
 

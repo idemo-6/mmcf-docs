@@ -19,6 +19,9 @@ CDM `AppliedRules`, не повторяя их полный контент.
 3. терминальная задача
 4. `Context` и роли контекста
 
+Семантика `PhaseTransition/PT` в этот профиль не входит; для нее используются
+напрямую CDM `PhaseTransition-CF` и соответствующие MMCF gateway-профили.
+
 ---
 
 ## 2. `RLC/CC`
@@ -87,6 +90,8 @@ CDM `AppliedRules`, не повторяя их полный контент.
 ## 7. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
+- [CDM PhaseTransition-CF](../../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md)
 - [CDM RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md)
 - [CDM ROS Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/ROS-Profile.md)
 - [CDM SEC-OC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/SEC-OC-Profile.md)

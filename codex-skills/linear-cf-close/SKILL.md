@@ -43,9 +43,10 @@ Read these delivery docs before acting:
 2. `final` and `delayed` are default only for `Applicable=false`, `Result=0`.
 3. There is no terminal stop status for unresolved `Result=-1` without an
    immediate next flow in v1.
-4. Do not close with `done` while approval, claim, or gateway failure is still
+4. Do not treat retryable PT attempt failure as a reason to close the flow.
+5. Do not close with `done` while approval, claim, or gateway failure is still
    unresolved.
-5. If `repeat` is selected, the next issue must already exist or be created in
+6. If `repeat` is selected, the next issue must already exist or be created in
    the same turn.
-6. Do not silently rewrite planning `v1.1` fields or body blocks while closing
+7. Do not silently rewrite planning `v1.1` fields or body blocks while closing
    a flow unless the user explicitly asks for a planning update.

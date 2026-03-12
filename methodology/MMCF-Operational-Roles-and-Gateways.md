@@ -120,7 +120,10 @@ CDM-alignment:
 
 1. `event-based/process-based` используются как operational labels;
 2. каноническая CDM-классификация остается `безусловный/условный`;
-3. `TransitionExecutor` — профильное имя канонической роли `transition_executor`.
+3. `TransitionExecutor` — профильное имя канонической роли `transition_executor`;
+4. уточнение о том, что незакрытый `CF-PT` может оставаться в `In-Transition`,
+   а только финальный отрицательный исход прерывает `ChangeFlow`, берется из
+   [CDM PhaseTransition-CF](../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md).
 
 ---
 

@@ -121,6 +121,9 @@ status: working-draft
 9. `approval_ref`, когда approval обязателен
 10. `claim_ref` или `evidence_ref`, когда обязательна передача результата, несущего claims
 11. `failure_reason`, когда `result=false`
+12. `pt_failure_policy`, когда переход не `fail_fast`
+13. `attempt_no`, когда зафиксирована не первая попытка
+14. `policy_state = retrying | exhausted | completed`, когда policy materially влияет на ход перехода
 
 Для v1:
 
@@ -131,6 +134,30 @@ status: working-draft
 3. для фильтрации на уровне issue в Linear активное узкое место перехода можно
    зеркалить метками вроде `AwaitingApproval`, `AwaitingClaim` или
    `GatewayFailure`.
+
+### 5.1 Retry policy в delivery
+
+Если для перехода используется recovery policy, она живет внутри того же
+`PT`, а не создает новый `ChangeFlow`.
+
+Рекомендуемые значения:
+
+1. `fail_fast`
+2. `retry_n(n)`
+3. `retry_until_deadline(deadline)`
+4. `retry_until_condition(condition_ref)`
+
+Для `retry_until_condition(condition_ref)` в delivery рекомендуется использовать
+только внешне наблюдаемое condition с явным evidence ref и stop rule.
+
+Нормативно:
+
+1. отдельная неуспешная попытка внутри retry policy не обязана немедленно
+   отправлять flow в `evaluate`;
+2. пока policy не исчерпана, issue остается в статусе исходной фазы, а не
+   переходит в следующую фазу;
+3. только terminal failure после исчерпания policy фиксируется как `pt_result=false`
+   и ведет текущий `ChangeFlow` в `CF6`.
 
 ---
 
@@ -156,6 +183,14 @@ status: working-draft
    `claim` только там, где есть материал, несущий claims;
 3. научная документация: часто `claim` или `approve+claim`, но только на
    тех переходах, которые реально несут результат с claims.
+
+Практически:
+
+1. `fail_fast` остается значением по умолчанию;
+2. retry policy имеет смысл только там, где неуспешный переход не должен
+   автоматически завершать flow;
+3. для `approve`- и `claim`-gates retry policy чаще выражается как retry по
+   deadline или по условию, а не бесконечный loop.
 
 ---
 

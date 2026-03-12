@@ -24,7 +24,7 @@ unconditional`. Он вводит только удобные operational scenar
 
 1. `CF-PT` является автономным процессом передачи и согласования между фазами.
 2. Переход имеет собственный `result in {true,false}` и собственное время.
-3. Сбой перехода прерывает текущий `ChangeFlow` и ведет к `CF6`.
+3. terminal `pt_result=false` прерывает текущий `ChangeFlow` и ведет к `CF6`.
 4. Failure transition не является автоматическим доказательством ошибки обеих
    соседних фаз.
 
@@ -96,6 +96,9 @@ evidence package.
 3. `approval_ref`, когда approval materially required
 4. `claim_ref` или `evidence_ref`, когда передается claim-bearing result
 5. `failure_reason`, когда `result=false`
+6. `pt_failure_policy`, когда используется не `fail_fast`
+7. `attempt_no`, когда переход уже ретраился
+8. `policy_state = retrying | exhausted | completed`
 
 Нормативно:
 
@@ -105,7 +108,52 @@ evidence package.
 
 ---
 
-## 6. Failure And Responsibility Semantics
+## 6. Retry And Recovery Policy
+
+MMCF допускает operational retry/recovery policy внутри одного и того же
+`CF-PT`, пока не зафиксирован terminal `pt_result=false`.
+
+Для этого профиля различаются:
+
+1. `pt_attempt_failure`
+   Неуспешная отдельная попытка перехода внутри продолжающегося `In-Transition`.
+2. `terminal_pt_failure`
+   Финальный неуспех перехода после `fail_fast` или исчерпания retry policy.
+
+Нормативно:
+
+1. `pt_attempt_failure` сам по себе не обязан немедленно прерывать текущий
+   `ChangeFlow`;
+2. только `terminal_pt_failure` приводит к фиксации `pt_result=false`;
+3. только после terminal `pt_result=false` текущий `ChangeFlow` идет в `CF6`
+   по канону CDM.
+
+Допустимые policy values:
+
+1. `fail_fast`
+2. `retry_n(n)`
+3. `retry_until_deadline(deadline)`
+4. `retry_until_condition(condition_ref)`
+
+Для `retry_until_condition(condition_ref)` условие должно быть:
+
+1. внешне наблюдаемым;
+2. проверяемым по trace/evidence;
+3. связанным с явным stop rule или deadline, если оно не гарантировано наступит
+   само.
+
+Практически допустим и policy-смысл `retry_until_success`, но только если он
+сведен к одной из двух явных ограниченных форм:
+
+1. `retry_until_deadline(...)`
+2. `retry_until_condition(...)`
+
+Неограниченное бесконечное `retry_until_success` без deadline, condition или
+внешнего stop rule не рекомендуется.
+
+---
+
+## 7. Failure And Responsibility Semantics
 
 При использовании operational scenarios действуют те же базовые правила MMCF/CDM:
 
@@ -118,7 +166,7 @@ evidence package.
 
 ---
 
-## 7. Anti-Patterns
+## 8. Anti-Patterns
 
 Запрещено или нежелательно:
 
@@ -128,10 +176,14 @@ evidence package.
    реальной double-gate;
 4. использовать scenario label без явной trace, когда переход materially
    определил outcome потока.
+5. фиксировать `pt_result=false`, а затем продолжать тот же `ChangeFlow`,
+   как будто terminal failure еще не произошел.
+6. использовать неограниченное `retry_until_success` без deadline, condition
+   или внешнего stop rule.
 
 ---
 
-## 8. Normative References
+## 9. Normative References
 
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF-Operational-Work-Unit-Contract](./MMCF-Operational-Work-Unit-Contract.md)

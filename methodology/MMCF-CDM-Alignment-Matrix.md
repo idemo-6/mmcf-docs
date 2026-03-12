@@ -40,7 +40,8 @@ status: working-draft
 | Классификация PT | `безусловный/условный` | operational labels `event-based/process-based` | mapped |
 | Участники `CF-PT` | `from_phase_owner`, `to_phase_owner`, optional `transition_executor` | `CFPhaseOwner(from/to)`, `TransitionExecutor` | mapped |
 | Состояния `CF-PT` | минимальные markers `from_completed..transition_closed` | расширенный журнал и контрольные события | mapped |
-| Поведение при `CF-PT result=false` | прерывание текущего `CF`, переход в `CF6` | фиксируется как `GatewayFailure` + завершение через `CF6` | aligned |
+| Поведение при `CF-PT result=false` | прерывание текущего `CF`, переход в `CF6` | terminal `GatewayFailure` + завершение через `CF6` | aligned |
+| Retry внутри `CF-PT` | не детализирован отдельно, но совместим с `In-Transition`, пока финальный `result` не зафиксирован | retry/recovery policy внутри одного PT без нарушения terminal semantics | mapped |
 | Ролевые уровни исполнения | не задает орг-иерархию реализации | `Global > Domain > Local`, level/phase/transition owners | profile-owned |
 | Контекстная координация | каноника Context/Coordination в CDM | `C_coord/C_meta` policy и escalation в управленческом контуре | profile-owned |
 
@@ -50,11 +51,13 @@ status: working-draft
 
 1. `LC-PT` и `CF-PT` не смешиваются как один тип перехода.
 2. Завершение исходной фазы не означает автоматически закрытый `CF-PT`.
-3. Для `CF-PT result=false` текущий `ChangeFlow` завершается через `CF6`.
+3. Для terminal `CF-PT result=false` текущий `ChangeFlow` завершается через `CF6`.
 4. `Result=0` в MMCF трактуется только как `ApplicabilityFailure` и не подменяет
    семантику `CF-PT result=false`.
 5. Любое профильное расширение ролей в MMCF остается отображаемым в канонические
    роли перехода CDM.
+6. Attempt-level failures внутри retry policy не считаются terminal `CF-PT result=false`,
+   пока policy не исчерпана и финальный результат перехода не зафиксирован.
 
 ---
 
@@ -67,12 +70,14 @@ status: working-draft
 3. детализацию transition state machine и SLA/timeout;
 4. governance-политики (`override`, `escalation`, `revalidation`);
 5. domain-specific evidence/metrics.
+6. retry/recovery policy внутри `CF-PT`, если terminal semantics CDM сохранена.
 
 Запрещено расширять в MMCF с переопределением:
 
 1. базовой типологии PT (`LC-PT`, `CF-PT`);
 2. канонической классификации `безусловный/условный`;
 3. канонического поведения `CF-PT` при отказе.
+4. различия между attempt-level retry и terminal `pt_result=false`.
 
 ---
 

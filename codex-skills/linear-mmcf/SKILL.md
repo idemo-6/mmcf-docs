@@ -17,7 +17,7 @@ Typical triggers:
 5. `PhaseTransition`, gateway, approval, or claim bottlenecks;
 6. claim-aware software or documentation delivery in Linear;
 7. task-side planning-aware intake or repeat work using `Flow Mode`,
-   `Variativity Target`, `Decide Policy`, or `MetaCF Risk`.
+   `Variativity Target`, or `Decide Policy`.
 
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
