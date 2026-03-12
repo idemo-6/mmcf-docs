@@ -228,7 +228,7 @@ tool-profile и вынесены в корневой слой `methodology/`.
 5. `active_context`
    Лучше хранить в body issue и комментарии `evaluate`, пока таксономия
    активного контекста не стала стабильнее.
-6. version snapshots (`ObservedVersion`, `InputVersion`, `PostCFVersion`, `CFIndex`)
+6. version snapshots (`ObservedVersion`, `PreCFVersion`, `PostCFVersion`, `CFIndex`)
    Лучше хранить в body issue и `CF6`, а не в top-level custom fields.
 
 ### 6.3 Отложенные кандидаты

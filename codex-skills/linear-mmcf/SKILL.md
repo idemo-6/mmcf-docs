@@ -18,8 +18,10 @@ Typical triggers:
 6. claim-aware software or documentation delivery in Linear;
 7. task-side planning-aware intake or repeat work using `Flow Mode`,
    `Variativity Target`, or `Decide Policy`;
-8. version-aware work using `Observed Version`, `CF Index`, `Input Version`, or
-   `Post-CF Version`.
+8. version-aware work using `Observed Version`, `CF Index`, `Pre-CF Version`,
+   or `Post-CF Version`;
+9. epic-level version reconciliation using `Version sync note`,
+   `Observed CF index`, or `Active CF issue`.
 
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
@@ -38,6 +40,7 @@ Operational skill sources:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-advance/SKILL.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-close/SKILL.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-repeat/SKILL.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-version-sync-review/SKILL.md`
 
 ## Routing rules
 
@@ -49,6 +52,8 @@ Operational skill sources:
    read and follow `linear-cf-close`.
 4. If the task is to start the next sibling flow after `repeat`, read and
    follow `linear-cf-repeat`.
+5. If the task is to reconcile epic-level `Observed version` or clear/update a
+   `Version sync note`, read and follow `linear-version-sync-review`.
 
 If the task spans several operations, execute them in this order:
 

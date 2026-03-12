@@ -54,3 +54,7 @@ Read these delivery docs before acting:
    a flow unless the user explicitly asks for a planning update.
 8. When the carrier entity is versioned, do not invent `Post-CF version`; use
    the known snapshot or mark it as pending re-derivation.
+9. In the delivery/Linear default, expect a new material `Post-CF version`
+   mainly for `done` and `repeat`; for `final` and `delayed`, prefer
+   `Version outcome note: no material version change` unless an explicit new
+   snapshot is already known.

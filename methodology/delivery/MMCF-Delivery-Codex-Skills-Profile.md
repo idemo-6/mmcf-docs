@@ -19,7 +19,7 @@ status: working-draft
 
 ## 2. Пакет навыков v1
 
-Начальный пакет содержит один входной навык и четыре узких навыка:
+Начальный пакет содержит один входной навык и пять узких навыков:
 
 1. `linear-mmcf`
    Входной навык и маршрутизатор для MMCF-совместимой работы в Linear.
@@ -31,6 +31,9 @@ status: working-draft
    Пишет сводку `CF6` и закрывает текущий поток с валидным terminal exit.
 5. `linear-cf-repeat`
    Создает следующий соседний `ChangeFlow` issue из уже оцененного исходного потока.
+6. `linear-version-sync-review`
+   Проводит reconciliation `Epic`-уровня для `Observed version`,
+   `Observed CF index` и `Version sync note`.
 
 Такое разбиение сохраняет одну сильную точку входа, но при этом
 оставляет под ней узкие операционные навыки.
@@ -87,6 +90,14 @@ Planning-profile `v1.1` считается аддитивным расширен
 2. следующий issue должен унаследовать тот же контур и ту же базовую цель;
 3. title, body, links и ссылки на `CF6` должны быть корректно перенесены.
 
+### `linear-version-sync-review`
+
+Использовать, когда:
+
+1. у `Epic` есть `Version sync note`;
+2. `Observed version` выглядит stale относительно уже завершенных `CF6`;
+3. нужен узкий reconciliation-pass по version snapshot, а не общий weekly review.
+
 ---
 
 ## 4. Общие операционные правила
@@ -102,6 +113,8 @@ Planning-profile `v1.1` считается аддитивным расширен
 7. если workspace использует planning `v1.1`, навыки intake и repeat должны
    заполнять или сохранять task-side planning-поля и blocks, а advance/close
    не должны молча переписывать planning-assumptions.
+8. versioning-aware навыки должны различать `Observed version` на уровне epic и
+   `Pre-CF/Post-CF version` на уровне terminal issue.
 
 Если Linear MCP не может напрямую выставить обязательное custom field, навык
 должен:

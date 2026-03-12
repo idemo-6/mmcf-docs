@@ -54,7 +54,7 @@ Issue не является узлом `LifeCycle`.
 
 1. `Carrier Entity Id`
 2. `CF Index`
-3. `Input Version`, когда он уже известен
+3. `Pre-CF Version`, когда он уже известен
 
 Если workspace использует planning `v1.1`, дополнительно задайте:
 
@@ -70,7 +70,7 @@ Issue не является узлом `LifeCycle`.
 2. `Base task ref`
 3. `Carrier entity`
 4. `CF index`, если carrier entity versioned
-5. `Input version`, если carrier entity versioned
+5. `Pre-CF version`, если carrier entity versioned
 6. `Base intent`
 7. `Active context(s)`
 8. `LC phase snapshot`
@@ -87,7 +87,7 @@ Issue не является узлом `LifeCycle`.
 - Base task ref:
 - Carrier entity:
 - CF index:
-- Input version:
+- Pre-CF version:
 - Version source ref:
 - Base intent:
 - Active context(s):
@@ -225,6 +225,10 @@ gateway. Явные gateway traces остаются отдельными, но `
 - Summary:
 ```
 
+`Pre-CF version` означает унаследованный snapshot до входа в текущий `CF#N`.
+Он может содержать предыдущий `cf` сегмент относительно текущего `CF index`,
+и это нормально.
+
 ### 5.1 Руководство по `CF6`
 
 1. `Failure class` объясняет, какой слой в первую очередь определил terminal
@@ -250,8 +254,16 @@ gateway. Явные gateway traces остаются отдельными, но `
 6. `Return condition` и `Review date / trigger` обязательны только для
    `delayed`.
 7. если carrier entity versioned, `CF index` должен быть согласован с title
-   `[CF#N]`, а `Input/Post-CF version` — с каноническим `cf` сегментом версии,
-   когда version snapshot уже выведен.
+   `[CF#N]`;
+8. `Pre-CF version` отражает snapshot до входа в текущий `CF` и потому может
+   содержать предыдущий `cf` сегмент относительно текущего issue;
+9. `Post-CF version`, когда она уже выведена, должна быть согласована с
+   текущим `CF index`.
+10. для `delivery/linear` новый material `Post-CF version` по умолчанию
+    ожидается при `done` и `repeat`;
+11. для `delivery/linear` при `final` и `delayed` по умолчанию используется
+    `Version outcome note: no material version change`, если только carrier
+    entity не изменилась materially и source of truth не вывел новый snapshot.
 
 ---
 
@@ -342,6 +354,8 @@ PT-aware note:
 1. failed approval или claim transition не означает автоматически `final`;
 2. `final` корректен только тогда, когда исход transition устанавливает
    стабильную неприменимость, а не просто задержку.
+3. для `delivery/linear` `final` по умолчанию сопровождается
+   `Version outcome note: no material version change`.
 
 Обязательно:
 
@@ -371,6 +385,8 @@ PT-aware note:
 2. `delayed` корректен только тогда, когда поток закрывается потому, что
    следующий валидный ход зависит от более позднего условия, а не от
    немедленной корректирующей работы.
+3. для `delivery/linear` `delayed` по умолчанию сопровождается
+   `Version outcome note: no material version change`.
 
 Обязательно:
 

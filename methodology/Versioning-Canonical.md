@@ -121,19 +121,22 @@ MMCF использует versioning только как отражение со
 
 1. `EntityId`
 2. `ObservedVersion`
-3. `CurrentCFIndex`
+3. `ObservedCFIndex`
 4. `VersionScopeRef`, если carrier не одна сущность, а bundle/manifest
 5. `ClaimRegistryRef`, когда объект claim-bearing
 6. `ExternalReleaseLabel`, если поверх state-derived version используется
    внешний release label
+7. optional `ActiveCFIssue`, если нужно явно показывать, какой flow сейчас идет
 
 Нормативно:
 
-1. `CurrentCFIndex` выводится из `ObservedVersion`, а не считается как сумма
+1. `ObservedCFIndex` выводится из `ObservedVersion`, а не считается как сумма
    задач epic;
 2. `Epic` не должен подменять `ObservedVersion` локальной нумерацией задач;
 3. analytics уровня epic (`issue count`, `repeat count`, и т.д.) не являются
-   заменой `CurrentCFIndex`.
+   заменой `ObservedCFIndex`;
+4. `ActiveCFIssue`, если используется, является operational marker и не
+   подменяет `ObservedVersion`.
 
 ---
 
@@ -145,21 +148,68 @@ Terminal issue представляет ровно один `ChangeFlow` carrier
 
 1. `CarrierEntityId`
 2. `CFIndex`
-3. `InputVersion`
+3. `PreCFVersion`
 4. `PostCFVersion`
 5. `VersionSourceRef`
 
 Нормативно:
 
 1. `CFIndex` issue должен соответствовать title-нотации `[CF#N]`;
-2. `CFIndex` должен быть согласован с сегментом `cf` в `InputVersion` и
-   `PostCFVersion`, когда они уже известны;
-3. `InputVersion` фиксирует состояние сущности на входе в текущий `CF`;
+2. `PreCFVersion` фиксирует последнее подтвержденное состояние сущности до
+   входа в текущий `CF`;
+3. `PreCFVersion` не обязана нести тот же `cf` сегмент, что и текущий
+   `CFIndex`; обычно она отражает snapshot до `CF#N` и потому может содержать
+   предыдущий `cf`;
 4. `PostCFVersion` фиксируется только после `CF6` или помечается как
    `pending re-derivation`, если derivation еще не выполнена;
-5. при `repeat` следующий issue наследует тот же `CarrierEntityId`, получает
+5. если `PostCFVersion` уже выведена, ее `cf` сегмент должен быть согласован с
+   текущим `CFIndex`;
+6. при `repeat` следующий issue наследует тот же `CarrierEntityId`, получает
    `CFIndex = N + 1` и использует `PostCFVersion` предыдущего issue как
-   `InputVersion`, если она уже известна.
+   `PreCFVersion`, если она уже известна.
+
+### 8.1 Как читать version window terminal issue
+
+Для terminal issue важно не смешивать:
+
+1. унаследованный snapshot до входа в текущий `CF`;
+2. текущий канонический state внутри самого `CF#N`;
+3. итоговый snapshot после завершения `CF6`.
+
+Пример:
+
+1. предыдущий поток завершился на `EntityId@v.1.2.7.6`;
+2. новый issue создается как `[CF#8]` и получает
+   `PreCFVersion = EntityId@v.1.2.7.6`;
+3. если внутри текущего потока явно показывается текущий in-flow state, он уже
+   относится к `CF#8` и может иметь форму `EntityId@v.1.2.8.1`;
+4. после `CF6` issue фиксирует
+   `PostCFVersion = EntityId@v.1.2.8.6`.
+
+Следовательно, `PreCFVersion` и `CFIndex` могут указывать на разные `cf`
+сегменты, и это не является противоречием.
+
+### 8.2 Связь с terminal exits
+
+CDM/MMCF versioning остается state-derived, а не exit-derived.
+
+Следовательно:
+
+1. сам факт выбора `done`, `repeat`, `final` или `delayed` не является
+   каноническим правилом derivation версии;
+2. `CF#N` существует как meaningful `ChangeFlow` и при `final/delayed`;
+3. tool-specific profile может вводить operational default о том, когда
+   version snapshot удобно surface в рабочем инструменте, но это не подменяет
+   канонический versioning.
+
+В частности, допустимо, что delivery-profile для конкретного инструмента:
+
+1. ожидает новый material `PostCFVersion` главным образом при `done` и
+   `repeat`;
+2. по умолчанию трактует `final/delayed` как `no material version change`,
+   если это соответствует operational semantics данного инструмента.
+
+Такая оговорка относится к tool-profile, а не к канонической derivation rule.
 
 ---
 
@@ -200,7 +250,7 @@ derivation-oriented.
 Практически это означает:
 
 1. допустим validator, который проверяет согласованность `EntityId`,
-   `CFIndex`, `InputVersion`, `PostCFVersion` и event/gate trace;
+   `CFIndex`, `PreCFVersion`, `PostCFVersion` и event/gate trace;
 2. недопустим ручной registry version numbers без связи с derivation rules;
 3. claim-style hooks могут служить governance-паттерном, но versioning-checker
    не должен быть простой копией claim registry validator.

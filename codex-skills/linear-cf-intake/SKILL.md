@@ -55,3 +55,5 @@ This skill is project-specific. It assumes the delivery docs live at:
    body `Planning` block semantically aligned.
 7. When the carrier entity is versioned, make `CF index` explicit and keep it
    aligned with the title form `[CF#N]`.
+8. If a pre-entry snapshot is known, store it as `Pre-CF version`; do not use
+   it as a replacement for the current in-flow canonical version.

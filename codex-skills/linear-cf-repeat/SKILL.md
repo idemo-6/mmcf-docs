@@ -39,7 +39,7 @@ Read these delivery docs before acting:
    the new issue.
 7. When the carrier entity is versioned, carry forward:
    - `CF index = previous + 1`
-   - `Input version = previous Post-CF version` when known
+   - `Pre-CF version = previous Post-CF version` when known
 
 ## Rules
 
@@ -53,4 +53,4 @@ Read these delivery docs before acting:
 6. Preserve the planning contour by default and revise it only when the repeat
    delta explicitly changes the next flow's planning assumptions.
 7. Do not preserve stale version snapshots blindly; if the source `Post-CF version`
-   is still unknown, mark the next `Input version` as pending re-derivation.
+   is still unknown, mark the next `Pre-CF version` as pending re-derivation.
