@@ -132,17 +132,24 @@ Reusable шаблонный слой поверх канона `PT` и над ex
 1. `from_phase`
 2. `to_phase`
 3. `pt_class = unconditional | conditional`
-4. `pt_scenario = event | approve | claim | approve+claim`
-5. `result = true | false`
-6. `t_start`
-7. `t_end`
-8. `input_ref` и `output_ref`
-9. `approval_ref`, когда approval обязателен
-10. `claim_ref` или `evidence_ref`, когда обязательна передача результата, несущего claims
-11. `failure_reason`, когда `result=false`
-12. `pt_failure_policy`, когда переход не `fail_fast`
-13. `attempt_no`, когда зафиксирована не первая попытка
-14. `policy_state = retrying | exhausted | completed`, когда policy materially влияет на ход перехода
+4. `pt_form = inline | process-based`
+5. `pt_scenario = event | approve | claim | approve+claim`
+6. `result = true | false`
+7. `t_start`
+8. `t_end`
+9. `input_ref` и `output_ref`
+10. `approval_ref`, когда approval обязателен
+11. `claim_ref` или `evidence_ref`, когда обязательна передача результата, несущего claims
+12. `failure_reason`, когда `result=false`
+13. `pt_failure_policy`, когда переход не `fail_fast`
+14. `attempt_no`, когда зафиксирована не первая попытка
+15. `policy_state = retrying | exhausted | completed`, когда policy materially влияет на ход перехода
+
+Удерживайте три независимые оси:
+
+1. `pt_class` — канонический класс перехода;
+2. `pt_form` — operational form перехода;
+3. `pt_scenario` — semantic scenario bottleneck.
 
 Для v1:
 
@@ -195,16 +202,17 @@ transitions:
 1. `from_phase`
 2. `to_phase`
 3. `pt_class`
-4. `pt_scenario`
-5. `pt_runtime_state`
-6. `pt_failure_policy`, если она не `fail_fast`
-7. `attempt_no`
-8. `approval_ref`, если нужен approve
-9. `claim_ref` или `evidence_ref`, если переход claim-bearing
-10. `TransitionOwner`
-11. `TransitionExecutor`, если handoff process-based
-12. `template_id`, если переход materialized через selected template
-13. `template_family`, если нужен reusable audit trail
+4. `pt_form`
+5. `pt_scenario`
+6. `pt_runtime_state`
+7. `pt_failure_policy`, если она не `fail_fast`
+8. `attempt_no`
+9. `approval_ref`, если нужен approve
+10. `claim_ref` или `evidence_ref`, если переход claim-bearing
+11. `TransitionOwner`
+12. `TransitionExecutor`, если handoff process-based
+13. `template_id`, если переход materialized через selected template
+14. `template_family`, если нужен reusable audit trail
 
 Преимущество этого mapping:
 
@@ -290,8 +298,8 @@ transitions:
 3. для `approve`- и `claim`-gates retry policy чаще выражается как retry по
    deadline или по условию, а не бесконечный loop.
 4. для distributed `CF` нетривиальные переходы по умолчанию следует
-   рассматривать как `process-based`, даже если не каждый из них materialized в
-   отдельный `PTSubTask`.
+   рассматривать по форме как `process-based`, даже если не каждый из них
+   materialized в отдельный `PTSubTask`.
 5. если переход управляется через selected template, parent issue должен
    хранить template binding, а `PTSubTask` — только runtime-relevant copy и
    actual state.

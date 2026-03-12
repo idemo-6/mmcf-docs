@@ -282,10 +282,11 @@ tool-profile и вынесены в корневой слой `methodology/`.
 1. `from_phase`
 2. `to_phase`
 3. `pt_class`
-4. `pt_scenario`
-5. `pt_runtime_state`
-6. `pt_failure_policy`
-7. `attempt_no`
+4. `pt_form`
+5. `pt_scenario`
+6. `pt_runtime_state`
+7. `pt_failure_policy`
+8. `attempt_no`
 
 При необходимости добавляются:
 

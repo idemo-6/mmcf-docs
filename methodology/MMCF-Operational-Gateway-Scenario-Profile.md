@@ -101,19 +101,32 @@ evidence package.
 Если operational system использует этот профиль, рекомендуется фиксировать:
 
 1. `pt_class = unconditional | conditional`
-2. `pt_scenario = event | approve | claim | approve+claim`
-3. `approval_ref`, когда approval materially required
-4. `claim_ref` или `evidence_ref`, когда передается claim-bearing result
-5. `failure_reason`, когда `result=false`
-6. `pt_failure_policy`, когда используется не `fail_fast`
-7. `attempt_no`, когда переход уже ретраился
-8. `policy_state = retrying | exhausted | completed`
+2. `pt_form = inline | process-based`
+3. `pt_scenario = event | approve | claim | approve+claim`
+4. `approval_ref`, когда approval materially required
+5. `claim_ref` или `evidence_ref`, когда передается claim-bearing result
+6. `failure_reason`, когда `result=false`
+7. `pt_failure_policy`, когда используется не `fail_fast`
+8. `attempt_no`, когда переход уже ретраился
+9. `policy_state = retrying | exhausted | completed`
 
 Нормативно:
 
-1. operational scenario не заменяет канонический `pt_class`;
-2. scenario должен объяснять реальный bottleneck, а не просто дублировать
+1. `pt_class`, `pt_form` и `pt_scenario` являются разными осями описания перехода;
+2. operational form не заменяет канонический `pt_class`;
+3. operational scenario не заменяет ни канонический `pt_class`, ни `pt_form`;
+4. scenario должен объяснять реальный bottleneck, а не просто дублировать
    название следующей фазы.
+
+Практические defaults допустимы, но не являются тождествами:
+
+1. `event` обычно соответствует `unconditional + inline`;
+2. `approve`, `claim`, `approve+claim` обычно соответствуют
+   `conditional + process-based`;
+3. возможны и другие комбинации, например:
+   - `conditional + inline` для синхронного автоматического gate;
+   - `unconditional + process-based` для обязательного handoff через отдельный
+     transport contour.
 
 ---
 

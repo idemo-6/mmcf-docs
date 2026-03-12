@@ -27,8 +27,8 @@ Read these delivery docs before acting:
    - `implement -> evaluate`
 4. Determine whether the planned transition can stay implicit or should be
    represented as an explicit `PTSubTask`.
-5. In distributed `CF`, treat a transition as operationally `process-based` by
-   default when adjacent phases belong to different agents or contours.
+5. In distributed `CF`, set `pt_form=process-based` by default when adjacent
+   phases belong to different agents or contours.
 6. If a non-trivial transition is or should be explicit:
    - create, find, or update the `PTSubTask`
    - keep the parent issue in the current phase

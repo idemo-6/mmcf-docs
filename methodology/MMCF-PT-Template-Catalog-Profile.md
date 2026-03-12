@@ -37,8 +37,10 @@ status: profile-draft
 Канонический слой хранит только инвариантную семантику:
 
 1. `pt_class = unconditional | conditional`
-2. `pt_scenario = event | approve | claim | approve+claim`
-3. допустимые failure/retry оси
+2. допустимые failure/retry оси
+
+`pt_form` и `pt_scenario` не относятся к самой канонической class-оси.
+Они принадлежат operational layer шаблона и runtime instance.
 
 ### 2.2 `template family`
 
@@ -103,9 +105,10 @@ Reusable operational family поверх канона.
 ### 4.2 Canonical binding
 
 1. `pt_class`
-2. `pt_scenario`
-3. `from_phase`
-4. `to_phase`
+2. `pt_form`
+3. `pt_scenario`
+4. `from_phase`
+5. `to_phase`
 
 ### 4.3 Operational defaults
 
@@ -182,9 +185,10 @@ Reusable operational family поверх канона.
 ### 5.2 Что не должно override'иться на уровне задачи
 
 1. `pt_class`
-2. `pt_scenario`, если он уже задан шаблоном
-3. `template_family`
-4. canonical binding `from_phase -> to_phase`
+2. `pt_form`, если он уже задан шаблоном
+3. `pt_scenario`, если он уже задан шаблоном
+4. `template_family`
+5. canonical binding `from_phase -> to_phase`
 
 ---
 
@@ -223,7 +227,8 @@ Reusable operational family поверх канона.
 ### 6.3 Distributed CF note
 
 В distributed `CF` переход operationally по умолчанию следует считать
-`process-based`, если соседние фазы принадлежат разным агентам или контурам.
+`process-based` по оси `pt_form`, если соседние фазы принадлежат разным
+агентам или контурам.
 
 Но explicit materialization все равно требует operational significance.
 

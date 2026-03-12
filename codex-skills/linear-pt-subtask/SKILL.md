@@ -23,6 +23,7 @@ Read these delivery docs before acting:
    - `from_phase`
    - `to_phase`
    - `pt_class`
+   - `pt_form`
    - `pt_scenario`
    - `pt_runtime_state`
    - `pt_failure_policy` when relevant
@@ -51,7 +52,7 @@ Read these delivery docs before acting:
    - retrying or failed transitions
    - unusually long transitions that became their own bottleneck
 4. In distributed `CF`, if adjacent phases belong to different agents or
-   contours, treat the transition as `process-based` by default.
+   contours, treat the transition form as `process-based` by default.
 5. A short successful `event` transition should remain implicit by default.
 6. `PTSubTask` may have its own owner/assignee/history, but it does not become
    a second parent flow or a second atomic work unit.

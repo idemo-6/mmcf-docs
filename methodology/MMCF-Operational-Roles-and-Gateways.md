@@ -108,10 +108,11 @@ MMCF задает реализацию и role-mapping для управленч
 
 Допустимы два режима:
 
-1. `event-based transition` — событие завершения/принятия handoff.
+1. `inline transition` — событие завершения/принятия handoff без отдельного
+   process contour.
 2. `process-based transition` — отдельный процесс передачи (канал, очередь, email и т.д.).
 
-В `event-based` переходе обычно участвуют 2 owner:
+В `inline` переходе обычно участвуют 2 owner:
 
 1. `CFPhaseOwner(from)`;
 2. `CFPhaseOwner(to)`.
@@ -124,10 +125,12 @@ MMCF задает реализацию и role-mapping для управленч
 
 CDM-alignment:
 
-1. `event-based/process-based` используются как operational labels;
+1. `inline/process-based` используются как operational form labels;
 2. каноническая CDM-классификация остается `безусловный/условный`;
-3. `TransitionExecutor` — профильное имя канонической роли `transition_executor`;
-4. уточнение о том, что незакрытый `CF-PT` может оставаться в `In-Transition`,
+3. semantic scenario перехода может дополнительно описываться как
+   `event | approve | claim | approve+claim`;
+4. `TransitionExecutor` — профильное имя канонической роли `transition_executor`;
+5. уточнение о том, что незакрытый `CF-PT` может оставаться в `In-Transition`,
    а только финальный отрицательный исход прерывает `ChangeFlow`, берется из
    [CDM PhaseTransition-CF](../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md).
 

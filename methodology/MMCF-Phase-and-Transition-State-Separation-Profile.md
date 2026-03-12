@@ -56,12 +56,19 @@ status: profile-draft
 1. `from_phase`
 2. `to_phase`
 3. `pt_class`
-4. `pt_scenario`
-5. `pt_runtime_state`
-6. `result`
-7. `attempt_no`
-8. `policy`
-9. `owners / executor`
+4. `pt_form`
+5. `pt_scenario`
+6. `pt_runtime_state`
+7. `result`
+8. `attempt_no`
+9. `policy`
+10. `owners / executor`
+
+При этом удерживайте три независимые оси описания перехода:
+
+1. `pt_class = unconditional | conditional`
+2. `pt_form = inline | process-based`
+3. `pt_scenario = event | approve | claim | approve+claim`
 
 ---
 
@@ -94,8 +101,9 @@ status: profile-draft
 
 1. `Active PT`
 2. `PT Runtime State`
-3. `PT Scenario`
-4. `PT trace`
+3. `PT Form`
+4. `PT Scenario`
+5. `PT trace`
 
 ### 5.2 Explicit transition object
 
@@ -140,7 +148,8 @@ Parent `ChangeFlow` остается единственной атомарной
 Для distributed `CF` действует practical default:
 
 1. если соседние фазы реально принадлежат разным агентам или контурам,
-   соответствующий `PT` operationally следует считать `process-based`;
+   соответствующий `PT` по форме operationally следует считать
+   `process-based`;
 2. materialization в отдельный explicit transition object остается отдельным
    пороговым решением и зависит от значимости bottleneck.
 

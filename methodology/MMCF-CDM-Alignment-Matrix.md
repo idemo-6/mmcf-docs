@@ -37,7 +37,9 @@ status: working-draft
 | Типы фазовых переходов | `LC-PT`, `CF-PT` | использует без переопределения | aligned |
 | Семантика `LC-PT` | переход между режимами, критерий устойчивости | доменная операционализация критерия устойчивости | aligned |
 | Семантика `CF-PT` | автономный handoff-процесс между фазами | gateway-контракт и трассировка handoff | aligned |
-| Классификация PT | `безусловный/условный` | operational labels `event-based/process-based` | mapped |
+| Классификация PT (class) | `безусловный/условный` | `pt_class = unconditional | conditional` | aligned |
+| Форма PT (operational form) | usual practical correspondences `event-driven/process-driven`, but not rigid equivalence to class | `pt_form = inline | process-based` | mapped |
+| Сценарий PT | не выделяется как отдельная таксономия канона | `pt_scenario = event | approve | claim | approve+claim` | profile-owned |
 | Участники `CF-PT` | `from_phase_owner`, `to_phase_owner`, optional `transition_executor` | `CFPhaseOwner(from/to)`, `TransitionExecutor` | mapped |
 | Состояния `CF-PT` | минимальные markers `from_completed..transition_closed` | расширенный журнал и контрольные события | mapped |
 | Поведение при `CF-PT result=false` | прерывание текущего `CF`, переход в `CF6` | terminal `GatewayFailure` + завершение через `CF6` | aligned |
@@ -67,10 +69,11 @@ status: working-draft
 
 1. naming ролей (`Collector`, `Decider`, `TransitionExecutor` и т.д.);
 2. ownership-модель уровня (`Global/Domain/Local`);
-3. детализацию transition state machine и SLA/timeout;
-4. governance-политики (`override`, `escalation`, `revalidation`);
-5. domain-specific evidence/metrics.
-6. retry/recovery policy внутри `CF-PT`, если terminal semantics CDM сохранена.
+3. operational form PT (`inline/process-based`), если она не подменяет class;
+4. детализацию transition state machine и SLA/timeout;
+5. governance-политики (`override`, `escalation`, `revalidation`);
+6. domain-specific evidence/metrics.
+7. retry/recovery policy внутри `CF-PT`, если terminal semantics CDM сохранена.
 
 Запрещено расширять в MMCF с переопределением:
 
