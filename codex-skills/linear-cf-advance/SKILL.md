@@ -13,6 +13,7 @@ Read these delivery docs before acting:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
 
 ## Workflow
 
@@ -38,3 +39,5 @@ Read these delivery docs before acting:
 4. `Blocked` is for non-`PT` external blockers.
 5. `AwaitingApproval`, `AwaitingClaim`, and `GatewayFailure` are visibility
    labels, not substitutes for the gateway trace.
+6. Do not silently rewrite planning `v1.1` fields or body blocks while
+   advancing a flow unless the user explicitly asks for a planning update.

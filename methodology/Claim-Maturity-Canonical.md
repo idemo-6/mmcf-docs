@@ -1,16 +1,20 @@
 ---
-title: "MMCF: Claim Maturity (Canonical)"
+title: "MMCF: Claim Maturity Governance Profile (CDM-aligned)"
 date: 2026-03-03
-tags: [MMCF, claim-maturity, canonical, evidence, governance]
-status: canonical-draft
+tags: [MMCF, CDM, claim-maturity, evidence, governance, profile]
+status: profile-draft
 ---
 
-# MMCF: Claim Maturity (Canonical)
+# MMCF: Claim Maturity Governance Profile
 
 ## 1. Назначение
 
-Документ задает каноническую модель зрелости научных/теоретических
-утверждений для методологических и канонических документов MMCF/CDM/FROR.
+Документ задает applied-level правила использования зрелости
+научных/теоретических утверждений в документах и governance-контуре MMCF.
+
+Базовая шкала `ClaimStatus`, логика evidence и последовательность переходов
+наследуются из CDM claim maturity profile. MMCF фиксирует только способ
+управленческого применения этих статусов в собственных текстах и профилях.
 
 Модель отделяет:
 - версию сущности (`EntityVersion`, state-derived),
@@ -30,7 +34,7 @@ status: canonical-draft
 
 ---
 
-## 3. Каноническая шкала статусов
+## 3. Используемая шкала статусов
 
 1. `Conjecture`
 2. `Protocol`
@@ -108,7 +112,7 @@ status: canonical-draft
 
 ---
 
-## 7. Формат совместимости (Markdown + Obsidian)
+## 7. Рекомендуемый формат совместимости (Markdown + Obsidian)
 
 Рекомендуется:
 - держать `ClaimId` в документах (таблица/блок статусов);

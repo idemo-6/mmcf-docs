@@ -1,18 +1,18 @@
 ---
-title: "MMCF Delivery: Software Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль разработки ПО"
+date: 2026-03-12
 tags: [MMCF, delivery, software, profile, ChangeFlow]
 status: profile-draft
 ---
 
-# MMCF Delivery: Software Profile
+# MMCF Delivery: профиль разработки ПО
 
-## 1. Scope
+## 1. Область
 
-This profile defines how terminal `ChangeFlow` issues are interpreted in
-software product and software platform work.
+Этот профиль определяет, как terminal `ChangeFlow` issues интерпретируются в
+работе над программными продуктами и платформами.
 
-The profile assumes the Linear mapping defined in:
+Профиль предполагает отображение в Linear, определенное в:
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
@@ -20,199 +20,196 @@ The profile assumes the Linear mapping defined in:
 
 ---
 
-## 2. Carrier and artifact
+## 2. Носитель и артефакт
 
-In software delivery, the carrier entity is typically one of:
+В этом профиле носителем обычно является один из следующих объектов:
 
-1. codebase module;
-2. service/subsystem;
-3. interface or contract surface;
-4. deployment/runtime contour;
-5. test or validation contour.
+1. модуль кодовой базы;
+2. сервис или подсистема;
+3. интерфейс или контрактная поверхность;
+4. контур развертывания или выполнения;
+5. контур тестирования или валидации.
 
-The terminal issue still represents one `ChangeFlow`, not one pull request and
-not one file.
+Terminal issue по-прежнему представляет один `ChangeFlow`, а не один pull
+request и не один файл.
 
-Commits, pull requests, migrations, and test runs are implementation/evidence
-artifacts of the flow, not the flow itself.
+Commits, pull requests, migrations и test runs являются артефактами реализации
+и подтверждения, но не самим потоком.
 
 ---
 
-## 3. Phase interpretation
+## 3. Интерпретация фаз
 
 ### `collect`
 
-Minimum:
+Минимум:
 
-1. define the target delta;
-2. capture the affected carrier entity;
-3. capture relevant constraints and active context.
+1. определить целевую дельту;
+2. зафиксировать затронутый объект-носитель;
+3. зафиксировать релевантные ограничения и активный контекст.
 
-Typical software evidence:
+Типовые подтверждения:
 
-- bug report;
-- failing test;
-- stack trace;
-- architecture note;
-- product requirement;
-- regression description.
+- сообщение об ошибке;
+- падающий тест;
+- трасса стека;
+- архитектурная заметка;
+- продуктовое требование;
+- описание регрессии.
 
 ### `analyze`
 
-Minimum:
+Минимум:
 
-1. explain current behavior or failure mode;
-2. identify relevant invariants/contracts;
-3. reduce ambiguity enough for real alternatives.
+1. объяснить текущее поведение или режим отказа;
+2. определить релевантные инварианты и контракты;
+3. снизить неоднозначность настолько, чтобы появились реальные альтернативы.
 
-Typical outputs:
+Типовые результаты:
 
-- root-cause notes;
-- affected modules list;
-- invariant/contract list;
-- failure classification.
+- заметки о первопричине;
+- список затронутых модулей;
+- список инвариантов и контрактов;
+- классификация отказа.
 
 ### `forecast`
 
-Minimum:
+Минимум:
 
-1. produce admissible implementation paths;
-2. estimate risk, blast radius, and dependency impact;
-3. identify expected verification path.
+1. предложить допустимые пути реализации;
+2. оценить риск, радиус воздействия и влияние на зависимости;
+3. определить ожидаемый путь проверки.
 
-Typical outputs:
+Типовые результаты:
 
-- solution options;
-- migration path;
-- rollback/compensation note;
-- risk comparison.
+- варианты решения;
+- путь миграции;
+- заметка об откате или компенсации;
+- сравнение рисков.
 
 ### `decide`
 
-Minimum:
+Минимум:
 
-1. choose one execution path;
-2. confirm `Applicable(Intent, C_active, LC_phase)=true` or `false`;
-3. freeze the execution branch for this flow.
+1. выбрать один путь исполнения;
+2. подтвердить `Applicable(Intent, C_active, LC_phase)=true` или `false`;
+3. зафиксировать ветку исполнения для данного прохода.
 
-If `Applicable=false`, the issue still goes through `evaluate`.
+Если `Applicable=false`, задача все равно проходит через `evaluate`.
 
 ### `implement`
 
-Software interpretation:
+Software-интерпретация:
 
-1. code/config/schema/test fixture change is committed;
-2. the chosen path is physically applied to the carrier contour;
-3. the implementation is no longer only hypothetical.
+1. изменение кода, конфигурации, схемы или тестовой фикстуры закоммичено;
+2. выбранный путь физически применен к контуру носителя;
+3. реализация больше не является только гипотезой.
 
-Typical artifacts:
+Типовые артефакты:
 
 - commits;
 - pull request;
 - migration;
-- config change;
-- feature flag change.
+- изменение конфигурации;
+- изменение feature flag.
 
 ### `evaluate`
 
-Minimum:
+Минимум:
 
-1. confirm runtime result `+1/0/-1`;
-2. attach evidence;
-3. record whether a next `CF` is needed.
+1. подтвердить runtime result `+1/0/-1`;
+2. приложить подтверждения;
+3. зафиксировать, нужен ли следующий `CF`.
 
-Typical software evidence:
+Типовые подтверждения:
 
-- test results;
-- review result;
-- runtime checks;
-- metrics/logs;
-- incident-free verification window;
-- regression findings.
-
----
-
-## 4. Evidence minimum
-
-Recommended minimum evidence bundle for software terminal issues:
-
-1. implementation reference (`commit`, `PR`, or equivalent);
-2. verification evidence (`tests`, `review`, `manual check`, `runtime signal`);
-3. affected carrier entity;
-4. relevant context/risk note;
-5. `CF6` summary comment.
-
-For higher-risk work, add:
-
-1. rollback/compensation note;
-2. blast-radius note;
-3. post-deploy observation window.
+- результаты тестов;
+- результат ревью;
+- проверки во время работы;
+- метрики и логи;
+- безинцидентное окно проверки;
+- найденные регрессии.
 
 ---
 
-## 5. Exit semantics in software work
+## 4. Минимум evidence
+
+Рекомендуемый минимальный набор подтверждений для терминальных software issues:
+
+1. ссылка на реализацию (`commit`, `PR` или эквивалент);
+2. подтверждение проверки (`tests`, `review`, `manual check`, `runtime signal`);
+3. затронутый объект-носитель;
+4. релевантная заметка о контексте/риске;
+5. итоговый комментарий `CF6`.
+
+Для работ с более высоким риском добавляйте:
+
+1. заметку об откате или компенсации;
+2. заметку о радиусе воздействия;
+3. окно наблюдения после выкладки.
+
+---
+
+## 5. Семантика выходов в работе по ПО
 
 ### `done`
 
-Use when:
+Использовать, когда:
 
-1. expected software delta is achieved;
-2. no immediate corrective or follow-up `CF` is needed;
+1. ожидаемая дельта по ПО достигнута;
+2. немедленный корректирующий или следующий `CF` не нужен;
 3. `Result=+1`.
 
 ### `repeat`
 
-Use when:
+Использовать, когда:
 
-1. current flow is complete;
-2. software work must continue immediately in a new `CF`;
-3. the next issue has a sharpened delta.
+1. текущий проход завершен;
+2. работа по ПО должна немедленно продолжиться в новом `CF`;
+3. следующий issue имеет более узкую дельту.
 
-Typical cases:
+Типовые случаи:
 
-1. implementation succeeded but review opened a new required fix;
-2. implementation revealed a second-order issue;
-3. intended change was only partially achieved.
+1. реализация успешна, но ревью открыло новое обязательное исправление;
+2. реализация выявила проблему второго порядка;
+3. целевое изменение достигнуто только частично.
 
 ### `final`
 
-Use when:
+Использовать, когда:
 
-1. the chosen software change is inapplicable in current and expected target
-   contours;
+1. выбранное изменение в ПО неприменимо в текущих и ожидаемых целевых контурах;
 2. `Result=0`;
-3. no near-term return is planned.
+3. возврат в ближайшем горизонте не планируется.
 
 ### `delayed`
 
-Use when:
+Использовать, когда:
 
-1. the change is currently inapplicable;
+1. изменение сейчас неприменимо;
 2. `Result=0`;
-3. return depends on explicit future conditions.
+3. возврат зависит от явных будущих условий.
 
-Typical return conditions:
+Типовые условия возврата:
 
-1. dependency release;
-2. policy decision;
-3. architecture change upstream;
-4. resource window;
-5. environment availability.
-
----
-
-## 6. Domain notes
-
-1. A pull request is not automatically equal to `implement`; it is evidence of
-   `implement`.
-2. Passing tests are not automatically equal to `done`; they are evidence for
-   `evaluate`.
-3. Rollback is modeled as a new forward `ChangeFlow`, not deletion of history.
-4. `Result=0` must not be used as a synonym for "not implemented yet".
+1. выпуск зависимости;
+2. управленческое решение;
+3. изменение архитектуры выше по контуру;
+4. окно ресурсов;
+5. доступность окружения.
 
 ---
 
-## 7. References
+## 6. Предметные заметки
+
+1. Pull request не равен автоматически `implement`; это подтверждение фазы `implement`.
+2. Проходящие тесты не равны автоматически `done`; это подтверждение для `evaluate`.
+3. Откат моделируется как новый прямой `ChangeFlow`, а не как удаление истории.
+4. `Result=0` нельзя использовать как синоним "еще не реализовано".
+
+---
+
+## 7. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)

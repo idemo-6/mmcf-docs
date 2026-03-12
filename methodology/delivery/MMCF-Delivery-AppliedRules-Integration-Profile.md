@@ -1,90 +1,90 @@
 ---
-title: "MMCF Delivery: AppliedRules Integration Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль интеграции AppliedRules"
+date: 2026-03-12
 tags: [MMCF, delivery, AppliedRules, profile, decomposition]
 status: profile-draft
 ---
 
-# MMCF Delivery: AppliedRules Integration Profile
+# MMCF Delivery: профиль интеграции AppliedRules
 
-## 1. Scope
+## 1. Область
 
-This short profile explains how delivery ontology in MMCF maps to CDM
-`AppliedRules` without repeating their full content.
+Этот короткий профиль объясняет, как онтология delivery в MMCF отображается в
+CDM `AppliedRules`, не повторяя их полный контент.
 
-The purpose is only to justify the delivery decomposition:
+Цель здесь только одна: обосновать delivery-декомпозицию:
 
 1. `Project`
 2. `Epic`
-3. terminal issue
-4. `Context` and context roles
+3. терминальная задача
+4. `Context` и роли контекста
 
 ---
 
 ## 2. `RLC/CC`
 
-Use [RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md) to decide whether a candidate object is:
+Используйте [RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md), чтобы определить, является ли кандидатный объект:
 
-1. a distinct lifecycle-bearing node;
-2. or only a process inside its parent contour.
+1. отдельным узлом, несущим собственный lifecycle;
+2. или лишь процессом внутри родительского контура.
 
-Delivery implication:
+Следствие для delivery:
 
-- `Project` and `Epic` are used only for lifecycle-bearing contours;
-- terminal issue is treated as `ProcessOf(parent)` and represents one
+- `Project` и `Epic` используются только для контуров с собственным `LifeCycle`;
+- терминальная задача трактуется как `ProcessOf(parent)` и представляет один
   `ChangeFlow`.
 
 ---
 
 ## 3. `ROS`
 
-Use [ROS Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/ROS-Profile.md) to stop decomposition when extra hierarchy no longer adds:
+Используйте [ROS Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/ROS-Profile.md), чтобы остановить декомпозицию в точке, где дополнительная иерархия больше не добавляет:
 
-1. explanatory power;
-2. control value;
-3. result stability.
+1. объяснительной силы;
+2. управленческой ценности;
+3. устойчивости результата.
 
-Delivery implication:
+Следствие для delivery:
 
-- not every work topic becomes an `Epic`;
-- decomposition stops at the first operationally sufficient level.
+- не каждая рабочая тема становится `Epic`;
+- декомпозиция останавливается на первом операционно достаточном уровне.
 
 ---
 
 ## 4. `SEC/OC`
 
-Use [SEC-OC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/SEC-OC-Profile.md) to separate internal decomposition from external context.
+Используйте [SEC-OC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/SEC-OC-Profile.md), чтобы отделять внутреннюю декомпозицию от внешнего контекста.
 
-Delivery implication:
+Следствие для delivery:
 
-- `Context` is not modeled as `Project` or `Epic`;
-- external constraints stay in fields, labels, and evidence/comments.
+- `Context` в этом профиле не моделируется как `Project` или `Epic`;
+- внешние ограничения остаются в полях, метках и комментариях с evidence.
 
 ---
 
 ## 5. `Observer`
 
-Use [Observer Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/Observer-Profile.md) for context-role interpretation.
+Используйте [Observer Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/Observer-Profile.md) для интерпретации ролей контекста.
 
-Delivery implication:
+Следствие для delivery:
 
-- `C_obs`, `C_coord`, `C_meta` are execution/governance roles;
-- they are not hierarchy levels of work items.
-
----
-
-## 6. Result
-
-The delivery ontology is therefore:
-
-1. `Project` -> parent `LifeCycle`
-2. `Epic` -> child `LifeCycle`
-3. terminal issue -> one `ChangeFlow`
-4. `Context` and context roles -> separate axes of execution
+- `C_obs`, `C_coord`, `C_meta` являются ролями исполнения/управления;
+- это не иерархические уровни рабочих объектов.
 
 ---
 
-## 7. References
+## 6. Результат
+
+Следовательно, онтология delivery такова:
+
+1. `Project` -> родительский `LifeCycle`
+2. `Epic` -> дочерний `LifeCycle`
+3. терминальная задача -> один `ChangeFlow`
+4. `Context` и роли контекста -> отдельные оси исполнения
+
+---
+
+## 7. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [CDM RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md)

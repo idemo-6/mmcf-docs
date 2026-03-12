@@ -1,110 +1,114 @@
 ---
-title: "MMCF Delivery: PhaseTransition and Gateway Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль `PhaseTransition` и шлюзов"
+date: 2026-03-12
 tags: [MMCF, delivery, PhaseTransition, gateway, ChangeFlow]
 status: working-draft
 ---
 
-# MMCF Delivery: PhaseTransition and Gateway Profile
+# MMCF Delivery: профиль `PhaseTransition` и шлюзов
 
-## 1. Purpose
+## 1. Назначение
 
-This document defines the minimum delivery profile for `CF-PhaseTransition`
-and gateway observability in Linear-like operational systems.
+Этот документ определяет минимальный профиль для `CF-PhaseTransition`
+и наблюдаемости шлюзов в Linear-подобных операционных системах.
 
-The goal is practical: separate phase execution time from transition,
-handoff, approval, and acceptance time.
+Практическая цель проста: отделить время исполнения фазы от времени на
+переход, передачу, согласование и принятие.
 
----
+Общий MMCF-профиль operational scenarios для gateway-layer вынесен в:
 
-## 2. Canonical principle
-
-In delivery practice, phase completion and phase transition are not the same.
-
-A transition `CFi => CF(i+1)` is treated as a separate process with its own:
-
-1. result;
-2. duration;
-3. responsibility;
-4. failure mode.
-
-This makes it possible to see whether a bottleneck is in phase execution or in
-handoff, approval, or claim/evidence acceptance.
+- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
 
 ---
 
-## 3. Canonical and operational classification
+## 2. Канонический принцип
 
-Canonical `CF-PT` classification remains:
+В практике delivery завершение фазы и переход фазы не совпадают.
+
+Переход `CFi => CF(i+1)` трактуется как отдельный процесс со своими:
+
+1. исходом;
+2. длительностью;
+3. ответственностью;
+4. типом отказа.
+
+Это позволяет видеть, находится ли узкое место в исполнении фазы или в
+передаче, согласовании либо принятии claim/evidence.
+
+---
+
+## 3. Каноническая и операционная классификация
+
+Каноническая классификация `CF-PT` остается такой:
 
 1. `unconditional`
 2. `conditional`
 
-For delivery practice, the following operational scenarios are used:
+Для практики delivery используются следующие операционные сценарии:
 
 1. `event`
 2. `approve`
 3. `claim`
 4. `approve+claim`
 
-Mapping rule:
+Правило отображения:
 
-1. `event` is typically `unconditional`;
-2. `approve`, `claim`, and `approve+claim` are typically `conditional`.
+1. `event` обычно является `unconditional`;
+2. `approve`, `claim` и `approve+claim` обычно являются `conditional`.
 
-The operational labels do not replace the canonical classification.
+Операционные метки не заменяют каноническую классификацию.
 
 ---
 
-## 4. Operational scenarios
+## 4. Операционные сценарии
 
 ### 4.1 `event`
 
-Simple transition after phase completion.
+Простой переход после завершения фазы.
 
-Typical meaning:
+Типовой смысл:
 
-1. the output of the previous phase is delivered directly;
-2. no explicit approval step is required;
-3. the next phase may start immediately.
+1. результат предыдущей фазы передается напрямую;
+2. явный этап согласования не требуется;
+3. следующая фаза может начаться сразу.
 
 ### 4.2 `approve`
 
-Transition requires explicit confirmation, sign-off, or acceptance.
+Переход требует явного подтверждения, финального согласования или принятия.
 
-Typical cases:
+Типовые случаи:
 
-1. review acceptance;
-2. owner approval;
-3. release or policy gate;
-4. editorial or governance approval.
+1. принятие ревью;
+2. согласование со стороны owner;
+3. релизный шлюз или шлюз политики;
+4. редакторское или управленческое согласование.
 
 ### 4.3 `claim`
 
-Transition requires a valid claim/evidence/canon bundle before the next phase
-may start.
+Переход требует валидной связки claim/evidence/canon до старта следующей
+фазы.
 
-Typical cases:
+Типовые случаи:
 
-1. claim-bearing scientific documentation;
-2. canonical or alignment documents;
-3. software or documentation tasks with explicit claim-bearing outputs.
+1. научная документация, несущая claims;
+2. канонические документы или документы выравнивания;
+3. software- или documentation-задачи с явным результатом, несущим claims.
 
 ### 4.4 `approve+claim`
 
-Transition requires both:
+Переход требует одновременно:
 
-1. explicit approval;
-2. valid claim/evidence acceptance.
+1. явного approval;
+2. валидного claim/evidence acceptance.
 
-This is common when a claim-bearing output must also pass owner or governance
-sign-off.
+Это типично, когда результат, несущий claims, также должен пройти owner или
+управленческое финальное согласование.
 
 ---
 
-## 5. Minimal trace for v1
+## 5. Минимальная трасса для v1
 
-For each explicit gateway trace, record at least:
+Для каждой явной gateway-trace фиксируйте как минимум:
 
 1. `from_phase`
 2. `to_phase`
@@ -113,51 +117,51 @@ For each explicit gateway trace, record at least:
 5. `result = true | false`
 6. `t_start`
 7. `t_end`
-8. `input_ref` and `output_ref`
-9. `approval_ref` when approval is required
-10. `claim_ref` or `evidence_ref` when claim-bearing transfer is required
-11. `failure_reason` when `result=false`
+8. `input_ref` и `output_ref`
+9. `approval_ref`, когда approval обязателен
+10. `claim_ref` или `evidence_ref`, когда обязательна передача результата, несущего claims
+11. `failure_reason`, когда `result=false`
 
-For v1:
+Для v1:
 
-1. `approve`, `claim`, `approve+claim`, and failed transitions must be logged
-   explicitly;
-2. simple successful `event` transitions may remain implicit in the status
-   change.
-3. for issue-level filtering in Linear, the active transition bottleneck may be
-   mirrored by labels such as `AwaitingApproval`, `AwaitingClaim`, or
+1. `approve`, `claim`, `approve+claim` и неуспешные переходы должны
+   логироваться явно;
+2. простые успешные `event`-переходы могут оставаться неявными внутри
+   изменения статуса.
+3. для фильтрации на уровне issue в Linear активное узкое место перехода можно
+   зеркалить метками вроде `AwaitingApproval`, `AwaitingClaim` или
    `GatewayFailure`.
 
 ---
 
-## 6. Responsibility note
+## 6. Заметка об ответственности
 
-Phase responsibility and gateway responsibility stay separate:
+Ответственность за фазу и ответственность за шлюз остаются раздельными:
 
-1. the phase owner is responsible for the phase output;
-2. the gateway owner is responsible for delivery, acceptance, and transition
-   validity.
+1. owner фазы отвечает за результат фазы;
+2. owner шлюза отвечает за доставку, принятие и валидность перехода.
 
-Therefore a long approval queue is a `PhaseTransition` bottleneck, not
-automatically a failure of the adjacent phase.
-
----
-
-## 7. Profile usage
-
-Recommended default by delivery profile:
-
-1. software: `event` by default; `approve` for review/release/security gates;
-   `claim` only for claim-bearing outputs;
-2. documentation: `event` by default; `approve` for editor/owner/canon gates;
-   `claim` only where claim-bearing material exists;
-3. scientific documentation: `claim` or `approve+claim` is common, but only
-   on transitions that actually carry claim-bearing output.
+Следовательно, длинная очередь согласования является узким местом уровня
+`PhaseTransition`, а не автоматически отказом соседней фазы.
 
 ---
 
-## 8. References
+## 7. Использование профиля
 
+Рекомендуемые значения по умолчанию по профилям delivery:
+
+1. разработка ПО: по умолчанию `event`; `approve` для review/release/security gates;
+   `claim` только для результатов, несущих claims;
+2. документация: по умолчанию `event`; `approve` для editor/owner/canon gates;
+   `claim` только там, где есть материал, несущий claims;
+3. научная документация: часто `claim` или `approve+claim`, но только на
+   тех переходах, которые реально несут результат с claims.
+
+---
+
+## 8. Ссылки
+
+- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)

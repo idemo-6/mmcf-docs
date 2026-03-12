@@ -1,132 +1,139 @@
 ---
-title: "MMCF Delivery: Codex Skills Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль навыков Codex"
+date: 2026-03-12
 tags: [MMCF, delivery, Codex, skills, Linear]
 status: working-draft
 ---
 
-# MMCF Delivery: Codex Skills Profile
+# MMCF Delivery: профиль навыков Codex
 
-## 1. Purpose
+## 1. Назначение
 
-This document defines the first project-specific Codex skill package for
-operating MMCF-compatible terminal `ChangeFlow` issues in Linear.
+Этот документ определяет первый проектный пакет навыков Codex для работы
+с MMCF-совместимыми terminal `ChangeFlow` issues в Linear.
 
-The skills are operational helpers. They do not redefine the delivery profile.
+Навыки здесь являются операционными помощниками. Они не переопределяют сам
+профиль delivery.
 
 ---
 
-## 2. Skill package v1
+## 2. Пакет навыков v1
 
-The initial package contains one entry skill plus four narrow skills:
+Начальный пакет содержит один входной навык и четыре узких навыка:
 
 1. `linear-mmcf`
-   Entry skill and router for MMCF-compatible Linear work.
+   Входной навык и маршрутизатор для MMCF-совместимой работы в Linear.
 2. `linear-cf-intake`
-   Create a new terminal `ChangeFlow` issue under an existing epic.
+   Создает новую терминальную задачу `ChangeFlow` под существующим `Epic`.
 3. `linear-cf-advance`
-   Advance a terminal issue to the next valid phase with `PT` awareness.
+   Продвигает терминальную задачу в следующую валидную фазу с учетом `PT`.
 4. `linear-cf-close`
-   Write the `CF6` summary and close the current flow with a valid terminal
-   exit.
+   Пишет сводку `CF6` и закрывает текущий поток с валидным terminal exit.
 5. `linear-cf-repeat`
-   Create the next sibling `ChangeFlow` issue from an evaluated source flow.
+   Создает следующий соседний `ChangeFlow` issue из уже оцененного исходного потока.
 
-This split keeps one strong trigger surface while preserving narrow operational
-skills underneath.
+Такое разбиение сохраняет одну сильную точку входа, но при этом
+оставляет под ней узкие операционные навыки.
+
+Planning-profile `v1.1` считается аддитивным расширением этого пакета, а не
+отдельным набором навыков.
 
 ---
 
-## 3. Scope of each skill
+## 3. Область каждого навыка
 
 ### `linear-mmcf`
 
-Use when:
+Использовать, когда:
 
-1. the user is talking about Linear through MMCF/CDM concepts rather than only
-   generic ticket management;
-2. the task may involve terminal `ChangeFlow`, `PhaseTransition`, `CF6`,
-   `repeat`, or claim-aware delivery;
-3. the exact narrow skill is not yet clear at the start of the turn.
+1. пользователь говорит о Linear через MMCF/CDM-понятия, а не только про
+   общее управление тикетами;
+2. задача может включать терминальный `ChangeFlow`, `PhaseTransition`, `CF6`,
+   `repeat` или claim-aware delivery;
+3. в начале хода еще неясно, какой именно узкий навык нужен.
 
 ### `linear-cf-intake`
 
-Use when:
+Использовать, когда:
 
-1. a new terminal issue must be created under an existing epic;
-2. the issue must follow the naming convention, body template, and label rules;
-3. `Artifact Type`, `Claim Mode`, and expected non-trivial `PT` transitions are
-   known or can be inferred.
+1. нужно создать новую терминальную задачу под существующим epic;
+2. issue должен следовать правилам именования, шаблону body и правилам меток;
+3. `Artifact Type`, `Claim Mode` и ожидаемые нетривиальные `PT`-переходы уже
+   известны или могут быть выведены.
 
 ### `linear-cf-advance`
 
-Use when:
+Использовать, когда:
 
-1. an existing terminal issue must move to the next phase;
-2. phase order and `Applicable` rules must be enforced;
-3. approval, claim, or gateway bottlenecks must be reflected in comments and
-   labels.
+1. существующую терминальную задачу нужно перевести в следующую фазу;
+2. необходимо обеспечить порядок фаз и правила `Applicable`;
+3. узкие места, связанные с approval, claim или gateway, должны быть отражены
+   в comments и labels.
 
 ### `linear-cf-close`
 
-Use when:
+Использовать, когда:
 
-1. the issue is in `evaluate`;
-2. `CF6` must be written with `Result`, `Failure class`, and `PT` summary;
-3. the flow must close as `done`, `final`, or `delayed`, or be prepared for
-   `repeat`.
+1. issue находится в `evaluate`;
+2. нужно оформить `CF6` с `Result`, `Failure class` и `PT` summary;
+3. поток должен закрыться как `done`, `final` или `delayed`, либо быть
+   подготовлен к `repeat`.
 
 ### `linear-cf-repeat`
 
-Use when:
+Использовать, когда:
 
-1. the evaluated flow requires an immediate next `ChangeFlow`;
-2. the next issue must inherit the same contour and base objective;
-3. the title, body, links, and `CF6` references must be carried forward
-   correctly.
-
----
-
-## 4. Shared operating rules
-
-All skills in this package must:
-
-1. follow the delivery docs in `methodology/delivery/`;
-2. treat terminal issue status as the phase layer only;
-3. keep `PhaseTransition` trace separate from phase status;
-4. not encode phase, exit, or active bottleneck in the issue title;
-5. use labels only as issue-level visibility aids;
-6. respect the rule `one terminal issue = one ChangeFlow`.
-
-If Linear MCP cannot set a required custom field directly, the skill should:
-
-1. still create or update the issue body and comments correctly;
-2. mention the missing field update explicitly in the final summary.
+1. оцененный поток требует немедленного следующего `ChangeFlow`;
+2. следующий issue должен унаследовать тот же контур и ту же базовую цель;
+3. title, body, links и ссылки на `CF6` должны быть корректно перенесены.
 
 ---
 
-## 5. Source location
+## 4. Общие операционные правила
 
-The versioned skill sources for this profile live in:
+Все навыки в этом пакете должны:
+
+1. следовать delivery-документам в `methodology/delivery/`;
+2. трактовать статус терминальной задачи только как фазовый слой;
+3. держать `PhaseTransition` trace отдельно от phase status;
+4. не кодировать фазу, exit или активное узкое место в заголовке issue;
+5. использовать labels только как вспомогательные сигналы видимости на уровне issue;
+6. соблюдать правило `one terminal issue = one ChangeFlow`.
+7. если workspace использует planning `v1.1`, навыки intake и repeat должны
+   заполнять или сохранять task-side planning-поля и blocks, а advance/close
+   не должны молча переписывать planning-assumptions.
+
+Если Linear MCP не может напрямую выставить обязательное custom field, навык
+должен:
+
+1. все равно корректно создать или обновить body issue и comments;
+2. явно упомянуть пропущенное обновление поля в финальной сводке.
+
+---
+
+## 5. Расположение исходников
+
+Версионируемые исходники навыков для этого профиля лежат в:
 
 - `mmcf-docs/codex-skills/`
 
-Private installable mirror and installer may live in:
+Приватное устанавливаемое зеркало и установщик могут жить в:
 
 - `mmcf-code/codex-skills/`
 - `mmcf-code/scripts/install_codex_skills.sh`
 - `mmcf-code/docs/CODEX_SKILLS_QUICKSTART.md`
 - `mmcf-code/docs/LINEAR_MMCF_SETUP.md`
 
-The install target for live Codex usage is:
+Целевой путь установки для живого использования Codex:
 
 - `$HOME/.codex/skills/`
 
 ---
 
-## 6. References
+## 6. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
+- [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)

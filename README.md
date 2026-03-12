@@ -2,6 +2,7 @@
 
 Публичная методология управления изменениями.
 
+- [[POSITIONING_AND_ADOPTION_ROADMAP|POSITIONING_AND_ADOPTION_ROADMAP]]
 - [[methodology/MMCF-Canonical|MMCF-Canonical]]
 - [[methodology/Versioning-Canonical|Versioning-Canonical]]
 - [[methodology/Claim-Maturity-Canonical|Claim-Maturity-Canonical]]
@@ -9,6 +10,7 @@
 - [[methodology/MMCF-Term-Legacy-Mapping|MMCF-Term-Legacy-Mapping]]
 - [[methodology/MMCF-Conflict-and-Applicability-Profile|MMCF-Conflict-and-Applicability-Profile]]
 - [[methodology/MMCF-Operational-Roles-and-Gateways|MMCF-Operational-Roles-and-Gateways]]
+- [[methodology/MMCF-Executor-Matching-and-Capability-Registry-Profile|MMCF-Executor-Matching-and-Capability-Registry-Profile]]
 - [[methodology/MMCF-Creativity-and-Variability-Profile|MMCF-Creativity-and-Variability-Profile]]
 - [[methodology/MMCF-Time-and-Cost-FROR-Alignment|MMCF-Time-and-Cost-FROR-Alignment]]
 - [[methodology/MMCF-DomainLexicon-Software-v1|MMCF-DomainLexicon-Software-v1]]

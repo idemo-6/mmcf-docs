@@ -1,11 +1,11 @@
 ---
-title: "MMCF: Operational Roles and Gateways (CF1..CF6 Profile)"
+title: "MMCF: Operational Roles and Gateways Profile (CF1..CF6, CDM-aligned)"
 date: 2026-03-05
-tags: [MMCF, CDM, roles, gateways, phase-transition, operational-profile]
-status: canonical-draft
+tags: [MMCF, CDM, roles, gateways, phase-transition, profile]
+status: profile-draft
 ---
 
-# MMCF: Operational Roles and Gateways
+# MMCF: Operational Roles and Gateways Profile
 
 ## 1. Scope
 
@@ -22,7 +22,7 @@ MMCF задает реализацию и role-mapping для управленч
 
 ---
 
-## 2. Canonical Principle
+## 2. Profile Principle
 
 В операционном профиле MMCF:
 
@@ -226,7 +226,7 @@ CDM-alignment:
 
 Запрещено:
 
-1. Писать "роль = человек" как каноническое правило.
+1. Писать "роль = человек" как базовое правило MMCF.
 2. Считать любой провал `CFi => CF(i+1)` ошибкой обеих фаз.
 3. Выполнять `CF5` без зафиксированной применимости.
 4. Заменять каноническую фазовую нотацию только алиасами.

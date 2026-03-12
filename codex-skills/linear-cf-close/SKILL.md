@@ -13,6 +13,7 @@ Read these delivery docs before acting:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
 
 ## Workflow
 
@@ -46,3 +47,5 @@ Read these delivery docs before acting:
    unresolved.
 5. If `repeat` is selected, the next issue must already exist or be created in
    the same turn.
+6. Do not silently rewrite planning `v1.1` fields or body blocks while closing
+   a flow unless the user explicitly asks for a planning update.

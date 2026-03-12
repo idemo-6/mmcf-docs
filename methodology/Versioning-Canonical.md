@@ -1,21 +1,23 @@
 ---
-title: "MMCF: Versioning (Canonical)"
+title: "MMCF: Versioning Governance Profile (CDM-aligned)"
 date: 2026-03-03
-tags: [MMCF, versioning, canonical, state-derived, governance]
-status: canonical-draft
+tags: [MMCF, CDM, versioning, governance, profile]
+status: profile-draft
 ---
 
-# MMCF: Versioning (Canonical)
+# MMCF: Versioning Governance Profile
 
-> Каноническое versioning в MMCF является **state-derived**, а не manual-tagged.
+> В MMCF versioning не образует отдельный первичный канон. Нормативным
+> source of truth остается CDM state-derived versioning, а MMCF задает
+> governance-правила его применения.
 
 ## 1. Назначение
 
-Документ задает методологический канон versioning для систем, проходящих
-управляемые изменения по lifecycle/changeflow.
+Документ задает applied-level правила versioning для систем, проходящих
+управляемые изменения по lifecycle/changeflow в контуре MMCF.
 
-Канон определяет принципы. Доменные форматы и события задаются профильными
-документами (например, CDM profile).
+Базовые инварианты и derivation наследуются из CDM. MMCF определяет только
+управленческое использование этих правил в своих профилях и документах.
 
 ---
 
@@ -30,12 +32,12 @@ $$
 
 ---
 
-## 3. Инварианты канона
+## 3. CDM-aligned invariants
 
 1. Идентичность сущности неизменна в пределах инкарнаций.
 2. Одинаковый валидный event log -> одинаковая версия (детерминизм).
 3. Каждый компонент версии должен иметь событие-основание.
-4. Ручное изменение версии запрещено (кроме audit override).
+4. Ручное изменение версии запрещено, кроме явно аудируемого override.
 
 ---
 
@@ -46,7 +48,8 @@ $$
 - правила валидности переходов (phase-gates);
 - детерминированная процедура вычисления.
 
-Формат версии задается профильным документом домена.
+Формат версии задается source-of-truth документом домена. Для CDM/MMCF таким
+источником является CDM versioning profile.
 
 ---
 
@@ -71,9 +74,9 @@ Override версии допускается только в аварийном 
 
 ---
 
-## 7. Профили применения
+## 7. Нормативная база CDM
 
-CDM-профиль versioning:
+Source-of-truth документы:
 - [CDM Versioning Profile](../../fcdm-core/theory/cdm/Specifications/Versioning/Versioning-Canonical.md)
 - [CDM Version Derivation Policy](../../fcdm-core/theory/cdm/Specifications/Versioning/Version-Derivation-Policy.md)
 

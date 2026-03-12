@@ -1,55 +1,65 @@
 ---
-title: "MMCF Delivery: Terminal ChangeFlow Contract"
-date: 2026-03-11
+title: "MMCF Delivery: контракт терминального `ChangeFlow`"
+date: 2026-03-12
 tags: [MMCF, delivery, terminal-issue, ChangeFlow, contract]
 status: working-draft
 ---
 
-# MMCF Delivery: Terminal ChangeFlow Contract
+# MMCF Delivery: контракт терминального `ChangeFlow`
 
-## 1. Purpose
+## 1. Назначение
 
-This document defines the contract for a terminal delivery issue treated as one
-`ChangeFlow`.
+Этот документ определяет контракт для терминальной задачи, трактуемой как
+один `ChangeFlow`.
 
-The contract applies to software work, documentation work, and scientific
-documentation work.
+Контракт применяется к работе по ПО, документации и научной документации.
+
+Общий MMCF-смысл operational work unit и terminal exit semantics вынесен в:
+
+- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
 
 ---
 
-## 2. Definition
+## 2. Определение
 
-A terminal issue is a single operational pass of:
+Терминальная задача представляет собой один операционный проход:
 
 `CF1 -> CF2 -> CF3 -> CF4 -> CF5? -> CF6`
 
-where:
+где:
 
-- `CF5` is executed only if `Applicable=true`;
-- `CF6` is always required before closure.
+- `CF5` исполняется только если `Applicable=true`;
+- `CF6` всегда обязателен перед закрытием.
 
-The issue is not a lifecycle node.
-It is a process inside its parent `Epic`.
+Issue не является узлом `LifeCycle`.
+Это процесс внутри родительского `Epic`.
 
 ---
 
-## 3. Intake and body template
+## 3. Входные данные и шаблон body
 
-### 3.1 Required issue metadata at intake
+### 3.1 Обязательные метаданные issue на intake
 
-When the terminal issue is created, set at least:
+При создании терминальной задачи задайте как минимум:
 
-1. title according to the naming convention;
+1. title согласно правилам именования;
 2. `Parent Epic`;
 3. `LC Phase Snapshot`;
 4. `Artifact Type`;
 5. `Claim Mode`.
 
-`Result` is not an intake field. It is set only in `evaluate`.
+`Result` не является полем intake. Он выставляется только в `evaluate`.
 
-### 3.2 Mandatory body fields
+Если workspace использует planning `v1.1`, дополнительно задайте:
 
-Each terminal issue body must contain at least:
+1. `Flow Mode`
+2. `Variativity Target`
+3. `Decide Policy`
+4. `MetaCF Risk`, когда уместно
+
+### 3.2 Обязательные поля body
+
+Каждый body терминальной задачи должен содержать как минимум:
 
 1. `Parent Epic`
 2. `Base task ref`
@@ -62,7 +72,7 @@ Each terminal issue body must contain at least:
 9. `Stop criteria`
 10. `Evidence refs`
 
-Recommended issue body template:
+Рекомендуемый шаблон body задачи:
 
 ```md
 ## Canon
@@ -80,6 +90,16 @@ Recommended issue body template:
 - Success criteria:
 - Stop criteria:
 
+## Planning
+- Flow mode:
+- Variativity target:
+- Decide policy:
+- MetaCF risk:
+- max_decide_delay:
+- forced_collapse_trigger:
+- resource_cap:
+- Planning rationale:
+
 ## PT / Gateways
 - Default PT scenario: event
 - Non-trivial transitions:
@@ -92,63 +112,81 @@ Recommended issue body template:
 - Constraints:
 ```
 
-### 3.3 `PT / Gateways` guidance
+### 3.3 Руководство по `PT / Gateways`
 
-The `PT / Gateways` block is used to predeclare non-trivial transitions.
+Блок `PT / Gateways` используется для предварительного объявления
+нетривиальных переходов.
 
-If all expected successful transitions are simple `event` transitions, the
-section may stay minimal:
+Если все ожидаемые успешные переходы являются простыми `event`-переходами,
+секция может оставаться минимальной:
 
 - `Default PT scenario: event`
 - `Non-trivial transitions: none`
 
-If approval or claim-bearing transfer is expected, declare it explicitly, for
-example:
+Если ожидается approval или передача результата, несущего claims, укажите это явно, например:
 
 - `forecast => decide: approve`
 - `implement => evaluate: approve`
 - `analyze => forecast: claim`
 
-This gives the flow an explicit transition plan before bottlenecks appear.
+Это дает потоку явный план переходов до появления узких мест.
+
+### 3.4 Руководство по `Planning`
+
+Блок `Planning` описывает только task-side planning contour задачи.
+
+Он может включать:
+
+1. execution mode;
+2. planned alternative width;
+3. decision-collapse policy;
+4. safety-hooks creative/delayed mode;
+5. краткое обоснование planning допущений.
+
+Он не должен включать:
+
+1. executor capability values;
+2. `Doubt` или `Subjectivity` bands как свойства задачи;
+3. candidate ranking или suitability scores.
 
 ---
 
-## 4. Phase discipline
+## 4. Фазовая дисциплина
 
-Mandatory phase order:
+Обязательный порядок фаз:
 
 - `collect`
 - `analyze`
 - `forecast`
 - `decide`
-- `implement` when applicable
+- `implement`, когда применимо
 - `evaluate`
 
-If inapplicability is detected during `analyze` or `forecast`, the issue still
-must pass through:
+Если неприменимость обнаружена во время `analyze` или `forecast`, issue все
+равно обязан пройти через:
 
-- `decide` with `Applicable=false`
-- `evaluate` with `Result=0`
+- `decide` с `Applicable=false`
+- `evaluate` с `Result=0`
 
-Only after that may the issue exit through `final` or `delayed`.
+Только после этого issue может выйти через `final` или `delayed`.
 
-Phase completion does not by itself mean a closed handoff to the next phase.
-Where approval, claim/evidence acceptance, or explicit handoff tracking is
-required, the transition must follow:
+Завершение фазы само по себе не означает закрытую передачу в следующую фазу.
+Там, где требуются approval, claim/evidence acceptance или явное отслеживание
+передачи, переход должен следовать профилю:
 
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 
 ---
 
-## 5. `CF6` closure contract
+## 5. Контракт закрытия `CF6`
 
-The `evaluate` phase must end with a structured comment.
+Фаза `evaluate` должна завершаться структурированным комментарием.
 
-The `CF6` comment is a closure summary, not a full phase or gateway journal.
-Explicit gateway traces remain separate, but `CF6` must state which failure or
-transition layer materially determined the flow outcome.
+Комментарий `CF6` является итоговой сводкой, а не полным журналом phase или
+gateway. Явные gateway traces остаются отдельными, но `CF6` обязан указать,
+какой слой отказа или слой перехода материально определил исход потока.
 
-Minimum template:
+Минимальный шаблон:
 
 ```md
 ## CF6 Summary
@@ -169,243 +207,249 @@ Minimum template:
 - Summary:
 ```
 
-### 5.1 `CF6` guidance
+### 5.1 Руководство по `CF6`
 
-1. `Failure class` explains which layer primarily determined the terminal
+1. `Failure class` объясняет, какой слой в первую очередь определил terminal
    outcome:
    - `phase-logic`
    - `applicability`
    - `gateway`
    - `mixed`
-   - `none` for straightforward successful completion
-2. `PT trace refs` point to explicit gateway traces when:
-   - approval was required;
-   - claim-bearing transfer was required;
-   - any transition failed;
-   - a non-trivial transition created the main bottleneck
-3. `PT summary` is a short closure note such as:
+   - `none` для прямолинейного успешного завершения
+2. `PT trace refs` указывают на явные gateway traces, когда:
+   - требовался approval;
+   - требовалась передача результата, несущего claims;
+   - любой переход завершился неуспешно;
+   - нетривиальный переход создал основное узкое место
+3. `PT summary` является короткой итоговой заметкой, например:
    - `implicit event transitions only`
    - `implement => evaluate approve completed after owner review`
    - `forecast => decide approval stalled for 9d`
    - `implement => evaluate failed as gateway; handoff not accepted`
-4. `Zero class` is filled only when `Result=0`.
-5. `Repeat reason` and `Next CF issue` are mandatory only for `repeat`.
-6. `Return condition` and `Review date / trigger` are mandatory only for
+4. `Zero class` заполняется только когда `Result=0`.
+5. `Repeat reason` и `Next CF issue` обязательны только для `repeat`.
+6. `Return condition` и `Review date / trigger` обязательны только для
    `delayed`.
 
 ---
 
-## 6. Exit rules
+## 6. Правила выхода
 
-The terminal exit is selected after `CF6` from three independent questions:
+Terminal exit выбирается после `CF6` из трех независимых вопросов:
 
-1. what `Result` was observed;
-2. is a next `ChangeFlow` required immediately;
-3. if not immediate, is future return expected or not.
+1. какой `Result` наблюдался;
+2. требуется ли немедленно следующий `ChangeFlow`;
+3. если не немедленно, ожидается ли будущий возврат или нет.
 
-`PhaseTransition` outcomes influence this decision but do not replace it. A
-gateway bottleneck or approval delay is not itself a terminal exit.
+Исходы `PhaseTransition` влияют на это решение, но не заменяют его.
+Узкое место на gateway или задержка approval сами по себе не являются terminal exit.
 
 ### 6.1 `done`
 
-Default meaning:
+Значение по умолчанию:
 
 - `Result=+1`
-- no next `CF` is required
+- следующий `CF` не требуется
 
-Allowed by default only when:
+По умолчанию допускается только когда:
 
 1. `Applicable=true`
 2. `Result=+1`
-3. no immediate next `CF` is required
-4. any non-trivial approval or claim-bearing transition required for closure
-   has already completed successfully
+3. не требуется немедленный следующий `CF`
+4. любой нетривиальный approval- или переход с результатом, несущим claims, необходимый
+   для закрытия, уже успешно завершен
 
-Do not use `done`:
+Не используйте `done`:
 
-1. to mean "implementation finished but approval is still pending";
-2. to hide a required corrective follow-up;
-3. to close a flow with unresolved gateway failure.
+1. в значении "implementation finished but approval is still pending";
+2. чтобы скрыть обязательное корректирующее продолжение;
+3. чтобы закрыть поток с неразрешенным gateway failure.
 
 ### 6.2 `repeat`
 
-Default meaning:
+Значение по умолчанию:
 
-- current `CF` is complete
-- next `CF` must be created immediately
+- текущий `CF` завершен
+- следующий `CF` должен быть создан немедленно
 
-Allowed when the current flow is complete and a new sibling flow must start now.
+Допустим, когда текущий поток завершен и новый соседний поток должен начаться
+сейчас.
 
-Typical valid combinations:
+Типовые валидные комбинации:
 
-1. `Applicable=true`, `Result=+1`, but a sharpened follow-up delta is already
-   known;
-2. `Applicable=true`, `Result=-1`, and a corrective or compensating flow must
-   start immediately;
-3. `Applicable=false`, `Result=0`, and the issue is immediately reformulated
-   into a new flow with a different actionable delta.
+1. `Applicable=true`, `Result=+1`, но более узкая следующая дельта уже
+   известна;
+2. `Applicable=true`, `Result=-1`, и корректирующий или компенсирующий поток должен
+   начаться немедленно;
+3. `Applicable=false`, `Result=0`, и задача немедленно переформулируется в
+   новый поток с другой выполнимой дельтой.
 
 PT-aware note:
 
-1. if the principal outcome was `GatewayFailure`, `repeat` is the default exit
-   only when recovery starts now in a new flow;
-2. `repeat` is not a placeholder for "maybe later".
+1. если основным outcome был `GatewayFailure`, `repeat` является выходом по
+   умолчанию только тогда, когда восстановление начинается сейчас в новом потоке;
+2. `repeat` не является временной меткой "может быть позже".
 
-Mandatory:
+Обязательно:
 
 - `Repeat reason`
 - `Next CF issue`
 
 ### 6.3 `final`
 
-Default meaning:
+Значение по умолчанию:
 
 - `Applicable=false`
 - `Result=0`
-- no planned return
+- планируемого возврата нет
 
-Use `final` when the current flow closes the line without immediate or expected
-future continuation.
+Используйте `final`, когда текущий поток закрывает линию без немедленного или
+ожидаемого будущего продолжения.
 
-Typical valid cases:
+Типовые валидные случаи:
 
-1. canonical or governance decision established real inapplicability;
-2. approval or claim review ended with a stable "do not continue this line"
-   decision;
-3. the current formulation is rejected without a planned reformulation.
+1. canonical или управленческое решение установило реальную неприменимость;
+2. approval или review по claims завершились стабильным решением "не продолжать
+   эту линию";
+3. текущая формулировка отклонена без планируемой reformulation.
 
 PT-aware note:
 
-1. a failed approval or claim transition does not automatically mean `final`;
-2. `final` is correct only when the transition outcome establishes stable
-   inapplicability, not just delay.
+1. failed approval или claim transition не означает автоматически `final`;
+2. `final` корректен только тогда, когда исход transition устанавливает
+   стабильную неприменимость, а не просто задержку.
 
-Mandatory:
+Обязательно:
 
-- reason for final stop
+- причина финальной остановки
 
 ### 6.4 `delayed`
 
-Default meaning:
+Значение по умолчанию:
 
 - `Applicable=false`
 - `Result=0`
-- return is expected later
+- возврат ожидается позже
 
-Use `delayed` when the current flow is inapplicable now, but a future trigger
-for valid return is known or expected.
+Используйте `delayed`, когда текущий поток неприменим сейчас, но известен или
+ожидается будущее условие корректного возврата.
 
-Typical valid cases:
+Типовые валидные случаи:
 
-1. missing upstream spec freeze;
-2. pending governance decision;
-3. missing evidence or protocol completion;
-4. unavailable dependency, environment, or resource window.
+1. отсутствует заморозка вышестоящей спецификации;
+2. ожидается управленческое решение;
+3. не хватает evidence или завершения protocol;
+4. недоступна зависимость, окружение или окно ресурсов.
 
 PT-aware note:
 
-1. long approval time alone is not enough for `delayed`;
-2. `delayed` is correct only when the flow is being closed because the next
-   valid move depends on a later trigger rather than immediate corrective work.
+1. само по себе длительное время approval недостаточно для `delayed`;
+2. `delayed` корректен только тогда, когда поток закрывается потому, что
+   следующий валидный ход зависит от более позднего условия, а не от
+   немедленной корректирующей работы.
 
-Mandatory:
+Обязательно:
 
 - `Return condition`
 - `Review date / trigger`
-- owner of revisit
+- владелец возврата
 
-### 6.5 Decision matrix
+### 6.5 Матрица решений
 
-Use the following default mapping:
+Используйте следующее отображение по умолчанию:
 
-1. `Result=+1` and no immediate next `CF` -> `done`
-2. `Result=+1` and immediate next `CF` -> `repeat`
-3. `Result=-1` and immediate corrective/compensating `CF` -> `repeat`
-4. `Result=0` and immediate reformulated `CF` -> `repeat`
-5. `Result=0` and no immediate next `CF`, but future return is expected ->
+1. `Result=+1` и немедленный следующий `CF` не нужен -> `done`
+2. `Result=+1` и нужен немедленный следующий `CF` -> `repeat`
+3. `Result=-1` и нужен немедленный corrective/compensating `CF` -> `repeat`
+4. `Result=0` и есть немедленно reformulated `CF` -> `repeat`
+5. `Result=0` и немедленного следующего `CF` нет, но ожидается будущий возврат ->
    `delayed`
-6. `Result=0` and no immediate next `CF`, and no return is planned -> `final`
+6. `Result=0` и немедленного следующего `CF` нет, и возврат не планируется -> `final`
 
-There is no dedicated terminal stop status for `Result=-1` without an
-immediate next flow in v1.
+Выделенного terminal stop status для `Result=-1` без немедленного следующего
+потока в `v1` не существует.
 
-Therefore such cases must remain in `evaluate` until one of the following
-occurs:
+Поэтому такие случаи должны оставаться в `evaluate`, пока не произойдет одно
+из следующих событий:
 
-1. a corrective `repeat` issue is created;
-2. policy or governance reframes the case into `Applicable=false`, `Result=0`,
-   and then closes it as `final` or `delayed`.
+1. создан корректирующий `repeat` issue;
+2. policy или governance переоформят кейс в `Applicable=false`, `Result=0`, а
+   затем закроют его как `final` или `delayed`.
 
 ---
 
-## 7. Repeat-chain rule
+## 7. Правило цепочки повторов
 
-When an issue exits through `repeat`:
+Когда задача выходит через `repeat`:
 
-1. the current issue is closed;
-2. a new sibling issue is created under the same `Epic`;
-3. the new issue inherits the same `Base task ref`;
-4. the new issue stores the previous issue id and delta for the next pass.
+1. текущий issue закрывается;
+2. новый sibling issue создается под тем же `Epic`;
+3. новый issue наследует тот же `Base task ref`;
+4. новый issue сохраняет id предыдущего issue и delta для следующего прохода.
 
-Recommended naming pattern:
+Рекомендуемая схема именования:
 
-### 7.1 Title form
+### 7.1 Форма title
 
-Terminal issue titles should use the stable contour/objective form:
+Заголовки терминальных задач должны использовать стабильную форму contour/objective:
 
 `<Contour>: <base objective> [CF#N]`
 
-Where:
+Где:
 
-1. `Contour` is the short stable name of the parent lifecycle contour or epic;
-2. `<base objective>` is the stable human-readable objective of this flow;
-3. `[CF#N]` identifies the concrete `ChangeFlow` in the repeat chain.
+1. `Contour` является коротким стабильным именем родительского lifecycle
+   contour или epic;
+2. `<base objective>` является стабильной человекочитаемой целью этого потока;
+3. `[CF#N]` идентифицирует конкретный `ChangeFlow` в цепочке повторов.
 
-Recommended repeat form:
+Рекомендуемая форма для repeat:
 
 `<Contour>: <base objective> [CF#(N+1)] / <delta from previous CF>`
 
-### 7.2 Naming rules
+### 7.2 Правила naming
 
-1. The title identifies the flow objective, not the current phase.
-2. Status aliases such as `collect`, `implement`, `evaluate` do not belong in
-   the title.
-3. `PhaseTransition` scenarios such as approval or claim bottlenecks do not
-   belong in the title.
-4. `Result`, `Applicable`, `done/repeat/final/delayed`, and active blocker
-   labels do not belong in the title.
-5. The contour prefix should stay stable across sibling flows in the same epic.
-6. The delta suffix after `/` is used only when it materially sharpens the next
-   repeated flow.
+1. Title идентифицирует цель потока, а не текущую фазу.
+2. Алиасы статусов вроде `collect`, `implement`, `evaluate` не должны
+   попадать в title.
+3. Сценарии `PhaseTransition`, например approval или узкие места по claims, не
+   должны попадать в title.
+4. `Result`, `Applicable`, `done/repeat/final/delayed` и labels активных
+   blockers не должны попадать в title.
+5. Префикс contour должен оставаться стабильным через sibling flows в том же epic.
+6. Суффикс delta после `/` используется только тогда, когда он материально
+   заостряет следующий повторный поток.
 
-### 7.3 Examples
+### 7.3 Примеры
 
-Initial flow:
+Начальный поток:
 
 - `CDM Context: провести абляции и сравнение порогов [CF#1]`
 
-Repeated flow:
+Повторный поток:
 
 - `CDM Context: провести абляции и сравнение порогов [CF#2] / recalibrate tau_soft after failed eval`
 
-The current backlog may keep its existing readable titles until an issue enters
-active `ChangeFlow` management. The naming convention applies to new issues and
-to issues that are explicitly normalized into repeat chains.
+Текущий backlog может сохранять свои существующие читаемые titles до тех пор,
+пока задача не войдет в активное управление `ChangeFlow`. Naming convention
+применяется к новым issues и к issues, которые явно нормализуются в repeat chains.
 
 ---
 
-## 8. Invariants
+## 8. Инварианты
 
-1. One terminal issue equals one `ChangeFlow`.
-2. Terminal exits are post-`evaluate`, not substitutes for `evaluate`.
-3. `repeat` creates a new issue; it never reopens the old one.
-4. `delayed` also never reopens the old issue; later return creates a new issue.
-5. `Result` is a separate runtime axis from terminal status.
+1. Одна терминальная задача равна одному `ChangeFlow`.
+2. Terminal exits происходят после `evaluate`, а не заменяют `evaluate`.
+3. `repeat` создает новый issue; старый issue никогда не переоткрывается.
+4. `delayed` также никогда не переоткрывает старый issue; поздний возврат
+   создает новый issue.
+5. `Result` является отдельной runtime-осью относительно terminal status.
 
 ---
 
-## 9. References
+## 9. Ссылки
 
+- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)

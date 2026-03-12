@@ -15,7 +15,9 @@ Typical triggers:
 3. `collect/analyze/forecast/decide/implement/evaluate`;
 4. `done/repeat/final/delayed`;
 5. `PhaseTransition`, gateway, approval, or claim bottlenecks;
-6. claim-aware software or documentation delivery in Linear.
+6. claim-aware software or documentation delivery in Linear;
+7. task-side planning-aware intake or repeat work using `Flow Mode`,
+   `Variativity Target`, `Decide Policy`, or `MetaCF Risk`.
 
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
@@ -25,6 +27,7 @@ Canonical references:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md`
 
 Operational skill sources:
@@ -60,3 +63,6 @@ If the task spans several operations, execute them in this order:
 4. Labels are visibility aids, not replacements for status or gateway trace.
 5. Titles encode the stable flow objective and repeat-chain index, not phase or
    bottleneck state.
+6. Planning `v1.1` is additive: intake populates planning fields when the
+   workspace uses them, repeat preserves them by default, and advance/close do
+   not silently rewrite them unless the user explicitly asks.

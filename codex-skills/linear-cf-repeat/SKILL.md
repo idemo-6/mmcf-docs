@@ -13,6 +13,7 @@ Read these delivery docs before acting:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
 
 ## Workflow
 
@@ -26,6 +27,8 @@ Read these delivery docs before acting:
    - contour prefix
    - artifact type
    - claim mode
+   - planning custom fields when present
+   - `Planning` block when present
 4. Sharpen the next flow using:
    - `Repeat reason`
    - `Summary`
@@ -43,3 +46,5 @@ Read these delivery docs before acting:
    or bottleneck labels blindly.
 5. If the source issue lacks enough `evaluate` context to define the next flow,
    do not guess; first complete or clarify `CF6`.
+6. Preserve the planning contour by default and revise it only when the repeat
+   delta explicitly changes the next flow's planning assumptions.

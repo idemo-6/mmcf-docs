@@ -1,65 +1,91 @@
 ---
-title: "MMCF Delivery INDEX"
-date: 2026-03-11
+title: "MMCF Delivery: индекс"
+date: 2026-03-12
 tags: [MMCF, delivery, Linear, software, documentation, profile]
 status: working-draft
 ---
 
-# MMCF Delivery INDEX
+# MMCF Delivery: индекс
 
-## 1. Purpose
+## 1. Назначение
 
-This section contains applied delivery profiles for managing software product
-work and documentation work in MMCF-compatible operational systems.
+Этот раздел содержит прикладные профили delivery для управления работой над
+программными продуктами и документацией в MMCF-совместимых операционных
+системах.
 
-The section is intentionally separated from the root `methodology/` layer,
-because delivery-specific documents are expected to grow into a larger corpus.
+Раздел намеренно вынесен отдельно от корневого слоя `methodology/`, потому что
+документы этого раздела ожидаемо вырастут в более крупный корпус.
+
+### 1.1 Рабочая языковая политика
+
+На текущем этапе `methodology/delivery/` ведется как русскоязычный рабочий
+корпус.
+
+Параллельную англоязычную редакцию на стадии черновиков не поддерживаем,
+чтобы не создавать расхождения между версиями и не удваивать стоимость
+каждой правки.
+
+Когда материал стабилизируется, отдельную англоязычную редакцию имеет смысл
+собирать как отдельный синхронизированный снимок, а не как второй живой
+основной источник истины.
 
 ---
 
-## 2. Core mapping
+## 2. Базовое отображение
 
-The current delivery ontology is:
+Текущая онтология delivery такова:
 
-1. `Project` -> parent `LifeCycle` instance.
-2. `Epic` -> child `LifeCycle` instance relative to `Project`.
-3. terminal issue -> one `ChangeFlow`.
-4. `Context`, `C_obs`, `C_coord`, `C_meta` -> separate axes of execution,
-   not hierarchy levels of work items.
+1. `Project` -> родительский экземпляр `LifeCycle`.
+2. `Epic` -> дочерний экземпляр `LifeCycle` относительно `Project`.
+3. терминальная задача -> один `ChangeFlow`.
+4. `Context`, `C_obs`, `C_coord`, `C_meta` -> отдельные оси исполнения, а не
+   иерархические уровни рабочих объектов.
 
-This keeps `LifeCycle` and `ChangeFlow` distinct in operational practice.
+Это сохраняет различие между `LifeCycle` и `ChangeFlow` в операционной
+практике.
 
 ---
 
-## 3. Current documents
+## 3. Текущие документы
 
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
-2. [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-3. [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
-4. [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)
-5. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
-6. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
-7. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
-8. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-9. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+2. [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
+3. [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+4. [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
+5. [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)
+6. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
+7. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
+8. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
+9. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
+10. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 
 ---
 
-## 4. Planned next documents
+## 4. Следующие ожидаемые документы
 
-The next expected profiles in this section are:
+Следующими ожидаемыми профилями в этом разделе являются:
 
-1. Evidence/review profile for `evaluate`.
-2. Delivery metrics and observability profile.
-3. Linear custom-field profile.
-4. Weekly review and escalation profile.
+1. профиль проверки и evidence для `evaluate`;
+2. профиль метрик delivery и наблюдаемости;
+3. профиль недельного обзора и эскалации.
+
+Профиль подбора исполнителей и capability registry намеренно вынесен в
+корневой слой `methodology/`, а не в `delivery`, потому что он не привязан к
+одному tool-profile:
+
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 
 ---
 
-## 5. Normative basis
+## 5. Нормативная база
 
 - [MMCF-Canonical](../MMCF-Canonical.md)
 - [MMCF-Minimal-Working-Model](../MMCF-Minimal-Working-Model.md)
+- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
+- [MMCF-Planning-Assignment-Capability-Boundary](../MMCF-Planning-Assignment-Capability-Boundary.md)
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
 - [CDM LifeCycle-6](../../../fcdm-core/theory/cdm/Specifications/LifeCycle-6_v2.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)

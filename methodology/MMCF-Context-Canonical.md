@@ -1,15 +1,15 @@
 ---
-title: "MMCF: Context Canonical"
+title: "MMCF: Context Profile (CDM/CTxL-aligned)"
 date: 2026-03-05
-tags: [MMCF, CDM, Context, CtxL, Applicability, canonical]
-status: canonical-draft
+tags: [MMCF, CDM, Context, CtxL, Applicability, profile]
+status: profile-draft
 ---
 
-# MMCF: Context Canonical
+# MMCF: Context Profile
 
 ## 1. Назначение
 
-Документ фиксирует канонические правила контекстов в MMCF как прикладном
+Документ фиксирует профильные правила контекстов в MMCF как прикладном
 слое CDM/CTxL.
 
 Цель:
@@ -20,7 +20,7 @@ status: canonical-draft
 
 ---
 
-## 2. Канонический принцип
+## 2. Профильный принцип
 
 Контекст в MMCF — это не подразделение и не орг-юнит сам по себе, а
 система ограничений, правил принятия решений и критериев успеха.
@@ -136,4 +136,3 @@ status: canonical-draft
 - [CDM CtxL Canonical](../../fcdm-core/theory/cdm/Specifications/CtxL/CtxL-Canonical.md)
 - [CDM Context Canonical](../../fcdm-core/theory/cdm/Specifications/Context/Context-Canonical.md)
 - [CDM Context Coordination Protocol](../../fcdm-core/theory/cdm/Specifications/Context/Context-Coordination-Protocol.md)
-

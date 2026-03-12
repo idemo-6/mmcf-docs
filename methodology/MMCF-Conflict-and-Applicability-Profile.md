@@ -2,14 +2,14 @@
 title: "MMCF: Conflict and Applicability Profile (CDM/FROR-aligned)"
 date: 2026-03-05
 tags: [MMCF, CDM, FROR, conflict, applicability, profile]
-status: canonical-draft
+status: profile-draft
 ---
 
 # MMCF: Conflict and Applicability Profile
 
 ## 1. Scope
 
-Документ нормализует legacy-связку `рассинхрон/триггер` в каноническую схему
+Документ нормализует legacy-связку `рассинхрон/триггер` в согласованную схему
 MMCF/CDM:
 
 `конфликт (Delta) -> Intent -> Applicable? -> Result`.
@@ -19,7 +19,7 @@ MMCF/CDM:
 
 ---
 
-## 2. Canonical Core
+## 2. CDM-aligned core
 
 ### 2.1 Conflict as Delta
 
@@ -89,7 +89,7 @@ No-cost переход фиксируется как аналитическая 
 
 ## 6. Operational Flow (MMCF)
 
-Канонический маршрут для конфликт-ориентированной задачи:
+Нормализованный маршрут для конфликт-ориентированной задачи:
 
 1. Зафиксировать `Delta` в `CF1/CF2`.
 2. Сформировать `Intent` и варианты траекторий (`CF3`).

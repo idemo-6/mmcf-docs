@@ -1,205 +1,206 @@
 ---
-title: "MMCF Delivery: Documentation Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль документации"
+date: 2026-03-12
 tags: [MMCF, delivery, documentation, profile, ChangeFlow]
 status: profile-draft
 ---
 
-# MMCF Delivery: Documentation Profile
+# MMCF Delivery: профиль документации
 
-## 1. Scope
+## 1. Область
 
-This profile defines the terminal `ChangeFlow` interpretation for documentation
-work that is not primarily scientific claim-validation work.
+Этот профиль задает интерпретацию terminal `ChangeFlow` для документной
+работы, которая не является в первую очередь научной работой по
+claim-validation.
 
-Typical targets:
+Типовые цели:
 
-1. product documentation;
-2. engineering playbooks;
-3. contributor guides;
-4. operational runbooks;
-5. API or architecture explanations.
+1. продуктовая документация;
+2. инженерные регламенты;
+3. руководства для участников;
+4. операционные регламенты;
+5. объяснения по API или архитектуре.
 
-Scientific/theoretical documentation is covered separately by:
+Научная и теоретическая документация покрывается отдельно:
 
 - [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
 
 ---
 
-## 2. Carrier and artifact
+## 2. Носитель и артефакт
 
-In this profile, the carrier entity is a document or document set.
+В этом профиле носителем является документ или набор документов.
 
-A terminal issue still represents one `ChangeFlow` over that documentation
-carrier:
+Terminal issue по-прежнему представляет один `ChangeFlow` над этим
+документным носителем:
 
-- clarify;
-- restructure;
-- align terminology;
-- repair contradictions;
-- introduce missing guidance;
-- remove obsolete guidance.
+- прояснить;
+- перестроить;
+- выровнять терминологию;
+- устранить противоречия;
+- добавить недостающие инструкции;
+- удалить устаревшие указания.
 
-The issue is not equal to a single commit or one wording edit.
+Задача не равна одному commit и не равна одной правке формулировки.
 
 ---
 
-## 3. Phase interpretation
+## 3. Интерпретация фаз
 
 ### `collect`
 
-Minimum:
+Минимум:
 
-1. identify the document carrier;
-2. identify the intended documentation delta;
-3. capture audience and active context.
+1. определить документ-носитель;
+2. определить целевую дельту документации;
+3. зафиксировать аудиторию и активный контекст.
 
-Typical evidence:
+Типовые подтверждения:
 
-- missing section request;
-- reader confusion report;
-- stale content note;
-- broken navigation/reference list;
-- terminology mismatch.
+- запрос на недостающий раздел;
+- сообщение о непонимании со стороны читателя;
+- заметка об устаревшем контенте;
+- сломанная навигация или список ссылок;
+- несогласованность терминологии.
 
 ### `analyze`
 
-Minimum:
+Минимум:
 
-1. identify the current semantic/document structure;
-2. locate contradictions, gaps, or ambiguity;
-3. identify the governing canon/profile that constrains the document.
+1. определить текущую смысловую и документную структуру;
+2. локализовать противоречия, пробелы или неоднозначность;
+3. определить управляющий `canon` или `profile`, который ограничивает документ.
 
 ### `forecast`
 
-Minimum:
+Минимум:
 
-1. produce admissible structure or wording paths;
-2. compare clarity, compatibility, and maintenance costs;
-3. identify likely review/acceptance path.
+1. предложить допустимые пути структуры или формулировок;
+2. сравнить ясность, совместимость и стоимость сопровождения;
+3. определить вероятный путь проверки и принятия.
 
 ### `decide`
 
-Minimum:
+Минимум:
 
-1. choose one document change strategy;
-2. confirm applicability in the current context and policy;
-3. freeze the target structure for this flow.
+1. выбрать одну стратегию изменения документа;
+2. подтвердить применимость в текущем контексте и текущих правилах;
+3. зафиксировать целевую структуру для данного прохода.
 
 ### `implement`
 
-Documentation interpretation:
+Документная интерпретация:
 
-1. text, structure, links, or examples are actually updated;
-2. the chosen narrative structure is materially applied;
-3. the document carrier is changed, not only proposed.
+1. текст, структура, ссылки или примеры реально обновлены;
+2. выбранная нарративная структура материально применена;
+3. документ-носитель изменен, а не только предложен.
 
-Typical artifacts:
+Типовые артефакты:
 
-- markdown update;
-- section move;
-- glossary alignment;
-- template update;
-- link/reference fix.
+- обновление markdown;
+- перенос секции;
+- выравнивание глоссария;
+- обновление шаблона;
+- исправление ссылок и reference.
 
 ### `evaluate`
 
-Minimum:
+Минимум:
 
-1. verify that the intended documentation delta is reached;
-2. verify clarity, consistency, and navigability;
-3. record runtime result and next-step decision.
+1. проверить, что целевая дельта документации достигнута;
+2. проверить ясность, согласованность и удобство навигации;
+3. зафиксировать итоговый `Result` и решение о следующем шаге.
 
-Typical evidence:
+Типовые подтверждения:
 
-- review comment resolution;
-- link/reference check;
-- terminology consistency check;
-- example correctness check;
-- reader-oriented acceptance note.
-
----
-
-## 4. Evaluate criteria
-
-Recommended checks for documentation `evaluate`:
-
-1. consistency with governing documents;
-2. absence of contradiction in the updated scope;
-3. sufficient clarity for intended audience;
-4. working references and internal links;
-5. no accidental semantic regressions in adjacent sections.
-
-Possible runtime results:
-
-1. `+1` if the intended clarification/alignment was achieved;
-2. `-1` if the update introduced confusion, contradiction, or regression;
-3. `0` if the intended change is not applicable in the current context.
+- закрытие review-комментариев;
+- проверка ссылок и reference;
+- проверка согласованности терминологии;
+- проверка корректности примеров;
+- заметка о принятии со стороны читателя.
 
 ---
 
-## 5. Exit semantics
+## 4. Критерии `evaluate`
+
+Рекомендуемые проверки для документного `evaluate`:
+
+1. согласованность с управляющими документами;
+2. отсутствие противоречий в обновленной области;
+3. достаточная ясность для целевой аудитории;
+4. рабочие references и внутренние ссылки;
+5. отсутствие случайных смысловых регрессий в соседних разделах.
+
+Возможные значения `Result`:
+
+1. `+1`, если целевое прояснение или выравнивание достигнуто;
+2. `-1`, если обновление внесло путаницу, противоречие или регрессию;
+3. `0`, если целевое изменение неприменимо в текущем контексте.
+
+---
+
+## 5. Семантика выходов
 
 ### `done`
 
-Use when:
+Использовать, когда:
 
-1. the intended documentation delta is reached;
-2. no immediate next `CF` is needed;
+1. целевая дельта документации достигнута;
+2. немедленный следующий `CF` не нужен;
 3. `Result=+1`.
 
 ### `repeat`
 
-Use when:
+Использовать, когда:
 
-1. the current pass is complete;
-2. another immediate pass is required for the same document contour;
-3. the next issue has a sharper follow-up delta.
+1. текущий проход завершен;
+2. для того же документного контура нужен еще один немедленный проход;
+3. следующий issue имеет более узкую следующую дельту.
 
-Typical cases:
+Типовые случаи:
 
-1. wording fixed but examples still missing;
-2. index fixed but cross-document links still need cleanup;
-3. structure aligned but downstream documents now need synchronized updates.
+1. формулировка исправлена, но примеры еще отсутствуют;
+2. индекс исправлен, но междокументные ссылки еще требуют зачистки;
+3. структура выровнена, но зависимые документы теперь требуют синхронного обновления.
 
 ### `final`
 
-Use when:
+Использовать, когда:
 
-1. the requested change is not applicable to the document contour;
+1. запрошенное изменение неприменимо к данному документному контуру;
 2. `Result=0`;
-3. no return is planned.
+3. возврат не планируется.
 
 ### `delayed`
 
-Use when:
+Использовать, когда:
 
-1. the requested documentation change is currently inapplicable;
+1. запрошенное изменение документации сейчас неприменимо;
 2. `Result=0`;
-3. return depends on a future event.
+3. возврат зависит от будущего события.
 
-Typical return conditions:
+Типовые условия возврата:
 
-1. upstream spec freeze;
-2. terminology decision;
-3. missing implementation details;
-4. unresolved governance conflict.
-
----
-
-## 6. Domain notes
-
-1. editorial movement and semantic movement are not always the same; `evaluate`
-   should check both.
-2. "text was changed" is not sufficient evidence of success.
-3. if the document is constrained by canon/profile documents, compatibility is
-   part of `evaluate`, not an optional afterthought.
-4. `Result=0` must not be used for "not enough time to write".
+1. заморозка вышестоящей спецификации;
+2. решение по терминологии;
+3. отсутствующие детали реализации;
+4. неразрешенный управленческий конфликт.
 
 ---
 
-## 7. References
+## 6. Предметные заметки
+
+1. редакционные изменения и смысловые изменения не всегда совпадают; `evaluate`
+   должен проверять оба аспекта.
+2. Само по себе "текст изменен" не является достаточным подтверждением успеха.
+3. Если документ ограничен документами `canon` или `profile`, совместимость является
+   частью `evaluate`, а не необязательным постфактумом.
+4. `Result=0` нельзя использовать как синоним "не хватило времени написать".
+
+---
+
+## 7. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)

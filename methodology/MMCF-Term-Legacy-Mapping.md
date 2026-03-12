@@ -1,8 +1,8 @@
 ---
-title: "MMCF: Legacy Term Mapping (INDEX/MMCF -> CDM/FROR Canon)"
+title: "MMCF: Legacy Term Mapping (INDEX/MMCF -> CDM/FROR)"
 date: 2026-03-05
-tags: [MMCF, CDM, FROR, glossary, migration, canonical]
-status: canonical-draft
+tags: [MMCF, CDM, FROR, glossary, migration, mapping]
+status: working-draft
 ---
 
 # MMCF: Legacy Term Mapping
@@ -68,9 +68,9 @@ status: canonical-draft
 
 ---
 
-## 6. Banned Terms in Canonical MMCF Texts
+## 6. Banned Terms in MMCF Texts
 
-В основном тексте канонических документов MMCF запрещены:
+В основном тексте документов MMCF запрещены:
 
 - `ODS`
 - `OmniCycle`
@@ -111,4 +111,3 @@ status: canonical-draft
 - [CDM CF-LC Evaluate](../../fcdm-core/theory/cdm/Specifications/CF-LC-Evaluate.md)
 - [FROR <-> CDM Bridge](../../fcdm-core/theory/cdm/bridge/FROR_CDM_bridge.md)
 - [FROR Main](../../fcdm-core/theory/fror/FROR_main.md)
-

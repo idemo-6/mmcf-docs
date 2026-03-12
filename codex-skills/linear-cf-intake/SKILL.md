@@ -13,6 +13,7 @@ This skill is project-specific. It assumes the delivery docs live at:
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
 - `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
+- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
 
 ## Workflow
 
@@ -25,9 +26,12 @@ This skill is project-specific. It assumes the delivery docs live at:
    - project/team
    - labels
    - `LC Phase Snapshot`, `Artifact Type`, `Claim Mode` when supported
+   - `Flow Mode`, `Variativity Target`, `Decide Policy`, `MetaCF Risk` when
+     the workspace uses planning `v1.1`
 4. Build the body from the terminal issue template:
    - `Canon`
    - `Delivery`
+   - `Planning` when planning `v1.1` is in scope
    - `PT / Gateways`
    - `Evidence`
 5. Predeclare non-trivial transitions only when needed:
@@ -46,3 +50,5 @@ This skill is project-specific. It assumes the delivery docs live at:
 4. Do not set `Result` during intake. It is filled only in `evaluate`.
 5. If Linear MCP cannot set a required custom field, keep the body correct and
    call out the missing field update in the final response.
+6. When planning `v1.1` is used, keep top-level planning custom fields and the
+   body `Planning` block semantically aligned.

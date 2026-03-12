@@ -1,145 +1,145 @@
 ---
-title: "MMCF Delivery: Scientific Documentation Profile"
-date: 2026-03-11
+title: "MMCF Delivery: профиль научной документации"
+date: 2026-03-12
 tags: [MMCF, delivery, scientific-documentation, claims, profile]
 status: profile-draft
 ---
 
-# MMCF Delivery: Scientific Documentation Profile
+# MMCF Delivery: профиль научной документации
 
-## 1. Scope
+## 1. Область
 
-This profile defines the delivery interpretation of terminal `ChangeFlow`
-issues for scientific, theoretical, and methodology-heavy documentation.
+Этот профиль определяет интерпретацию terminal `ChangeFlow` issues
+для научной, теоретической и насыщенной методологией документации.
 
-Typical targets:
+Типовые цели:
 
-1. canonical drafts;
-2. theory profiles;
-3. validation and experiment reports;
-4. methodology alignment matrices;
-5. claim-structured research notes.
+1. канонические черновики;
+2. теоретические профили;
+3. отчеты о валидации и экспериментах;
+4. методологические матрицы выравнивания;
+5. исследовательские заметки со структурой claims.
 
-This profile extends the general documentation profile with:
+Этот профиль расширяет общий профиль документации следующими слоями:
 
 1. `ClaimStatus`;
-2. evidence discipline;
-3. canon-compatibility checks;
-4. stronger `evaluate` requirements.
+2. дисциплиной работы с evidence;
+3. проверками совместимости с `canon`;
+4. более жесткие требования к `evaluate`.
 
-Claim applicability mode for this profile is `claim-required`, as defined in:
+Режим применимости claims для этого профиля: `claim-required`, как определено в:
 
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
 
 ---
 
-## 2. Carrier and governance axes
+## 2. Носитель и оси governance
 
-In this profile, the carrier entity is usually:
+В этом профиле носителем обычно является:
 
-1. a theory document;
-2. a methodology/profile document;
-3. a validation package;
-4. a claim-structured documentation set.
+1. теоретический документ;
+2. методологический или профильный документ;
+3. пакет валидации;
+4. набор документации со структурой claims.
 
-Two governance axes must remain separate:
+Две оси governance должны оставаться раздельными:
 
-1. `EntityVersion` = process state of the document carrier;
-2. `ClaimStatus` = maturity of specific claims.
+1. `EntityVersion` = процессное состояние документа-носителя;
+2. `ClaimStatus` = зрелость конкретных claims.
 
-The terminal issue tracks one `ChangeFlow`.
-It must not encode `ClaimStatus` in issue status.
-
----
-
-## 3. Typical task classes
-
-Typical terminal issue classes:
-
-1. formalize a claim or invariant;
-2. rewrite a section for canonical compatibility;
-3. attach a protocol to an existing claim;
-4. attach validation evidence;
-5. prepare a candidate claim for canon acceptance;
-6. reconcile conflicting formulations across documents.
+Terminal issue отслеживает один `ChangeFlow`.
+Он не должен кодировать `ClaimStatus` в статусе задачи.
 
 ---
 
-## 4. Phase interpretation
+## 3. Типовые классы задач
+
+Типовые классы терминальных задач:
+
+1. формализовать claim или инвариант;
+2. переписать раздел для канонической совместимости;
+3. прикрепить protocol к существующему claim;
+4. прикрепить подтверждения валидации;
+5. подготовить candidate claim к принятию в `canon`;
+6. согласовать конфликтующие формулировки между документами.
+
+---
+
+## 4. Интерпретация фаз
 
 ### `collect`
 
-Minimum:
+Минимум:
 
-1. identify the document carrier;
-2. identify the target claim/document delta;
-3. capture the relevant canon/profile context.
+1. определить документ-носитель;
+2. определить целевую дельту claim/document;
+3. зафиксировать релевантный контекст `canon/profile`.
 
-Typical evidence:
+Типовые подтверждения:
 
-- conflicting formulations;
-- missing protocol;
-- stale claim status;
-- unresolved reviewer objection;
-- missing validation package.
+- конфликтующие формулировки;
+- отсутствующий protocol;
+- устаревший claim status;
+- неразрешенное замечание рецензента;
+- отсутствующий пакет валидации.
 
 ### `analyze`
 
-Minimum:
+Минимум:
 
-1. locate current claim/document state;
-2. identify governing references and compatibility constraints;
-3. classify whether the target delta is semantic, evidential, structural, or
-   governance-related.
+1. локализовать текущее состояние claim/document;
+2. определить управляющие references и ограничения совместимости;
+3. классифицировать, является ли целевая дельта смысловой, evidential,
+   структурной или относящейся к governance.
 
 ### `forecast`
 
-Minimum:
+Минимум:
 
-1. produce admissible rewrite/evidence paths;
-2. compare risk of semantic drift;
-3. identify expected claim-status impact.
+1. предложить допустимые пути переписывания и пополнения evidence;
+2. сравнить риск смыслового дрейфа;
+3. определить ожидаемое влияние на claim-status.
 
 ### `decide`
 
-Minimum:
+Минимум:
 
-1. choose one path;
-2. confirm applicability in current canon/profile context;
-3. freeze the target claim/document move for this flow.
+1. выбрать один путь;
+2. подтвердить применимость в текущем контексте `canon/profile`;
+3. зафиксировать целевое изменение claim/document для данного прохода.
 
 ### `implement`
 
-Scientific documentation interpretation:
+Интерпретация для научной документации:
 
-1. the document text, evidence registry, or linked protocol/report is actually
-   updated;
-2. the chosen semantic structure is materially applied;
-3. the claim/document contour has a real committed delta.
+1. текст документа, реестр evidence или связанный protocol/report реально
+   обновлен;
+2. выбранная смысловая структура материально применена;
+3. claim/document contour получил реальное зафиксированное изменение.
 
 ### `evaluate`
 
-Minimum:
+Минимум:
 
-1. determine runtime result;
-2. verify semantic compatibility with governing documents;
-3. verify evidence sufficiency for the intended move;
-4. record whether `ClaimStatus` implications exist.
+1. определить runtime result;
+2. проверить смысловую совместимость с управляющими документами;
+3. проверить достаточность evidence для целевого шага;
+4. зафиксировать, есть ли последствия для `ClaimStatus`.
 
 ---
 
-## 5. Evaluate requirements
+## 5. Требования к `evaluate`
 
-Recommended `evaluate` checklist:
+Рекомендуемый список проверок для `evaluate`:
 
-1. compatibility with canon/profile references;
-2. explicit evidence refs for all changed claims in scope;
-3. no hidden skip-level move in `ClaimStatus`;
-4. no mixing of `EntityVersion` and `ClaimStatus`;
-5. explicit note whether a claim-status update is proposed, executed elsewhere,
-   or not affected.
+1. совместимость с canon/profile references;
+2. явные evidence refs для всех измененных claims в охвате;
+3. отсутствие скрытого skip-level move в `ClaimStatus`;
+4. отсутствие смешения `EntityVersion` и `ClaimStatus`;
+5. явная пометка, предлагается ли обновление claim-status, выполняется ли оно
+   в другом месте или не затронуто.
 
-Recommended additional fields in the `CF6` summary for this profile:
+Рекомендуемые дополнительные поля в сводке `CF6` для этого профиля:
 
 1. `claim_ids_affected`
 2. `claim_status_impact`
@@ -148,71 +148,68 @@ Recommended additional fields in the `CF6` summary for this profile:
 
 ---
 
-## 6. Exit semantics
+## 6. Семантика выходов
 
 ### `done`
 
-Use when:
+Использовать, когда:
 
-1. the intended scientific-documentation delta is achieved;
-2. semantic and governance checks passed;
+1. целевая дельта по научной документации достигнута;
+2. смысловые и governance-проверки пройдены;
 3. `Result=+1`;
-4. no immediate follow-up `CF` is required.
+4. немедленный следующий `CF` не требуется.
 
 ### `repeat`
 
-Use when:
+Использовать, когда:
 
-1. the current flow is complete;
-2. the next immediate pass is already clear;
-3. the follow-up flow has a more specific delta.
+1. текущий проход завершен;
+2. следующий немедленный проход уже понятен;
+3. следующий поток имеет более специфичную дельту.
 
-Typical cases:
+Типовые случаи:
 
-1. section rewritten, but protocol attachment still missing;
-2. protocol attached, but validation evidence still needs its own pass;
-3. alignment fixed in one document, but linked documents still require
-   synchronization.
+1. раздел переписан, но еще не хватает прикрепления протокола;
+2. protocol прикреплен, но подтверждения валидации все еще требуют собственного прохода;
+3. выравнивание исправлено в одном документе, но связанные документы все еще требуют синхронизации.
 
 ### `final`
 
-Use when:
+Использовать, когда:
 
-1. the requested scientific-documentation move is not applicable in the current
-   canon/profile context;
+1. запрошенное изменение научной документации неприменимо в текущем
+   контексте `canon/profile`;
 2. `Result=0`;
-3. no planned return exists.
+3. планируемого возврата нет.
 
 ### `delayed`
 
-Use when:
+Использовать, когда:
 
-1. the move is currently inapplicable;
+1. изменение сейчас неприменимо;
 2. `Result=0`;
-3. return depends on future evidence, protocol, policy, or reviewer resolution.
+3. возврат зависит от будущих evidence, protocol, правил или решения рецензента.
 
-Typical return conditions:
+Типовые условия возврата:
 
-1. experiment completion;
-2. protocol finalization;
-3. claim registry decision;
-4. canon update upstream;
-5. cross-document conflict resolution.
-
----
-
-## 7. Domain notes
-
-1. A document merge is not the same as claim validation.
-2. A successful text rewrite may still require `repeat` if the evidential layer
-   is incomplete.
-3. `ClaimStatus` updates should be traceable, but they remain a separate axis
-   from terminal issue status.
-4. `Result=0` means inapplicability, not "insufficiently proven".
+1. завершение эксперимента;
+2. финализация protocol;
+3. решение реестра claims;
+4. обновление `canon` выше по контуру;
+5. разрешение междокументного конфликта.
 
 ---
 
-## 8. References
+## 7. Предметные заметки
+
+1. Слияние документа не равняется валидации claims.
+2. Успешная правка текста все равно может требовать `repeat`, если evidential-слой неполон.
+3. Обновления `ClaimStatus` должны быть трассируемы, но остаются отдельной осью относительно статуса терминальной задачи.
+4. `Result=0` означает неприменимость, а не "недостаточно доказано".
+
+---
+
+## 8. Ссылки
 
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)

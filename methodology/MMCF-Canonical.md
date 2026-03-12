@@ -1,26 +1,31 @@
 ---
-title: "MMCF: Methodology of Management Change Flow (Canonical Draft)"
+title: "MMCF: Management Change Flow (CDM-Applied Methodology Draft)"
 date: 2026-03-02
-tags: [MMCF, CDM, ChangeFlow, methodology, canonical-draft]
-status: canonical-draft
+tags: [MMCF, CDM, ChangeFlow, methodology, applied-layer, governance]
+status: working-draft
 ---
 
-# MMCF: Methodology of Management Change Flow (Canonical Draft)
+# MMCF: Management Change Flow (CDM-Applied Methodology Draft)
 
 ## 1. Назначение
 
-MMCF задает универсальную методологию управления изменениями для систем,
-способных к целенаправленному устойчивому преобразованию.
+MMCF задает не самостоятельную онтологию изменения, а прикладную
+методологию управления изменениями поверх канона CDM.
 
-MMCF не заменяет существующие фреймворки (Agile/Scrum/Lean и др.),
-а задает онтологический и операционный каркас, внутри которого эти
-фреймворки могут быть сопоставлены, ограничены и оптимизированы.
+MMCF не заменяет CDM и не переопределяет его инварианты. Его задача -
+переводить канонические сущности CDM в управленческий контур planning,
+governance, execution, delegation и delivery-интеграций.
+
+MMCF также не заменяет существующие framework-level практики
+(`Agile/Scrum/Lean` и др.), а задает прикладную рамку, внутри которой они
+могут быть сопоставлены, ограничены и операционализированы без конфликта с
+каноном CDM.
 
 ---
 
 ## 2. Область применения
 
-Методология применима к:
+Прикладной слой MMCF применим к:
 
 1. бизнес-организациям и корпоративным процессам;
 2. продуктовым и проектным изменениям;
@@ -32,7 +37,8 @@ MMCF не заменяет существующие фреймворки (Agile/
 
 ## 3. Нормативная база CDM
 
-MMCF опирается на канонические документы CDM:
+Source of truth для базовой семантики изменения находится в канонических
+документах CDM:
 
 - LifeCycle-6
 - ChangeFlow-6
@@ -45,6 +51,11 @@ MMCF опирается на канонические документы CDM:
 - Subjectivity / Doubt / Viewpoint / MetaChangeFlow / CreativeChangeFlow
 - Subjectivity Reference Agent Profile
 
+Границы между CDM-каноном и applied-layer MMCF дополнительно фиксируются в:
+
+- [MMCF-CDM-Alignment-Matrix](./MMCF-CDM-Alignment-Matrix.md)
+- [MMCF-Applicability-Result-Alignment-Matrix](./MMCF-Applicability-Result-Alignment-Matrix.md)
+
 ---
 
 ## 4. Базовые положения
@@ -56,10 +67,10 @@ MMCF опирается на канонические документы CDM:
 
 ---
 
-## 5. Нормативные принципы MMCF
+## 5. Нормативные принципы MMCF как applied-layer
 
 1. Полнота фаз `LifeCycle` и `ChangeFlow` обязательна.
-2. Каждый `ChangeFlow` атомарен и завершается результатом.
+2. Каждый `ChangeFlow` атомарен и завершается результатом по канону CDM.
 3. Роли формализуются по уровням: системные, LC-фазовые, CF-фазовые.
 4. Управление опирается на граф опыта, а не на ad-hoc эвристики.
 5. Контекстная адаптация обязательна, особенно в режимах `develop` и `degrade`.
@@ -83,7 +94,8 @@ MMCF опирается на канонические документы CDM:
 
 ## 7. Операционный контракт MMCF
 
-Минимальные обязательные поля для каждого осмысленного изменения:
+Минимальные обязательные поля для каждого осмысленного изменения в контуре
+MMCF:
 
 - `entity_id`
 - `intent_ref`
@@ -104,26 +116,32 @@ MMCF опирается на канонические документы CDM:
 
 ## 8. Версионирование
 
-MMCF использует собственный канонический state-derived versioning:
+MMCF не задает отдельный от CDM первичный канон versioning.
+
+В MMCF используется CDM-aligned state-derived versioning, а профиль MMCF
+задает только правила управленческого применения и документирования.
+
+Типовая проекция, допустимая в прикладных профилях:
 
 `EntityId@v.<inc>.<lc>.<cf>.<cfp>`
 
-Методологические правила задаются в:
+Governance-правила применения задаются в:
 - [Versioning-Canonical](./Versioning-Canonical.md)
 
-CDM-специфичный формат и derivation рассматриваются как профиль применения.
+Source-of-truth для derivation и формата остается в CDM versioning profile.
 
 Статус зрелости утверждений (`Conjecture/Protocol/Validated/Core`) ведется
 как отдельная ось governance и не входит в числовые сегменты `EntityVersion`.
-Канон статусов см. в:
+Профиль статусов см. в:
 - [Claim-Maturity-Canonical](./Claim-Maturity-Canonical.md)
 
 ---
 
 ## 9. Границы документа
 
-Этот документ фиксирует нормативный каркас (canonical-draft) без жестких
-универсальных численных порогов.
+Этот документ фиксирует applied-level рамку MMCF поверх CDM без попытки
+переопределить каноническую онтологию, runtime-семантику или базовые
+инварианты изменения.
 
 Пороговые значения и доменные коэффициенты задаются профильными документами
 конкретного контура внедрения.
@@ -132,5 +150,9 @@ CDM-специфичный формат и derivation рассматривают
 
 ## 10. Статус
 
-Документ является базовой канонической заготовкой MMCF v1 и предназначен
-для дальнейшей детализации operational-protocol и role-model на следующем шаге.
+Документ является рабочей корневой рамкой MMCF как applied methodology над
+CDM.
+
+Если меняются общие инварианты ChangeFlow/LifeCycle, source-of-truth должен
+обновляться сначала в CDM, после чего в MMCF обновляется соответствующий
+applied mapping.
