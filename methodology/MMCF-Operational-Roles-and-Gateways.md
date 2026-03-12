@@ -20,6 +20,12 @@ status: profile-draft
 Нормативная база `LC-PT/CF-PT` берется из CDM `PhaseTransition_*`,
 MMCF задает реализацию и role-mapping для управленческого контура.
 
+Следующий уровень развития ролевой модели, который не переопределяет текущий
+профиль, а достраивает его через composition/authority/delegation patterns,
+вынесен отдельно в:
+
+- [MMCF-Role-Composition-and-Authority-Patterns-Profile](./MMCF-Role-Composition-and-Authority-Patterns-Profile.md)
+
 ---
 
 ## 2. Profile Principle
@@ -258,6 +264,7 @@ CDM-alignment:
 - [MMCF-Context-Canonical](./MMCF-Context-Canonical.md)
 - [MMCF-Context-Coordination-and-Meta-Policy](./MMCF-Context-Coordination-and-Meta-Policy.md)
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)
+- [MMCF-Role-Composition-and-Authority-Patterns-Profile](./MMCF-Role-Composition-and-Authority-Patterns-Profile.md)
 - [MMCF-CDM-Alignment-Matrix](./MMCF-CDM-Alignment-Matrix.md)
 - [CDM ChangeFlow-6 Canonical](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM PhaseTransition-CF](../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md)

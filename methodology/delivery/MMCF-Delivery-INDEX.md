@@ -53,6 +53,10 @@ status: working-draft
 
 - [Versioning Quick Guide](../../VERSIONING_QUICK_GUIDE_RU.md)
 
+Для короткого пользовательского входа в правильное формирование work objects см.:
+
+- [Work Object Formation Quick Guide](../../WORK_OBJECT_FORMATION_QUICK_GUIDE_RU.md)
+
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 2. [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 3. [MMCF-Delivery-Planning-CI-V-Bridge](./MMCF-Delivery-Planning-CI-V-Bridge.md)
