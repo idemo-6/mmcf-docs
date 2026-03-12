@@ -28,7 +28,8 @@ status: profile-draft
 2. распределение authority;
 3. паттерны делегирования;
 4. требования независимости;
-5. agent-neutral mapping ролей на реальных исполнителей.
+5. agent-neutral mapping ролей на реальных исполнителей;
+6. scoped precedence и disagreement protocol для ownership/authority.
 
 ---
 
@@ -142,6 +143,101 @@ status: profile-draft
 2. не обязан лично исполнять фазы;
 3. не становится автоматически `DecisionAuthority`, `CommitAuthority` или
    `EvaluationAuthority`.
+
+### 4.5 Чем `CFOwner` не должен быть
+
+`CFOwner` не должен читаться как:
+
+1. универсальный "начальник всех ролей" внутри потока;
+2. синоним `CFPhaseOwner` любой конкретной фазы;
+3. скрытый `PolicyAuthority` уровня;
+4. субъект, который может единолично обходить hard-stop, `LC` envelope или
+   canonical `Applicability`;
+5. просто `assignee` в issue-tracker без continuity/closure обязанностей.
+
+Следствие:
+
+- `CFOwner` держит поток как целостную operational единицу, но не подменяет
+  собой ни policy, ни lifecycle-envelope, ни phase-local валидацию.
+
+### 4.6 Минимальный operational contract `CFOwner`
+
+Для каждого materialized `ChangeFlow` должен быть различим один активный
+`CFOwner`.
+
+Минимальный контракт потока:
+
+1. `flow_id`
+2. `carrier_ref` или `work_unit_ref`
+3. `delta_ref`
+4. `intent_ref`
+5. `cfowner_ref`
+6. `authority_map_ref`
+7. `current_lc_phase`
+8. `current_cf_phase`
+9. `escalation_path_ref`
+10. `closure_rule`
+
+Минимальные обязанности `CFOwner`:
+
+1. удерживать один идентифицируемый flow contour;
+2. не допускать silent-loss ownership между фазами;
+3. инициировать escalation, если phase/gateway/authority disagreement ломает
+   continuity потока;
+4. обеспечивать валидную terminal boundary (`done/repeat/final/delayed` или
+   иной разрешенный exit), а не оставлять поток без closure semantics.
+
+Нормативно:
+
+1. у одного materialized `ChangeFlow` в момент времени должен быть не более
+   одного активного `CFOwner`;
+2. смена `CFOwner` требует явного handoff с trace;
+3. поток без различимого `CFOwner` считается operationally degraded;
+4. governance-heavy, multi-agent или high-risk flow не должен входить в
+   `CF5` или final `CF6` без различимого `CFOwner`.
+
+### 4.7 Scoped precedence between roles
+
+Вертикаль
+
+`LevelOwner -> LCPhaseOwner -> CFOwner -> CFPhaseOwner`
+
+не должна читаться как "абсолютная командная лестница" для любого вопроса.
+
+Это scoped precedence:
+
+| Вопрос | Primary scope owner | Что не может быть overridden снизу |
+|---|---|---|
+| допустим ли класс изменения по policy | `LevelOwner / PolicyAuthority` | policy envelope уровня |
+| допустим ли ход внутри текущей `LC`-фазы | `LCPhaseOwner` | lifecycle envelope и phase-gates |
+| относится ли действие к данному flow, нужен ли repeat/new flow | `CFOwner` | continuity, identity и closure потока |
+| валиден ли phase output и phase completion | `CFPhaseOwner` | локальная phase-логика внутри разрешенного envelope |
+| может ли закрыться переход | `TransitionOwner / GatewayApprovalAuthority` | closure semantics конкретного `PT` |
+| каков итоговый `Result` и terminal evaluation verdict | `Evaluator / EvaluationAuthority` | final result boundary `CF6` |
+
+Следствия:
+
+1. `CFPhaseOwner` не может валидно объявить phase-complete ход, который
+   выводит поток за `LC`-envelope;
+2. `CFOwner` не может переопределить phase-local validity только потому, что
+   "поток надо двигать";
+3. `LCPhaseOwner` не решает вместо `Evaluator` сам итоговый `Result`, если
+   поток уже дошел до корректного `CF6`;
+4. `LevelOwner/PolicyAuthority` не должен подменять собой обычную phase
+   execution, кроме explicit override.
+
+### 4.8 Minimal handover rule for `CFOwner`
+
+При смене `CFOwner` должны быть зафиксированы минимум:
+
+1. `from_cfowner`
+2. `to_cfowner`
+3. `reason`
+4. `effective_at`
+5. `current_phase_snapshot`
+6. `open_conflicts_or_blockers`
+
+Без этого continuity потока считается неаудируемой.
 
 ---
 
@@ -272,6 +368,48 @@ status: profile-draft
    различимость `Evaluator`;
 3. governance-heavy flow часто требует, чтобы `CFOwner` координировал поток,
    но authority была распределена между несколькими ролями.
+
+### 7.5 Authority disagreement and override protocol
+
+Если authority-aspects дают несовместимые verdicts, должен включаться
+explicit disagreement protocol.
+
+Минимальная последовательность:
+
+1. классифицировать disagreement как `authority-conflict`;
+2. зафиксировать `conflict_parties[]` и затронутый scope:
+   - `decision`
+   - `commit`
+   - `evaluation`
+   - `gateway-approval`
+   - `claim`
+   - `policy`
+3. остановить affected action, если конфликт затрагивает:
+   - `CF4 -> CF5`
+   - `CF5`
+   - `CF6`
+   - closure критического `PT`
+4. применить scoped precedence из раздела 4.7;
+5. если scoped precedence не дает однозначного inline resolution, эскалировать
+   в `C_coord / C_meta` по policy-пути;
+6. если требуется override, зафиксировать его как отдельное audited событие;
+7. после resolution выполнить revalidation affected phase/transition.
+
+Допустимые исходы:
+
+1. `resolved-inline`
+2. `resolved-by-override`
+3. `escalated`
+4. `blocked`
+
+Нормативно:
+
+1. `authority-conflict` не должен silently collapse'иться в решение
+   `assignee` или самого громкого стейкхолдера;
+2. unresolved `authority-conflict`, затрагивающий commit или final evaluation,
+   блокирует движение вперед;
+3. `CFOwner` обязан инициировать protocol, но не обязан быть финальным
+   resolving authority.
 
 ---
 
@@ -438,7 +576,10 @@ Authority mode не меняет каноническую фазу.
 7. agent-neutral mapping сохранен;
 8. локальность `CF5` сохранена;
 9. `CF6` сохраняется как final result boundary даже при delegated или hybrid
-   evaluation.
+   evaluation;
+10. у materialized flow различим один активный `CFOwner`;
+11. scoped precedence не подменена неявной орг-иерархией;
+12. для `authority-conflict` определен explicit disagreement protocol.
 
 ---
 
@@ -448,6 +589,7 @@ Authority mode не меняет каноническую фазу.
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
 - [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
+- [MMCF-Operational-Work-Unit-Contract](./MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Context-Coordination-and-Meta-Policy](./MMCF-Context-Coordination-and-Meta-Policy.md)
 - [POSITIONING_AND_ADOPTION_ROADMAP](../POSITIONING_AND_ADOPTION_ROADMAP.md)
 - [CDM ChangeFlow-6](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)

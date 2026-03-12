@@ -54,6 +54,11 @@ MMCF задает реализацию и role-mapping для управленч
 3. `CFPhaseOwner(L, CFi)` — owner фаз `CF` в границах уровня.
 4. `TransitionOwner(L, PT)` — owner фазового перехода (`LC-PT` или `CF-PT`).
 
+Если для контура применяется `Level 2` role profile, role trace дополнительно
+включает:
+
+5. `CFOwner(L, flow_id)` — owner целостного materialized `ChangeFlow`.
+
 Нормативно:
 
 1. Роль трактуется как функция ответственности, а не как конкретный человек.

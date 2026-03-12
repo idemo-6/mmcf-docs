@@ -144,8 +144,30 @@ status: profile-draft
 4. `scope`
 5. `expires_at`
 6. `revalidation_plan`
+7. `conflict_class`
+8. `conflict_parties`
+9. `precedence_basis`
 
 Override не отменяет аудит и последующую переоценку решения.
+
+### 6.1 Authority-conflict protocol
+
+Для `authority-conflict` policy минимум должен задавать:
+
+1. кто может инициировать protocol;
+2. какие действия freeze'ятся до resolution;
+3. какой precedence basis применяется;
+4. кто имеет final fallback authority;
+5. когда конфликт считается `blocked`, а когда допускается override.
+
+Минимальные обязательные шаги:
+
+1. зафиксировать `conflict_class=authority-conflict`;
+2. зафиксировать `conflict_parties[]`;
+3. указать `affected_scope`;
+4. применить scoped precedence;
+5. если inline resolution не достигнут, перейти на escalation path;
+6. после resolution выполнить revalidation affected scope.
 
 ---
 
@@ -202,10 +224,10 @@ priorities:
 
 override:
   required_fields:
-    ["override_reason", "approved_by", "approved_at", "scope", "expires_at", "revalidation_plan"]
+    ["override_reason", "approved_by", "approved_at", "scope", "expires_at", "revalidation_plan", "conflict_class", "conflict_parties", "precedence_basis"]
 
 revalidation:
-  triggers: ["context_changed", "risk_changed", "confidence_drop", "result_zero", "rework_repeat"]
+  triggers: ["context_changed", "risk_changed", "confidence_drop", "result_zero", "rework_repeat", "authority_conflict"]
 
 c_meta:
   learning_hooks: ["result_zero", "gateway_failure", "rework", "incident", "stable_success"]
@@ -219,7 +241,8 @@ c_meta:
 2. Есть primary/fallback authority для квалификации `Delta` и конфликтных решений.
 3. Есть hard-stop риск/регуляторный слой.
 4. Есть формальный override с аудитом и revalidation.
-5. Есть learning hooks и обновление policy через `C_meta`.
+5. Есть отдельный protocol для `authority-conflict`.
+6. Есть learning hooks и обновление policy через `C_meta`.
 
 ---
 
