@@ -31,6 +31,25 @@ status: profile-draft
 Следовательно, MMCF не вводит вторую альтернативную атомарную единицу
 изменения поверх CDM, а фиксирует operational-contract для ее управления.
 
+### 2.1 Pre-flow boundary
+
+До materialization terminal work unit линия изменения может существовать как:
+
+1. `Delta`;
+2. `DeltaRecord`;
+3. запись в `DeltaRegistry`;
+4. triage/promotion decision.
+
+Нормативно:
+
+1. `DeltaRecord` не является `ChangeFlow`;
+2. `DeltaRegistry` не является очередью operational work units;
+3. operational work unit начинается только после `PromotionDecision=promote`;
+4. `Accepted` является verdict triage-слоя, а не заменой operational state
+   work unit;
+5. pre-start state materialized work unit должен называться `Queued`, а не
+   `Backlog`.
+
 ---
 
 ## 3. Definition
@@ -47,6 +66,17 @@ status: profile-draft
 3. доменные алиасы фаз допустимы, но каноническая трасса остается `CF1..CF6`;
 4. делегированная проекция `CF5-only` не считается самостоятельной полной work
    unit без внешнего контура, который берет на себя `CF1..CF4` и `CF6`.
+
+Operational pre-start states:
+
+1. `Queued`
+2. `Todo`
+
+Граница:
+
+- `Queued` = work unit уже materialized после promotion, но еще не взят в
+  активное фазовое исполнение;
+- `Todo` = work unit уже допущен к исполнению и готов войти в `CF1`.
 
 ---
 
@@ -231,12 +261,15 @@ Default rule for `v1`:
 4. использовать `delayed` как скрытое имя для неопределенного `repeat later`;
 5. переоткрывать старый work unit вместо запуска нового потока;
 6. трактовать gateway delay или failed handoff как terminal exit сами по себе.
+7. использовать `Backlog` как базовый методологический pre-start status
+   terminal work unit.
 
 ---
 
 ## 9. Normative References
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](./MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)

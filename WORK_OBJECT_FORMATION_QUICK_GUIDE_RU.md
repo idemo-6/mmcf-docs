@@ -11,6 +11,7 @@ status: working-draft
 
 Этот документ нужен для простого пользовательского ответа на вопрос:
 
+- что сначала должно жить как `DeltaRegistry` entry;
 - что в работе должно быть `Project`;
 - что должно быть `Epic`;
 - что должно быть terminal issue;
@@ -28,6 +29,10 @@ status: working-draft
 
 ## 2. Базовое правило
 
+До любой materialization в terminal issue существует pre-flow слой:
+
+1. `DeltaRegistry entry` — фиксация одной `Delta` до `ChangeFlow`.
+
 В `MMCF delivery` используйте такую лестницу:
 
 1. `Project` — только для родительского контура с собственным `LifeCycle`.
@@ -40,6 +45,7 @@ status: working-draft
 
 Короткая формула:
 
+- `DeltaRegistry entry = one fixed Delta before ChangeFlow`
 - `Project = parent LifeCycle`
 - `Epic = child LifeCycle`
 - terminal issue = `one ChangeFlow`
@@ -49,6 +55,24 @@ status: working-draft
 ---
 
 ## 3. Быстрое дерево выбора
+
+### 3.0 Когда нужен `DeltaRegistry entry`
+
+Сначала спросите:
+
+1. у вас уже есть только зафиксированная `Delta`, но еще нет решения, что
+   нужен ровно один terminal `ChangeFlow`?
+2. возможны исходы `drop`, `park`, `merge`, `split`, а не только немедленный
+   старт потока?
+3. еще не выбрана устойчивая базовая intent-линия для одного атомарного `CF`?
+
+Если это так, перед вами `DeltaRegistry entry`, а не terminal issue.
+
+Важно:
+
+1. `DeltaRegistry entry` не является terminal issue;
+2. `DeltaRegistry entry` не является coordination issue;
+3. terminal issue появляется только после `PromotionDecision=promote`.
 
 ### 3.1 Когда нужен `Project`
 
@@ -85,6 +109,7 @@ lifecycle-смысла, `Project` не нужен.
 2. у него одна базовая intent-линия;
 3. у него один `CF6`;
 4. его можно честно закрыть через `done`, `repeat`, `final` или `delayed`.
+5. соответствующая `Delta` уже прошла promotion из `DeltaRegistry`.
 
 Если это так, перед вами normal terminal `ChangeFlow`.
 
@@ -229,6 +254,19 @@ observer или meta-controller.
 - ломается атомарность parent `ChangeFlow`;
 - `PT` начинает притворяться новым потоком;
 - теряется различие между `Phase` и `PhaseTransition`.
+
+### 5.6 `Delta backlog` как будто это terminal issue backlog
+
+Ошибка:
+
+- зафиксированные `Delta` сразу складываются в очередь terminal issues
+
+Почему это плохо:
+
+- теряется различие между фиксацией `Delta` и promotion в `ChangeFlow`;
+- слово `backlog` начинает означать и `DeltaRegistry`, и pre-start status
+  terminal issue;
+- появляются ложные terminal issues без одного честного атомарного `CF`.
 
 ---
 

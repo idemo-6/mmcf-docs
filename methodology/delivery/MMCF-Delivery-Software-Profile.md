@@ -15,6 +15,11 @@ status: profile-draft
 Он применяется к terminal issues с `Work Domain=artifact` и
 `Artifact Type=software`.
 
+Профиль начинается только после того, как соответствующая `Delta` уже прошла
+promotion из `DeltaRegistry` в terminal `ChangeFlow`.
+
+Raw `DeltaRecord` остается upstream-слоем и не является software terminal issue.
+
 Профиль предполагает отображение в Linear, определенное в:
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
@@ -215,6 +220,7 @@ Software-интерпретация:
 
 ## 7. Ссылки
 
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)

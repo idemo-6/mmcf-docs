@@ -22,6 +22,9 @@ status: working-draft
 3. В основном тексте методологических документов legacy-имена запрещены.
 4. Любая "lambda/редукционная" физическая интерпретация допустима только через
    FROR-канон и `FROR <-> CDM Bridge`.
+5. `backlog` не является каноническим термином MMCF:
+   - на pre-flow слое используется `DeltaRegistry`;
+   - для terminal work unit pre-start state используется `Queued`.
 
 ---
 
@@ -31,8 +34,9 @@ status: working-draft
 |---|---|---|---|
 | `ODS` | `CDM` | rename | Полная замена без сохранения legacy-имени в тексте. |
 | `OmniCycle` | `CDM` | rename (historical alias) | В тексте канона не использовать, допускается в сноске "исторический алиас". |
-| `рассинхронизация` | `конфликт` / `Delta` (`Δ`) | semantic normalization | Использовать через Intent/Context/Applicability, а не как отдельный runtime-тип. |
-| `триггер` (как общий драйвер change) | `конфликт` / `trigger-policy` (только где канонически задано) | scoped replacement | Термин `trigger` допустим в документах политики (`MetaChangeFlow-Trigger-Policy`), но не как универсальная замена `конфликта`. |
+| `рассинхронизация` | `Delta` (`Δ`) | semantic normalization | Трактовать как наблюдаемое структурное несоответствие; legacy-алиас, а не отдельный runtime-тип. |
+| `триггер` (как общий драйвер change) | `trigger-policy` (только где канонически задано) | scoped replacement | Термин `trigger` допустим только как policy-signal, а не как первичный объект change. |
+| `конфликт` (как универсальное имя любой дельты) | `Delta` + explicit qualification | semantic split | Использовать `conflict` только как квалифицированный случай `Delta` или как отдельный тип несовместимости контекстов/ограничений/authority. |
 | `collectData` | `collect` (`CF1`) | typo + alias normalization | Всегда нормализовать до `collect`; канон фазы — `CF1`. |
 | `forcast` | `forecast` (`CF3`) | typo fix | Орфография исправляется обязательно. |
 | `collect/analyze/forecast/decide/implement/evaluate` | `CF1..CF6` | notation normalization | Доменные имена остаются только как алиасы представления рядом с каноном. |
@@ -100,12 +104,16 @@ status: working-draft
 2. Нет фазовой записи только через алиасы без `CF1..CF6`.
 3. Любая трактовка времени/необратимости содержит FROR-ссылку.
 4. `Result=0` не используется вне `ApplicabilityFailure`.
+5. Если используется слово `backlog`, текст явно показывает, идет ли речь о
+   domain alias для `DeltaRegistry`, а не о базовом методологическом статусе
+   terminal issue.
 
 ---
 
 ## 9. Normative References
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](./MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Legacy-INDEX-Migration-Plan](./MMCF-Legacy-INDEX-Migration-Plan.md)
 - [CDM ChangeFlow-6 Canonical](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM CF-LC Evaluate](../../fcdm-core/theory/cdm/Specifications/CF-LC-Evaluate.md)

@@ -118,7 +118,8 @@ Planning-profile `v1.1` считается аддитивным расширен
 Все навыки в этом пакете должны:
 
 1. следовать delivery-документам в `methodology/delivery/`;
-2. трактовать статус терминальной задачи только как фазовый слой;
+2. трактовать статус терминальной задачи как operational progression layer:
+   `Queued/Todo`, phase states и terminal exits;
 3. не смешивать `phase state` и `transition state`;
 4. при materially visible нетривиальном переходе использовать `PTSubTask`, а не
    притворяться, что `PT` является атрибутом фазы;

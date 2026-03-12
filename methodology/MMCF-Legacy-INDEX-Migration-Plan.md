@@ -1,8 +1,8 @@
 ---
-title: "MMCF: Legacy INDEX/MMCF Migration Plan (to CDM/FROR Canon)"
 date: 2026-03-05
-tags: [MMCF, CDM, FROR, migration, legacy, index-mmcf]
 status: draft-plan
+tags: [MMCF, CDM, FROR, migration, legacy, index-mmcf]
+title: "MMCF: Legacy INDEX/MMCF Migration Plan (to CDM/FROR Canon)"
 ---
 
 # MMCF: Legacy INDEX/MMCF Migration Plan
@@ -29,7 +29,9 @@ status: draft-plan
 |---|---|---|
 | `ODS` | `CDM` | Прямое переименование. |
 | `OmniCycle` | `CDM` (исторический алиас) | В каноне не использовать как основное имя. |
-| `рассинхронизация`, `триггер` (как первичный объект change) | `конфликт` / `Δ` в рамках Intent/Context | В CDM runtime привязывать к `Applicability` и `Result`. |
+| `рассинхронизация` | `Delta` (`Δ`) | Трактовать как первичный pre-flow объект несоответствия. |
+| `триггер` (как первичный объект change) | `trigger-policy` | Использовать только как policy-signal, а не как первичный объект мира. |
+| `конфликт` (как универсальное имя любой дельты) | `Delta` + qualification | Разводить `Delta` и квалифицированные conflict-cases. |
 | `collect/analyze/forecast/decide/implement/evaluate` | `CF1..CF6` (или `C_1..C_6` как запись индексов) | Доменные имена допускаются только как алиасы представления. |
 | `collectData` | `collect` (доменный алиас `CF1`) | Унифицировать написание. |
 | `forcast` | `forecast` | Исправить орфографию и привязать к `CF3`. |
@@ -87,10 +89,11 @@ status: draft-plan
 ### 4.1 New documents to create
 
 1. `mmcf-docs/methodology/MMCF-Term-Legacy-Mapping.md`
-2. `mmcf-docs/methodology/MMCF-Operational-Roles-and-Gateways.md`
-3. `mmcf-docs/methodology/MMCF-Conflict-and-Applicability-Profile.md`
-4. `mmcf-docs/methodology/MMCF-Creativity-and-Variability-Profile.md`
-5. `mmcf-docs/methodology/MMCF-Time-and-Cost-FROR-Alignment.md`
+2. `mmcf-docs/methodology/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md`
+3. `mmcf-docs/methodology/MMCF-Operational-Roles-and-Gateways.md`
+4. `mmcf-docs/methodology/MMCF-Conflict-and-Applicability-Profile.md`
+5. `mmcf-docs/methodology/MMCF-Creativity-and-Variability-Profile.md`
+6. `mmcf-docs/methodology/MMCF-Time-and-Cost-FROR-Alignment.md`
 
 ### 4.2 Existing documents to update
 
@@ -113,12 +116,14 @@ Deliverable:
 
 ### Wave 1: Conflict/Applicability normalization
 
-1. Переписать legacy-семантику "триггер/рассинхрон" как профиль конфликта/дельты.
-2. Явно прописать `Result=0 <=> ApplicabilityFailure`.
-3. Разделить runtime-исходы CDM и аналитические FROR-классы.
+1. Переписать legacy-семантику "триггер/рассинхрон" как Delta-first профиль.
+2. Явно развести `Delta`, conflict qualification и policy-trigger.
+3. Явно прописать `Result=0 <=> ApplicabilityFailure`.
+4. Разделить runtime-исходы CDM, pre-flow слой MMCF и аналитические FROR-классы.
 
 Deliverables:
 
+- `MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md`.
 - `MMCF-Conflict-and-Applicability-Profile.md`.
 
 ### Wave 2: Phases, roles, gateways
@@ -163,15 +168,16 @@ Deliverables:
 
 ---
 
-## 7. Execution Backlog (ordered)
+## 7. Execution Queue (ordered)
 
 1. Создать `MMCF-Term-Legacy-Mapping.md` (P1).
-2. Создать `MMCF-Conflict-and-Applicability-Profile.md` (P1).
-3. Создать `MMCF-Operational-Roles-and-Gateways.md` (P1).
-4. Создать `MMCF-Time-and-Cost-FROR-Alignment.md` (P1).
-5. Создать `MMCF-Creativity-and-Variability-Profile.md` (P2).
-6. Обновить `MMCF-Canonical.md` ссылками на новые профили (P1).
-7. Обновить `README.md` (P1).
+2. Создать `MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md` (P1).
+3. Создать `MMCF-Conflict-and-Applicability-Profile.md` (P1).
+4. Создать `MMCF-Operational-Roles-and-Gateways.md` (P1).
+5. Создать `MMCF-Time-and-Cost-FROR-Alignment.md` (P1).
+6. Создать `MMCF-Creativity-and-Variability-Profile.md` (P2).
+7. Обновить `MMCF-Canonical.md` ссылками на новые профили (P1).
+8. Обновить `README.md` (P1).
 
 ---
 
@@ -180,4 +186,3 @@ Deliverables:
 1. Полная редактура всех legacy-файлов в `INDEX/MMCF`.
 2. Формальная канонизация новых профилей в статус `core`.
 3. Изменение CDM/FROR-канона без отдельного claim-процесса.
-

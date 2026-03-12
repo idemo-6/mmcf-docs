@@ -55,12 +55,14 @@ Source of truth для базовой семантики изменения на
 
 - [MMCF-CDM-Alignment-Matrix](./MMCF-CDM-Alignment-Matrix.md)
 - [MMCF-Applicability-Result-Alignment-Matrix](./MMCF-Applicability-Result-Alignment-Matrix.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](./MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 
 ---
 
 ## 4. Базовые положения
 
-1. Изменение рассматривается как управляемый проход по `CF1..CF6` в текущей фазе `LC`.
+1. Изменение начинается с обнаружимой `Delta`; управляемый проход по `CF1..CF6`
+   materialize'ится только после promotion в active `ChangeFlow`.
 2. Положение системы в `LifeCycle` определяет допустимую стратегию, риск и ресурсные пределы изменения.
 3. Опыт фиксируется как динамический граф `flow -> context -> result`.
 4. Решения должны быть причинно-трассируемыми и подтверждаться фазовыми гейтами.
@@ -94,10 +96,11 @@ Source of truth для базовой семантики изменения на
 
 ## 7. Операционный контракт MMCF
 
-Минимальные обязательные поля для каждого осмысленного изменения в контуре
-MMCF:
+Минимальные обязательные поля для каждого materialized operational изменения
+в контуре MMCF:
 
 - `entity_id`
+- `delta_ref`
 - `intent_ref`
 - `task_ref`
 - `lc_phase`
@@ -111,6 +114,10 @@ MMCF:
 1. носителя действия;
 2. места реализации;
 3. наблюдаемого результата.
+
+Pre-flow слой `Delta / DeltaRecord / DeltaRegistry / PromotionDecision`
+определяется отдельным методологическим профилем и не редуцируется к одному
+`task_ref`.
 
 ---
 

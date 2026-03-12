@@ -15,6 +15,11 @@ status: profile-draft
 Он применяется к terminal issues с `Work Domain=artifact` и
 `Artifact Type=scientific-documentation`.
 
+Профиль начинается только после того, как соответствующая `Delta` уже прошла
+promotion из `DeltaRegistry` в terminal `ChangeFlow`.
+
+Raw `DeltaRecord` остается upstream-слоем и не является scientific-documentation terminal issue.
+
 Типовые цели:
 
 1. канонические черновики;
@@ -217,6 +222,7 @@ Terminal issue отслеживает один `ChangeFlow`.
 
 ## 8. Ссылки
 
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)

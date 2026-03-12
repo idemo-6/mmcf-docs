@@ -16,6 +16,7 @@ status: working-draft
 
 Общий MMCF-смысл operational work unit и terminal exit semantics вынесен в:
 
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
 
 ---
@@ -33,6 +34,20 @@ status: working-draft
 
 Issue не является узлом `LifeCycle`.
 Это процесс внутри родительского `Epic`.
+
+### 2.1 Upstream pre-flow boundary
+
+Терминальная задача создается только после того, как соответствующая `Delta`
+прошла promotion из `DeltaRegistry` в materialized `ChangeFlow`.
+
+Нормативно:
+
+1. raw `DeltaRecord` не является terminal issue;
+2. `Expected delta` в terminal issue описывает уже promoted change line, а не
+   произвольную сырую запись из `DeltaRegistry`;
+3. рекомендуемый pre-start status для созданного terminal issue — `Queued`;
+4. прямое создание в `Todo` допустимо только когда queue-layer намеренно
+   пропускается как локальное упрощение.
 
 ---
 
@@ -62,6 +77,11 @@ Issue не является узлом `LifeCycle`.
 1. `Flow Mode`
 2. `Variativity Target`
 3. `Decide Policy`
+
+Если workspace использует явный pre-start queue:
+
+1. создавайте issue в `Queued` как в дефолтном состоянии;
+2. переводите в `Todo`, когда поток уже допускается к активному старту.
 
 ### 3.2 Обязательные поля body
 
@@ -514,8 +534,9 @@ PT-aware note:
 
 - `CDM Context: провести абляции и сравнение порогов [CF#2] / recalibrate tau_soft after failed eval`
 
-Текущий backlog может сохранять свои существующие читаемые titles до тех пор,
-пока задача не войдет в активное управление `ChangeFlow`. Naming convention
+Текущая очередь materialized потоков может сохранять свои существующие
+читаемые titles до тех пор, пока поток не войдет в активное управление
+`ChangeFlow`. Это не относится к `DeltaRegistry`. Naming convention
 применяется к новым issues и к issues, которые явно нормализуются в repeat chains.
 
 ---
@@ -533,6 +554,7 @@ PT-aware note:
 
 ## 9. Ссылки
 
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)

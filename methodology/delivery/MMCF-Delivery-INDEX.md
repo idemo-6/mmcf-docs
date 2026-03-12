@@ -35,10 +35,12 @@ status: working-draft
 
 Текущая онтология delivery такова:
 
-1. `Project` -> родительский экземпляр `LifeCycle`.
-2. `Epic` -> дочерний экземпляр `LifeCycle` относительно `Project`.
-3. терминальная задача -> один `ChangeFlow`.
-4. `Context`, `C_obs`, `C_coord`, `C_meta` -> отдельные оси исполнения, а не
+1. `DeltaRecord` / `DeltaRegistry` -> upstream pre-flow слой, а не terminal issue.
+2. `Project` -> родительский экземпляр `LifeCycle`.
+3. `Epic` -> дочерний экземпляр `LifeCycle` относительно `Project`.
+4. терминальная задача -> один `ChangeFlow`, materialized только после
+   `PromotionDecision=promote`.
+5. `Context`, `C_obs`, `C_coord`, `C_meta` -> отдельные оси исполнения, а не
    иерархические уровни рабочих объектов.
 
 Это сохраняет различие между `LifeCycle` и `ChangeFlow` в операционной
@@ -92,6 +94,7 @@ status: working-draft
 ## 5. Нормативная база
 
 - [MMCF-Canonical](../MMCF-Canonical.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Minimal-Working-Model](../MMCF-Minimal-Working-Model.md)
 - [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
