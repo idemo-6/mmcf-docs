@@ -10,10 +10,7 @@ immediately as a new sibling flow.
 
 Read these delivery docs before acting:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
+- [mmcf-linear-delivery.md](../linear-mmcf/references/mmcf-linear-delivery.md)
 
 ## Workflow
 
@@ -31,10 +28,13 @@ Read these delivery docs before acting:
    - claim mode
    - planning custom fields when present
    - `Planning` block when present
+   - `Risk class` and `CFOwner` when they still remain valid for the next flow
 4. Sharpen the next flow using:
    - `Repeat reason`
    - `Summary`
    - failed or partial evidence from `CF6`
+   - `Authority conflict refs` and `Role handoff refs` when they materially
+     affect the next flow contour
 5. Create the next issue as a new sibling, not as a reopen of the old issue.
 6. Link the flows and update the source issue so its `CF6 Summary` references
    the new issue.
@@ -43,6 +43,8 @@ Read these delivery docs before acting:
    - `Pre-CF version = previous Post-CF version` when known
 8. Carry forward PT intent only as planning context; do not copy old
    `PTSubTask` objects into the new flow.
+9. Create the next issue in `Queued` by default; move directly to `Todo` only
+   when immediate admission to active work is explicit.
 
 ## Rules
 
@@ -59,3 +61,5 @@ Read these delivery docs before acting:
    is still unknown, mark the next `Pre-CF version` as pending re-derivation.
 8. Treat `PTSubTask` history as evidence for the next flow, not as a child-work
    object to be cloned.
+9. Preserve the `Roles / Authority` block only as the starting contour of the
+   next flow; do not blindly copy stale authority conflicts or obsolete owners.

@@ -10,10 +10,7 @@ valid `CF6` summary plus terminal exit.
 
 Read these delivery docs before acting:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
+- [mmcf-linear-delivery.md](../linear-mmcf/references/mmcf-linear-delivery.md)
 
 ## Workflow
 
@@ -31,6 +28,9 @@ Read these delivery docs before acting:
    - `PT trace refs`
    - `PT summary`
    - `Exit decision`
+   - `CFOwner at closure`
+   - `Authority conflict refs`
+   - `Role handoff refs`
 3. Choose the terminal exit by the agreed matrix:
    - `done`
    - `repeat`
@@ -64,7 +64,11 @@ Read these delivery docs before acting:
 9. When the carrier entity is versioned, do not invent `Post-CF version`; use
    the known snapshot or mark it as pending re-derivation.
 10. In the delivery/Linear default, expect a new material `Post-CF version`
-   mainly for `done` and `repeat`; for `final` and `delayed` with
-   `Closure reason=inapplicable`, prefer `Version outcome note: no material
-   version change`; for `Closure reason=failed`, make the note depend on the
-   actual material change.
+    mainly for `done` and `repeat`; for `final` and `delayed` with
+    `Closure reason=inapplicable`, prefer `Version outcome note: no material
+    version change`; for `Closure reason=failed`, make the note depend on the
+    actual material change.
+11. Do not close a flow while unresolved `AuthorityConflict` still blocks
+    commit, gateway closure, or final evaluation.
+12. If `CFOwner` changed during the flow or diverges from the last assignee,
+    make that explicit in `CFOwner at closure` and `Role handoff refs`.

@@ -32,11 +32,7 @@ skills when needed.
 
 For the exact delivery schema, read:
 
-- [MMCF-Delivery-Linear-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
-- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-- [MMCF-Delivery-PhaseTransition-Gateway-Profile](../../methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
-- [MMCF-Delivery-Linear-Planning-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
-- [MMCF-Delivery-Codex-Skills-Profile](../../methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md)
+- [mmcf-linear-delivery.md](./references/mmcf-linear-delivery.md)
 
 Operational skill sources:
 
@@ -73,17 +69,26 @@ If the task spans several operations, execute them in this order:
 ## Shared rules
 
 1. One terminal issue equals one `ChangeFlow`.
-2. Issue status is the phase layer only.
-3. `PhaseTransition` state stays separate from phase status.
-4. Non-trivial `PT` may be materialized as a `PTSubTask`; this never creates a
+2. A terminal issue exists only after promotion from the upstream `DeltaRegistry`.
+3. Use `Queued` as the default pre-start state of a newly materialized flow;
+   do not treat `Backlog` as the canonical issue status of MMCF.
+4. Issue status is the phase layer only.
+5. `PhaseTransition` state stays separate from phase status.
+6. Non-trivial `PT` may be materialized as a `PTSubTask`; this never creates a
    second `ChangeFlow`.
-5. Labels are visibility aids, not replacements for status, `PTSubTask`, or
+7. Labels are visibility aids, not replacements for status, `PTSubTask`, or
    gateway trace.
-6. Titles encode the stable flow objective and repeat-chain index, not phase or
+8. `Linear assignee` is the owner of the nearest operational action; it is not
+   the canonical synonym of `CFOwner`.
+9. `Roles / Authority` in the issue body is the minimum source of truth for
+   `CFOwner`, authority map, and risk class when explicit fields are absent.
+10. `AuthorityConflict` is used only while an active authority disagreement
+    remains unresolved.
+11. Titles encode the stable flow objective and repeat-chain index, not phase or
    bottleneck state.
-7. Planning `v1.1` is additive: intake populates planning fields when the
+12. Planning `v1.1` is additive: intake populates planning fields when the
    workspace uses them, repeat preserves them by default, and advance/close do
    not silently rewrite them unless the user explicitly asks.
-8. Versioning in Linear is entity-centric: `Epic` and terminal issue store
+13. Versioning in Linear is entity-centric: `Epic` and terminal issue store
    snapshots/windows of carrier entity version, not their own autonomous
    work-item versions.

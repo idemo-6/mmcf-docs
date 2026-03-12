@@ -28,6 +28,9 @@ Read these delivery docs before acting:
    - `pt_runtime_state`
    - `pt_failure_policy` when relevant
    - `attempt_no` when relevant
+   - `TransitionOwner`
+   - `TransitionExecutor` when the transition is process-based
+   - resolving authority refs when the transition is approve-bearing
 4. Create or update a child issue under the parent flow using:
    - title: `PT: <from_phase> -> <to_phase> / <template_id or pt_scenario>`
    - a compact body with transition-specific fields only
@@ -62,3 +65,8 @@ Read these delivery docs before acting:
    issue status plus a structured body block for `PT Runtime State`.
 9. If the parent issue already stores a selected PT template binding, use it as
    the default source before inventing ad hoc PT metadata.
+10. `PTSubTask` assignee or owner never replaces parent `CFOwner`; the parent
+    issue remains the source of truth for flow-level ownership.
+11. If transition verdicts expose an active `authority-conflict`, reflect that
+    on the parent issue trace and use `AuthorityConflict` only as a visibility
+    label on the parent flow.

@@ -10,10 +10,7 @@ Linear under an existing epic.
 
 Read these delivery docs before acting:
 
-- [MMCF-Delivery-Linear-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
-- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-- [MMCF-Delivery-PhaseTransition-Gateway-Profile](../../methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
-- [MMCF-Delivery-Linear-Planning-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
+- [mmcf-linear-delivery.md](../linear-mmcf/references/mmcf-linear-delivery.md)
 
 ## Workflow
 
@@ -31,20 +28,26 @@ Read these delivery docs before acting:
      the workspace uses planning `v1.1`
 4. Build the body from the terminal issue template:
    - `Canon`
-   - `Versioning` when the carrier entity is versioned
    - `Delivery`
+   - `Roles / Authority`
    - `Planning` when planning `v1.1` is in scope
    - `PT / Gateways`
    - `Evidence`
-5. Predeclare non-trivial transitions only when needed:
+5. Populate the `Roles / Authority` block with at least:
+   - `CFOwner`
+   - `Current assignee / active executor`
+   - `Risk class`
+   - `Decision authority` and `Evaluation authority` when the flow is not explicitly `low-risk`
+6. Predeclare non-trivial transitions only when needed:
    - `approve`
    - `claim`
    - `approve+claim`
-6. Materialize a `PTSubTask` during intake only when a transition is already
+7. Materialize a `PTSubTask` during intake only when a transition is already
    known to require its own owner, queue, approval trail, or long-running
    process at creation time.
-7. Create the issue in `Todo` unless the user explicitly requests another
-   status.
+8. Create the issue in `Queued` by default.
+9. Move directly to `Todo` only when the user explicitly requests immediate
+   admission to active work or the queue layer is intentionally skipped.
 
 ## Rules
 
@@ -67,3 +70,7 @@ Read these delivery docs before acting:
 10. When a reusable PT template is known, record the selected template binding
     on the concrete `from_phase -> to_phase`, rather than writing only a generic
     transition note.
+11. `assignee` is not the canonical synonym of `CFOwner`; always keep both
+    roles readable in the body.
+12. For non-`low-risk`, claim-bearing, or governance-heavy flow, do not omit
+    the authority entries from `Roles / Authority` during intake.
