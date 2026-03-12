@@ -211,6 +211,12 @@ CDM-alignment:
 - `ApplicabilityFailure` не смешивается с `FROR.no_cost_transition`.
 - в process-based `CF-PT` недоставка/непринятие handoff трактуется как `GatewayFailure`.
 
+Отдельно:
+
+- несовместимые authority verdicts, approval constraints или competing
+  ownership claims должны классифицироваться как `authority-conflict`, а не
+  как `GatewayFailure`, пока сам handoff технически/процессно не сорван.
+
 ---
 
 ## 10. Delegation Rules
@@ -264,6 +270,7 @@ CDM-alignment:
 - [MMCF-Canonical](./MMCF-Canonical.md)
 - [MMCF-Term-Legacy-Mapping](./MMCF-Term-Legacy-Mapping.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Context-Canonical](./MMCF-Context-Canonical.md)
 - [MMCF-Context-Coordination-and-Meta-Policy](./MMCF-Context-Coordination-and-Meta-Policy.md)
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)

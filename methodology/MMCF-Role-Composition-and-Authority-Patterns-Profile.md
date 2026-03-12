@@ -260,6 +260,11 @@ status: profile-draft
 3. может совпадать с `DecisionAuthority` или `EvaluationAuthority`, но это не
    является обязательным правилом.
 
+Если `DecisionAuthority`, `CommitAuthority`, `EvaluationAuthority`,
+`GatewayApprovalAuthority` или `ClaimAuthority` выдают несовместимые verdicts,
+это должно классифицироваться как `authority-conflict`, а не как "общая
+организационная путаница".
+
 Практически:
 
 1. low-risk flow часто допускает `CFOwner = Decider`;
@@ -442,6 +447,7 @@ Authority mode не меняет каноническую фазу.
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Context-Coordination-and-Meta-Policy](./MMCF-Context-Coordination-and-Meta-Policy.md)
 - [POSITIONING_AND_ADOPTION_ROADMAP](../POSITIONING_AND_ADOPTION_ROADMAP.md)
 - [CDM ChangeFlow-6](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)

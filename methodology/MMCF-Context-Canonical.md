@@ -39,7 +39,8 @@ status: profile-draft
 
 1. `C_candidates` — множество релевантных контекстов.
 2. `C_active^k` — активный контекст в ветке `k`.
-3. `C_coord` — механизм разрешения конфликтов между кандидатами.
+3. `C_coord` — механизм разрешения `context-conflict` и
+   `constraint-conflict` между кандидатами.
 4. `C_meta` — политика приоритизации и эскалации контекстов.
 
 Правило исполнения:
@@ -95,10 +96,11 @@ status: profile-draft
 
 1. список `C_candidates`;
 2. критерий выбора `C_active`;
-3. политика разрешения межконтекстного конфликта;
+3. политика разрешения `context-conflict` и `constraint-conflict`;
 4. критерий эскалации в `C_meta`.
 
-Если конфликт неразрешим в рамках текущих ограничений:
+Если `context-conflict` или `constraint-conflict` неразрешим в рамках
+текущих ограничений:
 
 - `Applicable=false`;
 - ветка `CF4 => CF6 (inapplicable)`;
@@ -114,7 +116,7 @@ status: profile-draft
 2. смешивать разные ограничения в один контекст без явной политики merge;
 3. использовать `Result=0` как общий \"технический fail\" без ссылки на
    контекстную неприменимость;
-4. игнорировать `C_meta` при повторяющихся межконтекстных конфликтах.
+4. игнорировать `C_meta` при повторяющихся `context-conflict`.
 
 ---
 
@@ -122,7 +124,8 @@ status: profile-draft
 
 1. Для задачи явно задан `C_candidates`.
 2. Для ветки задан `C_active^k` и rule выбора.
-3. Зафиксирована политика конфликтов (`C_coord`/`C_meta`).
+3. Зафиксирована политика `context-conflict` / `constraint-conflict`
+   (`C_coord`/`C_meta`).
 4. Семантика `Result=0` соответствует `ApplicabilityFailure`.
 5. Есть трассировка между контекстом и фазовыми решениями `CF3/CF4`.
 
@@ -132,6 +135,7 @@ status: profile-draft
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [CDM CtxL Canonical](../../fcdm-core/theory/cdm/Specifications/CtxL/CtxL-Canonical.md)
 - [CDM Context Canonical](../../fcdm-core/theory/cdm/Specifications/Context/Context-Canonical.md)

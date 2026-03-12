@@ -241,6 +241,7 @@ MMCF в минимальной рабочей версии — это:
 ## 14. References
 
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-CDM-Alignment-Matrix](./MMCF-CDM-Alignment-Matrix.md)
 - [CDM PhaseTransition Overview](../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition_Overview.md)
 - [CDM PhaseTransition-LC](../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-LC.md)

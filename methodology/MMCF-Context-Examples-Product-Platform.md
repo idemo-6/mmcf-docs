@@ -15,7 +15,7 @@ software-команд на примере `Product` и `Engineering Platform`.
 Цель:
 
 1. выделять независимые контексты без смешения целей;
-2. корректно решать межконтекстные конфликты;
+2. корректно решать `context-conflict` и `constraint-conflict`;
 3. связывать решения с `Applicable` и `Result`.
 
 ---
@@ -45,11 +45,12 @@ software-команд на примере `Product` и `Engineering Platform`.
 Вести как независимые контексты, если:
 
 1. продукт требует ускорения релиза, а платформа требует hardening;
-2. short-term KPI продукта конфликтует с reliability-policy платформы;
+2. short-term KPI продукта образует `constraint-conflict` с
+   reliability-policy платформы;
 3. разные владельцы final decision и разные risk-толерансы;
 4. `Applicable` может различаться по контекстам.
 
-Типичный конфликт:
+Типичный `constraint-conflict`:
 
 - Product хочет немедленно включить новую feature-флагом;
 - Platform блокирует из-за невыполненных SLO-гейтов или риска деградации.
@@ -114,7 +115,8 @@ software-команд на примере `Product` и `Engineering Platform`.
 
 1. Совпадает ли целевая функция Product и Platform на этой задаче?
 2. Согласованы ли release-критерии и SLO-гейты?
-3. Кто owner финального решения при конфликте?
+3. Кто owner финального решения при `context-conflict` или
+   `constraint-conflict`?
 4. Можно ли поставить единый `Applicable`-gate?
 5. Какие условия дадут `Result=0` и каков план компенсации?
 
@@ -148,6 +150,6 @@ software-команд на примере `Product` и `Engineering Platform`.
 
 - [MMCF-Context-Canonical](./MMCF-Context-Canonical.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF-DomainLexicon-Software-v1](./MMCF-DomainLexicon-Software-v1.md)
-

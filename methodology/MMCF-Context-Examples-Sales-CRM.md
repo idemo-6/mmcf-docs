@@ -66,7 +66,7 @@ status: profile-draft
 `C_sales_crm_composite` допустим только если:
 
 1. согласован единый KPI на задачу;
-2. заранее сняты конфликты ограничений;
+2. заранее сняты `constraint-conflict` между ограничениями;
 3. есть единый owner решения;
 4. возможно единое `Applicable`-решение.
 
@@ -157,7 +157,7 @@ status: profile-draft
 
 - [MMCF-Context-Canonical](./MMCF-Context-Canonical.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Operational-Roles-and-Gateways](./MMCF-Operational-Roles-and-Gateways.md)
 - [CDM CtxL Canonical](../../fcdm-core/theory/cdm/Specifications/CtxL/CtxL-Canonical.md)
 - [CDM Context Canonical](../../fcdm-core/theory/cdm/Specifications/Context/Context-Canonical.md)
-

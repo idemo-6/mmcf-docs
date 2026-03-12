@@ -14,6 +14,13 @@ status: profile-draft
 1. `C_coord` — координация и разрешение межконтекстных конфликтов;
 2. `C_meta` — обучение и адаптация policy для людей и LLM-агентов.
 
+В терминах taxonomy этот документ прежде всего работает с:
+
+1. `context-conflict`;
+2. `constraint-conflict`;
+3. `authority-conflict`;
+4. `resource-conflict`.
+
 ---
 
 ## 2. Core principle
@@ -54,7 +61,8 @@ status: profile-draft
 
 ### P3. Decision-center priority
 
-Приоритет центра разрешения конфликтов реализации.
+Приоритет центра разрешения `context/constraint/authority/resource-conflict`
+реализации.
 
 Требования:
 
@@ -221,4 +229,5 @@ c_meta:
 - [MMCF-Context-Examples-Sales-CRM](./MMCF-Context-Examples-Sales-CRM.md)
 - [MMCF-Context-Examples-Product-Platform](./MMCF-Context-Examples-Product-Platform.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [Post-Anthropocentric Computing Manifesto](../../idemo-docs/vision/Post-Anthropocentric_Computing_Manifesto.md)
