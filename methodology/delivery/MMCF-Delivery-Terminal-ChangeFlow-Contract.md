@@ -115,6 +115,7 @@ Issue не является узлом `LifeCycle`.
 
 ## PT / Gateways
 - Default PT scenario: event
+- Transition templates:
 - Non-trivial transitions:
 - PT failure policy:
 - Negative result policy:
@@ -140,12 +141,18 @@ Issue не является узлом `LifeCycle`.
 
 Если ожидается approval или передача результата, несущего claims, укажите это явно, например:
 
+- `forecast -> decide = committee-approval`
+- `implement -> evaluate = ai-authority-approval`
 - `forecast => decide: approve`
 - `implement => evaluate: approve`
 - `analyze => forecast: claim`
 - `PT failure policy: default=fail_fast; implement=>evaluate=retry_n(2)`
 
 Это дает потоку явный план переходов до появления узких мест.
+
+Если используется reusable PT template catalog, template binding следует
+указывать именно на конкретном `from_phase -> to_phase`, а не как абстрактную
+свойство issue вообще.
 
 ### 3.4 Руководство по `Planning`
 

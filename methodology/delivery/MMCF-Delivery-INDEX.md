@@ -63,12 +63,13 @@ status: working-draft
 4. [MMCF-Delivery-Linear-Versioning-Profile](./MMCF-Delivery-Linear-Versioning-Profile.md)
 5. [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 6. [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
-7. [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)
-8. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
-9. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
-10. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
-11. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-12. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+7. [MMCF-Delivery-PT-Template-Catalog-Profile](./MMCF-Delivery-PT-Template-Catalog-Profile.md)
+8. [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)
+9. [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)
+10. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
+11. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
+12. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
+13. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 
 ---
 

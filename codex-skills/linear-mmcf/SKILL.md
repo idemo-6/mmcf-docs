@@ -21,7 +21,11 @@ Typical triggers:
 8. version-aware work using `Observed Version`, `CF Index`, `Pre-CF Version`,
    or `Post-CF Version`;
 9. epic-level version reconciliation using `Version sync note`,
-   `Observed CF index`, or `Active CF issue`.
+   `Observed CF index`, or `Active CF issue`;
+10. explicit `PTSubTask`, process-based handoff, `TransitionOwner`, or
+    `TransitionExecutor` work inside a parent flow;
+11. selected `PT` template bindings on concrete transitions like
+    `forecast -> decide = committee-approval`.
 
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
@@ -40,6 +44,7 @@ Operational skill sources:
 - [linear-cf-advance](../linear-cf-advance/SKILL.md)
 - [linear-cf-close](../linear-cf-close/SKILL.md)
 - [linear-cf-repeat](../linear-cf-repeat/SKILL.md)
+- [linear-pt-subtask](../linear-pt-subtask/SKILL.md)
 - [linear-version-sync-review](../linear-version-sync-review/SKILL.md)
 
 ## Routing rules
@@ -52,27 +57,33 @@ Operational skill sources:
    read and follow `linear-cf-close`.
 4. If the task is to start the next sibling flow after `repeat`, read and
    follow `linear-cf-repeat`.
-5. If the task is to reconcile epic-level `Observed version` or clear/update a
+5. If the task is to create, update, or close an explicit non-trivial
+   `PhaseTransition` child issue, read and follow `linear-pt-subtask`.
+6. If the task is to reconcile epic-level `Observed version` or clear/update a
    `Version sync note`, read and follow `linear-version-sync-review`.
 
 If the task spans several operations, execute them in this order:
 
 1. intake
-2. advance
-3. close
-4. repeat
+2. `PTSubTask` work as needed
+3. advance
+4. close
+5. repeat
 
 ## Shared rules
 
 1. One terminal issue equals one `ChangeFlow`.
 2. Issue status is the phase layer only.
-3. `PhaseTransition` trace stays separate from status.
-4. Labels are visibility aids, not replacements for status or gateway trace.
-5. Titles encode the stable flow objective and repeat-chain index, not phase or
+3. `PhaseTransition` state stays separate from phase status.
+4. Non-trivial `PT` may be materialized as a `PTSubTask`; this never creates a
+   second `ChangeFlow`.
+5. Labels are visibility aids, not replacements for status, `PTSubTask`, or
+   gateway trace.
+6. Titles encode the stable flow objective and repeat-chain index, not phase or
    bottleneck state.
-6. Planning `v1.1` is additive: intake populates planning fields when the
+7. Planning `v1.1` is additive: intake populates planning fields when the
    workspace uses them, repeat preserves them by default, and advance/close do
    not silently rewrite them unless the user explicitly asks.
-7. Versioning in Linear is entity-centric: `Epic` and terminal issue store
+8. Versioning in Linear is entity-centric: `Epic` and terminal issue store
    snapshots/windows of carrier entity version, not their own autonomous
    work-item versions.

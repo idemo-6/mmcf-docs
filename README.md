@@ -16,6 +16,8 @@
 - [[methodology/MMCF-Domain-Pack-Profile|MMCF-Domain-Pack-Profile]]
 - [[methodology/MMCF-Conflict-and-Applicability-Profile|MMCF-Conflict-and-Applicability-Profile]]
 - [[methodology/MMCF-Operational-Roles-and-Gateways|MMCF-Operational-Roles-and-Gateways]]
+- [[methodology/MMCF-Phase-and-Transition-State-Separation-Profile|MMCF-Phase-and-Transition-State-Separation-Profile]]
+- [[methodology/MMCF-PT-Template-Catalog-Profile|MMCF-PT-Template-Catalog-Profile]]
 - [[methodology/MMCF-Role-Composition-and-Authority-Patterns-Profile|MMCF-Role-Composition-and-Authority-Patterns-Profile]]
 - [[methodology/MMCF-Executor-Matching-and-Capability-Registry-Profile|MMCF-Executor-Matching-and-Capability-Registry-Profile]]
 - [[methodology/MMCF-Creativity-and-Variability-Profile|MMCF-Creativity-and-Variability-Profile]]

@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear PT Subtask"
+  short_description: "Track non-trivial MMCF transitions"
+  default_prompt: "Use $linear-pt-subtask to create or manage an explicit PTSubTask under this ChangeFlow issue."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true

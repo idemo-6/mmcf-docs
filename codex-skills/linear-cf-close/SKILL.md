@@ -17,7 +17,8 @@ Read these delivery docs before acting:
 
 ## Workflow
 
-1. Read the issue, its evidence, and any explicit gateway traces.
+1. Read the issue, its evidence, explicit gateway traces, and any relevant
+   `PTSubTask` issues.
 2. Build the `CF6 Summary` with at least:
    - `Applicable`
    - `Result`
@@ -35,8 +36,11 @@ Read these delivery docs before acting:
    - `repeat`
    - `final`
    - `delayed`
-4. Update `Result` when supported by Linear custom fields.
-5. Move the issue out of `evaluate` only after the `CF6 Summary` exists.
+4. Verify that any blocking `PT(CF5->CF6)` approval or verdict is already
+   closed on the relevant `PTSubTask` or explicit trace before choosing the
+   exit.
+5. Update `Result` when supported by Linear custom fields.
+6. Move the issue out of `evaluate` only after the `CF6 Summary` exists.
 
 ## Rules
 
@@ -47,17 +51,19 @@ Read these delivery docs before acting:
    negative-result policy or an authority verdict on `PT(CF5->CF6)`.
 3. If `Result=-1`, do not invent `final` or `delayed` silently. The exit must
    be predeclared by policy or selected through the relevant `approve` /
-   `approve+claim` transition.
+   `approve+claim` transition, including the explicit `PTSubTask` when used.
 4. Do not treat retryable PT attempt failure as a reason to close the flow.
 5. Do not close with `done` while approval, claim, or gateway failure is still
    unresolved.
-6. If `repeat` is selected, the next issue must already exist or be created in
+6. Do not close while a blocking `PTSubTask` is still open without the
+   necessary verdict.
+7. If `repeat` is selected, the next issue must already exist or be created in
    the same turn.
-7. Do not silently rewrite planning `v1.1` fields or body blocks while closing
+8. Do not silently rewrite planning `v1.1` fields or body blocks while closing
    a flow unless the user explicitly asks for a planning update.
-8. When the carrier entity is versioned, do not invent `Post-CF version`; use
+9. When the carrier entity is versioned, do not invent `Post-CF version`; use
    the known snapshot or mark it as pending re-derivation.
-9. In the delivery/Linear default, expect a new material `Post-CF version`
+10. In the delivery/Linear default, expect a new material `Post-CF version`
    mainly for `done` and `repeat`; for `final` and `delayed` with
    `Closure reason=inapplicable`, prefer `Version outcome note: no material
    version change`; for `Closure reason=failed`, make the note depend on the

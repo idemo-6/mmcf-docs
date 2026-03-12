@@ -40,7 +40,10 @@ Read these delivery docs before acting:
    - `approve`
    - `claim`
    - `approve+claim`
-6. Create the issue in `Todo` unless the user explicitly requests another
+6. Materialize a `PTSubTask` during intake only when a transition is already
+   known to require its own owner, queue, approval trail, or long-running
+   process at creation time.
+7. Create the issue in `Todo` unless the user explicitly requests another
    status.
 
 ## Rules
@@ -58,3 +61,9 @@ Read these delivery docs before acting:
    aligned with the title form `[CF#N]`.
 8. If a pre-entry snapshot is known, store it as `Pre-CF version`; do not use
    it as a replacement for the current in-flow canonical version.
+9. Do not confuse a planned non-trivial transition with a second terminal flow.
+   If an explicit transition object is needed, it must be a `PTSubTask`, not a
+   sibling `ChangeFlow`.
+10. When a reusable PT template is known, record the selected template binding
+    on the concrete `from_phase -> to_phase`, rather than writing only a generic
+    transition note.

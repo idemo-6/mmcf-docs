@@ -41,6 +41,8 @@ Read these delivery docs before acting:
 7. When the carrier entity is versioned, carry forward:
    - `CF index = previous + 1`
    - `Pre-CF version = previous Post-CF version` when known
+8. Carry forward PT intent only as planning context; do not copy old
+   `PTSubTask` objects into the new flow.
 
 ## Rules
 
@@ -55,3 +57,5 @@ Read these delivery docs before acting:
    delta explicitly changes the next flow's planning assumptions.
 7. Do not preserve stale version snapshots blindly; if the source `Post-CF version`
    is still unknown, mark the next `Pre-CF version` as pending re-derivation.
+8. Treat `PTSubTask` history as evidence for the next flow, not as a child-work
+   object to be cloned.

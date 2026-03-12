@@ -19,6 +19,17 @@ status: working-draft
 
 - [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
 
+Методологическое разделение между `phase state` и `transition state`,
+которое этот tool-profile обязан сохранять, вынесено отдельно в:
+
+- [MMCF-Phase-and-Transition-State-Separation-Profile](../MMCF-Phase-and-Transition-State-Separation-Profile.md)
+
+Reusable шаблонный слой поверх канона `PT` и над explicit `PTSubTask`
+вынесен отдельно в:
+
+- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-Delivery-PT-Template-Catalog-Profile](./MMCF-Delivery-PT-Template-Catalog-Profile.md)
+
 ---
 
 ## 2. Канонический принцип
@@ -34,6 +45,14 @@ status: working-draft
 
 Это позволяет видеть, находится ли узкое место в исполнении фазы или в
 передаче, согласовании либо принятии claim/evidence.
+
+Нормативно:
+
+1. `PT` не должен растворяться в phase status;
+2. phase state и transition state должны оставаться различимыми даже в
+   phase-oriented UI;
+3. tool mapping может быть упрощенным, но не должен скрывать сам факт
+   отдельного runtime-перехода.
 
 ---
 
@@ -135,7 +154,86 @@ status: working-draft
    зеркалить метками вроде `AwaitingApproval`, `AwaitingClaim` или
    `GatewayFailure`.
 
-### 5.1 Retry policy в delivery
+### 5.1 Явный `PT`-объект в Linear-like systems
+
+Для existing tools, где phase-oriented board плохо показывает `PT`, в этом
+профиле допускается explicit transition object.
+
+Рекомендуемая форма для `Linear`:
+
+- `PTSubTask`
+
+`PTSubTask` используется только для нетривиальных переходов и всегда является
+дочерним объектом терминального `ChangeFlow` issue.
+
+Нормативно:
+
+1. `PTSubTask` не является terminal `ChangeFlow`;
+2. `PTSubTask` не несет собственного `CF5` или `CF6` как отдельный поток;
+3. parent issue остается единственным атомарным `ChangeFlow`;
+4. закрытие `PTSubTask` лишь разрешает или фиксирует соответствующий переход.
+
+### 5.2 Когда создавать `PTSubTask`
+
+`PTSubTask` рекомендуется создавать только для materially significant
+transitions:
+
+1. `approve`
+2. `claim`
+3. `approve+claim`
+4. process-based handoff
+5. retrying / failed transitions
+6. unusually long `event`, если переход сам стал bottleneck
+
+Простой короткий успешный `event` по умолчанию остается implicit и не должен
+раздувать board.
+
+### 5.3 Что хранит `PTSubTask`
+
+Минимально:
+
+1. `from_phase`
+2. `to_phase`
+3. `pt_class`
+4. `pt_scenario`
+5. `pt_runtime_state`
+6. `pt_failure_policy`, если она не `fail_fast`
+7. `attempt_no`
+8. `approval_ref`, если нужен approve
+9. `claim_ref` или `evidence_ref`, если переход claim-bearing
+10. `TransitionOwner`
+11. `TransitionExecutor`, если handoff process-based
+12. `template_id`, если переход materialized через selected template
+13. `template_family`, если нужен reusable audit trail
+
+Преимущество этого mapping:
+
+1. `PT` получает отдельный stack owner/assignee/history;
+2. phase status parent issue не раздувается;
+3. каноническое различие `Phase` и `PT` визуально сохраняется лучше, чем при
+   хранении всего перехода только в body parent issue.
+
+### 5.4 Статусы `PTSubTask`
+
+`PTSubTask` не должен использовать phase statuses `collect/analyze/...`.
+
+Рекомендуемая малая status model:
+
+1. `planned`
+2. `in_transition`
+3. `awaiting_approval`
+4. `awaiting_claim`
+5. `retrying`
+6. `closed`
+7. `failed`
+
+Если workspace не может или не хочет вводить отдельные PT-statuses, допустим
+компромисс:
+
+1. generic issue status;
+2. `PT Runtime State` как поле или обязательный structured body block.
+
+### 5.5 Retry policy в delivery
 
 Если для перехода используется recovery policy, она живет внутри того же
 `PT`, а не создает новый `ChangeFlow`.
@@ -191,12 +289,21 @@ status: working-draft
    автоматически завершать flow;
 3. для `approve`- и `claim`-gates retry policy чаще выражается как retry по
    deadline или по условию, а не бесконечный loop.
+4. для distributed `CF` нетривиальные переходы по умолчанию следует
+   рассматривать как `process-based`, даже если не каждый из них materialized в
+   отдельный `PTSubTask`.
+5. если переход управляется через selected template, parent issue должен
+   хранить template binding, а `PTSubTask` — только runtime-relevant copy и
+   actual state.
 
 ---
 
 ## 8. Ссылки
 
 - [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Phase-and-Transition-State-Separation-Profile](../MMCF-Phase-and-Transition-State-Separation-Profile.md)
+- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-Delivery-PT-Template-Catalog-Profile](./MMCF-Delivery-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)

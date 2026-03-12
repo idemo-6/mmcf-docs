@@ -33,7 +33,9 @@ status: working-draft
 1. `Project` — только для родительского контура с собственным `LifeCycle`.
 2. `Epic` — только для дочернего контура с собственным `LifeCycle`.
 3. terminal issue — только для одного полного `ChangeFlow`.
-4. coordination issue — только для координации, чек-листа, decision log или
+4. `PTSubTask` — только для нетривиального `PhaseTransition` внутри уже
+   существующего terminal issue.
+5. coordination issue — только для координации, чек-листа, decision log или
    сборки follow-up work; это не normal terminal `CF`.
 
 Короткая формула:
@@ -41,6 +43,7 @@ status: working-draft
 - `Project = parent LifeCycle`
 - `Epic = child LifeCycle`
 - terminal issue = `one ChangeFlow`
+- `PTSubTask = one explicit non-trivial PhaseTransition`
 - coordination issue = tool-level container, а не канонический work unit
 
 ---
@@ -98,6 +101,26 @@ lifecycle-смысла, `Project` не нужен.
 
 Такой объект допустим как tool convenience object, но его не надо
 притворять terminal issue.
+
+### 3.5 Когда нужен `PTSubTask`
+
+Создавайте `PTSubTask`, если внутри уже существующего terminal issue у вас есть
+нетривиальный переход между фазами:
+
+1. `approve`
+2. `claim`
+3. `approve+claim`
+4. process-based handoff
+5. retrying или failed transition
+6. unusually long transition, который сам стал bottleneck
+
+`PTSubTask` не является новым `ChangeFlow`.
+
+Он нужен только затем, чтобы:
+
+1. не терять `PT` внутри phase-oriented UI;
+2. держать отдельный owner/assignee/history перехода;
+3. не превращать сам переход в параметр фазы.
 
 ---
 
@@ -195,6 +218,18 @@ observer или meta-controller.
 - комментарии по фазам начинают имитировать поток, а не описывать реальный
   atom of change.
 
+### 5.5 `PTSubTask` как будто это ещё один `ChangeFlow`
+
+Ошибка:
+
+- подзадача перехода трактуется как отдельный terminal issue
+
+Почему это плохо:
+
+- ломается атомарность parent `ChangeFlow`;
+- `PT` начинает притворяться новым потоком;
+- теряется различие между `Phase` и `PhaseTransition`.
+
 ---
 
 ## 6. Кейс `IAG-107`
@@ -226,13 +261,15 @@ observer или meta-controller.
 2. не создавай coordination issue, если работу можно честно провести как один
    terminal `CF`;
 3. не делай контекст отдельным lifecycle-узлом;
-4. лучше начать с terminal issue и только потом повышать уровень, если это
+4. не делай `PTSubTask`, если переход короткий и materially незначим;
+5. лучше начать с terminal issue и только потом повышать уровень, если это
    реально нужно.
 
 Практически это означает:
 
 - `Epic` должен быть исключением, которое нужно обосновать;
 - terminal issue — нормальный default для атомарной работы;
+- `PTSubTask` — специальный tool object только для нетривиального перехода;
 - coordination issue — осознанный tool-level container, а не скрытая форма
   плохо сформулированного `CF`.
 
@@ -244,7 +281,9 @@ observer или meta-controller.
 
 - [MMCF-Delivery-AppliedRules-Integration-Profile](./methodology/delivery/MMCF-Delivery-AppliedRules-Integration-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./methodology/delivery/MMCF-Delivery-Linear-Profile.md)
+- [MMCF-Delivery-PhaseTransition-Gateway-Profile](./methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 - [MMCF-Operational-Work-Unit-Contract](./methodology/MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Phase-and-Transition-State-Separation-Profile](./methodology/MMCF-Phase-and-Transition-State-Separation-Profile.md)
 - [CDM RLC-CC Profile](../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md)
 - [CDM ROS Profile](../fcdm-core/theory/cdm/Specifications/AppliedRules/ROS-Profile.md)
 - [CDM SEC-OC Profile](../fcdm-core/theory/cdm/Specifications/AppliedRules/SEC-OC-Profile.md)
