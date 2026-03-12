@@ -50,6 +50,9 @@ runtime-семантику `Result`. Он фиксирует:
 
 `conflict` в MMCF не является универсальным именем любой `Delta`.
 
+Полная допустимая taxonomy конфликтных классов задается в:
+[MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md).
+
 Нормативно:
 
 1. `conflict` — это квалифицированный случай или режим чтения `Delta`;
@@ -224,6 +227,7 @@ No-cost переход фиксируется как аналитическая 
 ## 12. Normative References
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](./MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Term-Legacy-Mapping](./MMCF-Term-Legacy-Mapping.md)
 - [MMCF-Applicability-Result-Alignment-Matrix](./MMCF-Applicability-Result-Alignment-Matrix.md)

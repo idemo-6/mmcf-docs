@@ -123,6 +123,9 @@ status: profile-draft
 Класс `conflict` является частным случаем квалификации `Delta`, а не ее
 универсальным синонимом.
 
+Полная taxonomy конфликтных классов задается в:
+[MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md).
+
 ### 3.6 `Triage`
 
 `Triage` — это решение о том, что делать с `DeltaRecord`.
@@ -222,6 +225,7 @@ operational work unit.
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Term-Legacy-Mapping](./MMCF-Term-Legacy-Mapping.md)
 - [MMCF-Operational-Work-Unit-Contract](./MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Planning-Assignment-Capability-Boundary](./MMCF-Planning-Assignment-Capability-Boundary.md)

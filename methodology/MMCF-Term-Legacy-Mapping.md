@@ -113,6 +113,7 @@ status: working-draft
 ## 9. Normative References
 
 - [MMCF-Canonical](./MMCF-Canonical.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](./MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Legacy-INDEX-Migration-Plan](./MMCF-Legacy-INDEX-Migration-Plan.md)
 - [CDM ChangeFlow-6 Canonical](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
