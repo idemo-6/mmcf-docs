@@ -16,6 +16,20 @@
 Цель документа не в том, чтобы объявить окончательную доктрину, а в том,
 чтобы зафиксировать устойчивую рабочую позицию для текущего этапа развития.
 
+Короткая прикладная лестница внедрения и режимы совместимости вынесены в
+отдельный документ:
+
+- [MMCF_COMPATIBILITY_AND_ADOPTION_MODES](./MMCF_COMPATIBILITY_AND_ADOPTION_MODES.md)
+
+Первый доказательный compatibility-case по tool-layer вынесен отдельно:
+
+- [MMCF_LINEAR_COMPATIBILITY_CASE](./MMCF_LINEAR_COMPATIBILITY_CASE.md)
+
+Отдельно зафиксирован и следующий слой, где проект начинает развиваться по
+собственным `MMCF`-совместимым правилам:
+
+- [MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE](./MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE.md)
+
 ## Рабочий тезис
 
 ### 1. `CDM`
@@ -57,6 +71,10 @@ gateway-traces и delivery-evidence.
 инструментом.
 Это означает, что уже описанная часть `CDM/MMCF` показала практическую
 операционную совместимость с реальной рабочей системой.
+
+Подробно этот первый кейс зафиксирован в:
+
+- [MMCF_LINEAR_COMPATIBILITY_CASE](./MMCF_LINEAR_COMPATIBILITY_CASE.md)
 
 ## Позиционирование относительно других методологий
 

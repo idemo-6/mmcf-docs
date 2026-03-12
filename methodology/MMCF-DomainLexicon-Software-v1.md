@@ -18,6 +18,11 @@ status: profile-draft
 2. сохранять каноническую трассировку к CDM/FROR;
 3. не смешивать операционный (командный) язык и онтологический канон.
 
+Общий installable-профиль доменных пакетов, частью которого этот документ
+должен стать далее, определен в:
+
+- [MMCF-Domain-Pack-Profile](./MMCF-Domain-Pack-Profile.md)
+
 ---
 
 ## 2. Принцип двух слоев
@@ -180,4 +185,3 @@ fror_mapping:
 - [MMCF-Time-and-Cost-FROR-Alignment](./MMCF-Time-and-Cost-FROR-Alignment.md)
 - [CDM DomainLexicon](../../fcdm-core/theory/cdm/DomainLexicon.md)
 - [FROR DomainLexicon](../../fcdm-core/theory/fror/FROR_DomainLexicon.md)
-

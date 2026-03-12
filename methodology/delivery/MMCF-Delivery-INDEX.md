@@ -48,6 +48,11 @@ status: working-draft
 
 ## 3. Текущие документы
 
+Для короткого пользовательского входа в versioning без чтения полного
+канонического профиля см.:
+
+- [Versioning Quick Guide](../../VERSIONING_QUICK_GUIDE_RU.md)
+
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 2. [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 3. [MMCF-Delivery-Linear-Versioning-Profile](./MMCF-Delivery-Linear-Versioning-Profile.md)

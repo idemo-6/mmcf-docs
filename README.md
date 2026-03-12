@@ -3,11 +3,16 @@
 Публичная методология управления изменениями.
 
 - [[POSITIONING_AND_ADOPTION_ROADMAP|POSITIONING_AND_ADOPTION_ROADMAP]]
+- [[MMCF_COMPATIBILITY_AND_ADOPTION_MODES|MMCF_COMPATIBILITY_AND_ADOPTION_MODES]]
+- [[MMCF_LINEAR_COMPATIBILITY_CASE|MMCF_LINEAR_COMPATIBILITY_CASE]]
+- [[MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE|MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE]]
+- [[VERSIONING_QUICK_GUIDE_RU|VERSIONING_QUICK_GUIDE_RU]]
 - [[methodology/MMCF-Canonical|MMCF-Canonical]]
 - [[methodology/Versioning-Canonical|Versioning-Canonical]]
 - [[methodology/Claim-Maturity-Canonical|Claim-Maturity-Canonical]]
 - [[methodology/MMCF-Legacy-INDEX-Migration-Plan|MMCF-Legacy-INDEX-Migration-Plan]]
 - [[methodology/MMCF-Term-Legacy-Mapping|MMCF-Term-Legacy-Mapping]]
+- [[methodology/MMCF-Domain-Pack-Profile|MMCF-Domain-Pack-Profile]]
 - [[methodology/MMCF-Conflict-and-Applicability-Profile|MMCF-Conflict-and-Applicability-Profile]]
 - [[methodology/MMCF-Operational-Roles-and-Gateways|MMCF-Operational-Roles-and-Gateways]]
 - [[methodology/MMCF-Executor-Matching-and-Capability-Registry-Profile|MMCF-Executor-Matching-and-Capability-Registry-Profile]]
