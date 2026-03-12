@@ -468,29 +468,27 @@ explicit disagreement protocol.
 
 ### 9.2 Минимальная шкала
 
-#### Low-risk flow
+| Flow class | Обычно допустимо совмещать | Предпочтительно различать | Должно быть различимо | Минимум operational trace |
+|---|---|---|---|---|
+| `low-risk` | `Collector + Analyzer + Forecaster`; `Forecaster + Decider`; `Decider + Implementer`; `TransitionOwner + TransitionExecutor` | `Evaluator` хотя бы в комментарии closure, если он не совпадает с исполнителем | `CFOwner` как различимая функция потока, даже если совпадает с одним агентом | `cfowner_ref`, текущий `assignee/executor`, active phase |
+| `normal` | `Collector + Analyzer`; `Analyzer + Forecaster`; иногда `CFOwner = Decider` | `Decider != Evaluator`; `TransitionOwner` различим от phase executors хотя бы в trace; `CommitAuthority` различим, если commit materially significant | `CFOwner` не должен silently collapse'иться в простой `assignee`; authority map должен быть читаем | `cfowner_ref`, `assignee_ref`, `decision_authority`, `evaluation_authority`, active `TransitionOwner` при нетривиальном `PT` |
+| `high-risk / claim-bearing / governance-heavy` | только ранние аналитические композиции (`CF1..CF3`) при сохранении auditability | `Decider != Implementer`; `Implementer != Evaluator`; `GatewayApprovalAuthority != TransitionExecutor`; `ClaimAuthority != обычный phase executor` | `CFOwner`, `CommitAuthority`, `EvaluationAuthority`, `GatewayApprovalAuthority`, `ClaimAuthority` должны быть явно различимы там, где они релевантны; unresolved `authority-conflict` блокирует ход | полный role trace, authority map, handoff refs и conflict trace |
 
-Обычно допустимо:
+### 9.3 Operational rules for risk-based independence
 
-1. `Collector + Analyzer + Forecaster`
-2. `Forecaster + Decider`
-3. `Decider + Implementer`
+Нормативно:
 
-#### Normal flow
-
-Предпочтительно:
-
-1. `Decider != Evaluator`
-2. `TransitionOwner` различим от phase executors хотя бы в trace
-
-#### High-risk / claim-bearing / governance-heavy flow
-
-Предпочтительно:
-
-1. `Decider != Implementer`
-2. `Implementer != Evaluator`
-3. `GatewayApprovalAuthority` различим от `TransitionExecutor`
-4. `ClaimAuthority` различим от обычного phase execution
+1. risk class может повышаться по мере хода потока, но не должен silently
+   понижаться без явного rationale;
+2. если один агент несет несколько ролей, trace должен различать сами роли, а
+   не только имя агента;
+3. если required distinction для текущего risk class не может быть обеспечено,
+   поток должен считаться `governance-heavy` или `operationally degraded` до
+   явного override;
+4. для normal и high-risk flow оценка допустимых совмещений должна делаться не
+   позже intake/promote момента materialized work unit;
+5. `assignee` в tool-layer никогда не заменяет сам по себе `CFOwner`,
+   authority map или проверку независимости.
 
 ---
 

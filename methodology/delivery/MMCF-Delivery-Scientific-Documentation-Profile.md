@@ -218,9 +218,19 @@ Terminal issue отслеживает один `ChangeFlow`.
 3. Обновления `ClaimStatus` должны быть трассируемы, но остаются отдельной осью относительно статуса терминальной задачи.
 4. `Result=0` означает неприменимость, а не "недостаточно доказано".
 
+## 8. Role and independence note
+
+Для scientific-documentation delivery по умолчанию:
+
+1. поток следует считать как минимум `normal`, а чаще `claim-bearing`;
+2. `Evaluator` и `ClaimAuthority` предпочтительно не совмещать с обычным
+   authoring execution;
+3. при claim-bearing или canon-sensitive изменениях `CFOwner`,
+   `EvaluationAuthority` и `ClaimAuthority` должны быть явными уже на intake.
+
 ---
 
-## 8. Ссылки
+## 9. Ссылки
 
 - [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)

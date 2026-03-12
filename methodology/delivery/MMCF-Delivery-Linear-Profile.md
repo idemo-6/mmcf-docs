@@ -331,6 +331,45 @@ tool-profile и вынесены в корневой слой `methodology/`.
 2. `Canon Compatibility`
 3. `Review Trigger`
 
+### 6.4 Role trace and ownership mapping
+
+В `Linear` минимальная role/authority проекция должна оставаться читаемой, но
+не перегружать custom fields высокоэнтропийными данными.
+
+Рекомендуемое отображение `v1`:
+
+1. `CFOwner` -> body block `Roles / Authority`
+2. `assignee` -> текущий owner ближайшего операционного действия
+3. `current CFPhaseOwner` -> body block `Roles / Authority`
+4. `TransitionOwner / TransitionExecutor` -> `PTSubTask` body или gateway trace
+5. `DecisionAuthority / CommitAuthority / EvaluationAuthority` -> body block
+6. `GatewayApprovalAuthority / ClaimAuthority` -> body block или явный gateway trace
+
+Нормативно:
+
+1. `Linear assignee` не является каноническим синонимом `CFOwner`;
+2. если один агент совпадает с несколькими ролями, роли все равно должны быть
+   различимы по именам функций;
+3. для `low-risk` flow достаточно компактного role block;
+4. для normal, high-risk, claim-bearing или governance-heavy flow role block и
+   authority map должны быть явными уже на intake;
+5. handoff `CFOwner` должен фиксироваться комментарием, а не молчаливой сменой
+   `assignee`.
+
+### 6.5 Risk-aware delivery rule
+
+При проекции методологической risk matrix в `Linear` используйте следующее
+упрощение:
+
+1. `low-risk` flow может хранить role trace только в body;
+2. `normal` flow должен различать `CFOwner`, `assignee`, `DecisionAuthority`
+   и `EvaluationAuthority`;
+3. `high-risk / claim-bearing / governance-heavy` flow должен additionally
+   различать `CommitAuthority`, `GatewayApprovalAuthority` и `ClaimAuthority`,
+   когда они релевантны;
+4. если workspace не может выразить нужную различимость полями, body/comment
+   trace считается обязательным source of truth.
+
 ---
 
 ## 7. Labels v1
@@ -373,6 +412,8 @@ Labels в этом профиле являются сквозными сигна
    исполнения фазы.
 6. `ClaimUpdate`
    Issue меняет контент, несущий claims, или имеет явное влияние на claim-status.
+7. `AuthorityConflict`
+   Активный `authority-conflict` блокирует commit, gateway closure или final evaluation.
 
 ### 7.3 Правила использования
 
@@ -385,6 +426,8 @@ Labels в этом профиле являются сквозными сигна
    узкого места: `Blocked`, `AwaitingApproval`, `AwaitingClaim` или `GatewayFailure`.
 5. `NeedsEvidence`, `Governance` и `ClaimUpdate` могут сосуществовать с
    меткой узкого места.
+6. `AuthorityConflict` используется только пока conflict остается активным и
+   требует явного protocol resolution.
 
 ---
 
@@ -436,6 +479,7 @@ Labels в этом профиле являются сквозными сигна
 - [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
 - [MMCF-Planning-Assignment-Capability-Boundary](../MMCF-Planning-Assignment-Capability-Boundary.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Role-Composition-and-Authority-Patterns-Profile](../MMCF-Role-Composition-and-Authority-Patterns-Profile.md)
 - [MMCF-Conflict-and-Applicability-Profile](../MMCF-Conflict-and-Applicability-Profile.md)
 - [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 - [CDM LifeCycle-6](../../../fcdm-core/theory/cdm/Specifications/LifeCycle-6_v2.md)

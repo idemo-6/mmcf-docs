@@ -216,9 +216,20 @@ Software-интерпретация:
 3. Откат моделируется как новый прямой `ChangeFlow`, а не как удаление истории.
 4. `Result=0` нельзя использовать как синоним "еще не реализовано".
 
+## 7. Role and independence note
+
+Для software delivery по умолчанию:
+
+1. low-risk change часто допускает `CFOwner = Decider` и иногда
+   `Decider = Implementer`;
+2. materially significant commit предпочитает различимость
+   `Implementer` и `Evaluator`;
+3. high-risk, infra-critical или governance-heavy software flow должен явно
+   различать `CFOwner`, `CommitAuthority` и `EvaluationAuthority`.
+
 ---
 
-## 7. Ссылки
+## 8. Ссылки
 
 - [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)

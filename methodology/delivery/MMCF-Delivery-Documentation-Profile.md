@@ -208,9 +208,20 @@ Terminal issue по-прежнему представляет один `ChangeFl
    частью `evaluate`, а не необязательным постфактумом.
 4. `Result=0` нельзя использовать как синоним "не хватило времени написать".
 
+## 7. Role and independence note
+
+Для обычной documentation delivery по умолчанию:
+
+1. `CFOwner = Decider` часто допустим;
+2. отдельный `Evaluator` предпочтителен, когда документ проходит внешний review
+   или влияет на governance;
+3. если документный поток упирается в approval, canon-совместимость или
+   междокументный спор, это следует оформлять как authority/gateway layer, а
+   не как молчаливый конфликт `assignee`.
+
 ---
 
-## 7. Ссылки
+## 8. Ссылки
 
 - [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)

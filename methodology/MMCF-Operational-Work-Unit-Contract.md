@@ -78,6 +78,43 @@ Operational pre-start states:
   активное фазовое исполнение;
 - `Todo` = work unit уже допущен к исполнению и готов войти в `CF1`.
 
+### 3.1 Minimal role and authority trace
+
+Для каждого materialized work unit должен быть различим минимальный operational
+trace ownership и authority.
+
+Минимально:
+
+1. `flow_id`
+2. `delta_ref`
+3. `intent_ref`
+4. `cfowner_ref`
+5. `assignee_ref` или `active_executor_ref`
+6. `current_cf_phase`
+7. `current_lc_phase`
+8. `risk_class`
+9. `role_trace_ref` или inline role block
+10. `authority_map_ref`
+
+Если применяется `Level 2` role profile, в role trace должны быть различимы:
+
+1. `CFOwner`
+2. текущий `CFPhaseOwner`
+3. `TransitionOwner`, если активен нетривиальный `PT`
+4. `DecisionAuthority`
+5. `CommitAuthority`, если поток может входить в `CF5`
+6. `EvaluationAuthority`
+7. `GatewayApprovalAuthority`, если переход approve-bearing
+8. `ClaimAuthority`, если поток claim-bearing
+
+Нормативно:
+
+1. `assignee_ref` не является каноническим синонимом `cfowner_ref`;
+2. отсутствие различимого `cfowner_ref` или unreadable authority map делает
+   work unit operationally degraded;
+3. unresolved `authority-conflict` должен быть связан с work unit trace, а не
+   оставаться вне carrier потока.
+
 ---
 
 ## 4. Carrier And Artifact Boundary

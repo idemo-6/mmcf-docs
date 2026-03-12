@@ -64,6 +64,14 @@ Issue не является узлом `LifeCycle`.
 5. `Artifact Type`, если `Work Domain=artifact`;
 6. `Claim Mode`.
 
+Если применяется `Level 2` role profile или поток не является явно
+`low-risk`, дополнительно зафиксируйте:
+
+1. `CFOwner`
+2. `Risk Class`
+3. `Decision Authority`
+4. `Evaluation Authority`
+
 `Result` не является полем intake. Он выставляется только в `evaluate`.
 
 Если задача привязана к versioned carrier entity, дополнительно задайте:
@@ -101,6 +109,9 @@ Issue не является узлом `LifeCycle`.
 12. `Success criteria`
 13. `Stop criteria`
 14. `Evidence refs`
+15. `CFOwner`
+16. `Current assignee / active executor`
+17. `Risk class`
 
 Рекомендуемый шаблон body задачи:
 
@@ -123,6 +134,19 @@ Issue не является узлом `LifeCycle`.
 - Expected delta:
 - Success criteria:
 - Stop criteria:
+
+## Roles / Authority
+- CFOwner:
+- Current assignee / active executor:
+- Current CFPhaseOwner:
+- TransitionOwner(s):
+- Decision authority:
+- Commit authority:
+- Evaluation authority:
+- Gateway approval authority:
+- Claim authority:
+- Risk class:
+- Independence note:
 
 ## Planning
 - Flow mode:
@@ -192,6 +216,21 @@ Issue не является узлом `LifeCycle`.
 1. executor capability values;
 2. `Doubt` или `Subjectivity` bands как свойства задачи;
 3. candidate ranking или suitability scores.
+
+### 3.4 `assignee` и role trace
+
+В tool-layer `assignee` отвечает только на вопрос, кто держит ближайшее
+операционное действие.
+
+Нормативно:
+
+1. `assignee` не является каноническим синонимом `CFOwner`;
+2. `CFOwner` обязан быть различим как функция continuity/closure потока, даже
+   если совпадает с тем же агентом;
+3. для normal, high-risk, claim-bearing или governance-heavy flow body должен
+   содержать явный блок `Roles / Authority`;
+4. при смене `CFOwner` или materially significant authority map должен
+   появляться handoff/update trace в комментариях issue.
 
 ### 3.5 `Work Domain` vs `Artifact Type`
 
@@ -272,6 +311,9 @@ gateway. Явные gateway traces остаются отдельными, но `
 - Return condition:
 - Review date / trigger:
 - Summary:
+- CFOwner at closure:
+- Authority conflict refs:
+- Role handoff refs:
 ```
 
 `Pre-CF version` означает унаследованный snapshot до входа в текущий `CF#N`.
@@ -319,6 +361,10 @@ gateway. Явные gateway traces остаются отдельными, но `
 11. для `delivery/linear` при `final` и `delayed` по умолчанию используется
     `Version outcome note: no material version change`, если только carrier
     entity не изменилась materially и source of truth не вывел новый snapshot.
+12. `CFOwner at closure` обязателен, если в ходе потока происходил handoff или
+    если `CFOwner` не совпадает с последним `assignee`;
+13. `Authority conflict refs` обязательны, если по потоку был зафиксирован
+    `authority-conflict`.
 
 ---
 
