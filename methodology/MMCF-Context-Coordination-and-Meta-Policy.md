@@ -30,13 +30,14 @@ status: profile-draft
 
 ## 3. Priority classes
 
-### P1. Conflict trigger priority
+### P1. Delta intake priority
 
-Приоритет конфликтов как источника изменений.
+Приоритет intake и квалификации `Delta` как источника pre-flow линии
+изменения.
 
 Требования:
 
-1. реестр конфликтов по каждому контексту;
+1. реестр `DeltaRecord` или qualified `Delta` по каждому контексту/контуру;
 2. классификация: `critical/high/medium/low`;
 3. ручная и автоматическая переоценка при изменении условий.
 
@@ -120,7 +121,8 @@ status: profile-draft
 
 Правило:
 
-- если конфликт не разрешен в timeout текущего уровня, эскалация обязательна.
+- если межконтекстный, authority- или constraint-конфликт не разрешен в
+  timeout текущего уровня, эскалация обязательна.
 
 ---
 
@@ -180,7 +182,7 @@ c_coord:
   escalation_levels: ["L1", "L2", "L3"]
 
 priorities:
-  conflict_trigger: { enabled: true, registry_required: true }
+  delta_intake: { enabled: true, registry_required: true }
   executor_selection: { enabled: true }
   decision_center: { enabled: true, primary_fallback_required: true }
   risk_regulatory: { enabled: true, hard_stop: true }
@@ -206,7 +208,7 @@ c_meta:
 ## 10. Acceptance checklist
 
 1. Есть формальная цепочка `C_coord` и escalation timeouts.
-2. Есть primary/fallback authority для конфликтных решений.
+2. Есть primary/fallback authority для квалификации `Delta` и конфликтных решений.
 3. Есть hard-stop риск/регуляторный слой.
 4. Есть формальный override с аудитом и revalidation.
 5. Есть learning hooks и обновление policy через `C_meta`.
@@ -220,4 +222,3 @@ c_meta:
 - [MMCF-Context-Examples-Product-Platform](./MMCF-Context-Examples-Product-Platform.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
 - [Post-Anthropocentric Computing Manifesto](../../idemo-docs/vision/Post-Anthropocentric_Computing_Manifesto.md)
-
