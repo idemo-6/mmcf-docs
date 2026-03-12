@@ -115,6 +115,78 @@ trace ownership и authority.
 3. unresolved `authority-conflict` должен быть связан с work unit trace, а не
    оставаться вне carrier потока.
 
+### 3.2 Minimal machine-readable skeleton
+
+Ниже приведен минимальный skeleton, достаточный для tool/runtime mapping без
+преждевременного перехода к полной runtime schema.
+
+```yaml
+flow_id: CF-2026-001
+delta_ref: delta://registry/2026-03-12/001
+intent_ref: intent://flow/CF-2026-001
+risk_class: normal
+state:
+  current_lc_phase: F3
+  current_cf_phase: decide
+ownership:
+  cfowner_ref: agent://owner/yasha
+  assignee_ref: agent://executor/yasha
+  cf_phase_owner_ref: agent://phase/decider
+  transition_owner_ref: null
+authority:
+  decision_authority_ref: agent://authority/decider
+  commit_authority_ref: null
+  evaluation_authority_ref: agent://authority/reviewer
+  gateway_approval_authority_ref: null
+  claim_authority_ref: null
+trace:
+  role_trace_ref: trace://flow/CF-2026-001/roles
+  authority_map_ref: trace://flow/CF-2026-001/authority
+  last_handoff_ref: null
+  last_override_ref: null
+conflicts:
+  active_authority_conflict: false
+  authority_conflict_ref: null
+```
+
+Минимальные machine-readable event classes:
+
+1. `role_handoff_event`
+2. `authority_override_event`
+3. `authority_conflict_event`
+
+Минимальные поля `role_handoff_event`:
+
+1. `flow_id`
+2. `from_role`
+3. `from_agent`
+4. `to_role`
+5. `to_agent`
+6. `effective_at`
+7. `reason`
+8. `phase_snapshot`
+
+Минимальные поля `authority_override_event`:
+
+1. `flow_id`
+2. `scope`
+3. `overridden_authority`
+4. `resolving_authority`
+5. `precedence_basis`
+6. `effective_at`
+7. `reason`
+8. `revalidation_required`
+
+Минимальные поля `authority_conflict_event`:
+
+1. `flow_id`
+2. `scope`
+3. `conflict_parties`
+4. `conflict_class`
+5. `detected_at`
+6. `resolution_state`
+7. `resolution_ref`
+
 ---
 
 ## 4. Carrier And Artifact Boundary
