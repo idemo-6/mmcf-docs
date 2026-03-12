@@ -215,10 +215,13 @@ Scope:
 1. новый material `Post-CF version` по умолчанию ожидается при `done`;
 2. новый material `Post-CF version` по умолчанию ожидается при `repeat` для
    закрываемого `CF#N`;
-3. при `final` и `delayed` по умолчанию используется
-   `Version outcome note: no material version change`;
-4. `final` и `delayed` по умолчанию не создают новый material version bump в
-   Linear.
+3. при `final` и `delayed` с `Closure reason = inapplicable` по умолчанию
+   используется `Version outcome note: no material version change`;
+4. при `final` и `delayed` с `Closure reason = failed` `Version outcome note`
+   определяется фактическим material change и не должен автоматически
+   предполагать отсутствие изменения;
+5. generic `final/delayed` сами по себе не являются правилом derivation
+   версии и не подменяют source of truth.
 
 Это правило введено для практики Linear и не является каноническим правилом
 CDM version derivation.
@@ -301,6 +304,11 @@ Versioning block можно опустить, если:
 
 Этот слой должен быть derivation-oriented и не должен превращать Linear в
 ручной registry версий.
+
+Текущий repo-level `Version Governance Pipeline v1` при этом следует читать
+уже как continuity/snapshot checker, а не как полный CDM derivation replay.
+Для `delivery/linear` этого достаточно как первого enforcement слоя, но не как
+замены каноническому source of truth.
 
 ---
 

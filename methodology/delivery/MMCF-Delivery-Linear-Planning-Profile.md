@@ -28,6 +28,11 @@ delivery.
 Этот профиль покрывает только task-side planning signals, которые действительно
 имеет смысл хранить на issue.
 
+Bridge для legacy `CI/V` материалов и более общего creativity/variability
+профиля определен отдельно в:
+
+- [MMCF-Delivery-Planning-CI-V-Bridge](./MMCF-Delivery-Planning-CI-V-Bridge.md)
+
 ---
 
 ## 2. Граница совместимости
@@ -88,7 +93,7 @@ delivery.
   future upgrade, а не как скрытое нарушение текущей UI-схемы.
 - `CI` из более общего creativity/variability profile по-прежнему может
   использоваться как аналитический скаляр, но в схему issue `v1.1` он не
-  продвигается.
+  продвигается; для перевода legacy `CI/V` используйте отдельный bridge.
 
 ### 4.1 Что не хранится на issue
 
@@ -268,6 +273,7 @@ TODO:
 - [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+- [MMCF-Delivery-Planning-CI-V-Bridge](./MMCF-Delivery-Planning-CI-V-Bridge.md)
 - [MMCF-Creativity-and-Variability-Profile](../MMCF-Creativity-and-Variability-Profile.md)
 - [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)

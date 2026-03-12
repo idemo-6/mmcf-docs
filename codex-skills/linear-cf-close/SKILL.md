@@ -42,9 +42,12 @@ Read these delivery docs before acting:
 
 1. `done` is default only for `Applicable=true`, `Result=+1`, and no immediate
    next flow.
-2. `final` and `delayed` are default only for `Applicable=false`, `Result=0`.
-3. There is no terminal stop status for unresolved `Result=-1` without an
-   immediate next flow in v1.
+2. `final` and `delayed` are generic canceled exits. For `Result=0` they are
+   standard inapplicability exits; for `Result=-1` they require a declared
+   negative-result policy or an authority verdict on `PT(CF5->CF6)`.
+3. If `Result=-1`, do not invent `final` or `delayed` silently. The exit must
+   be predeclared by policy or selected through the relevant `approve` /
+   `approve+claim` transition.
 4. Do not treat retryable PT attempt failure as a reason to close the flow.
 5. Do not close with `done` while approval, claim, or gateway failure is still
    unresolved.
@@ -55,6 +58,7 @@ Read these delivery docs before acting:
 8. When the carrier entity is versioned, do not invent `Post-CF version`; use
    the known snapshot or mark it as pending re-derivation.
 9. In the delivery/Linear default, expect a new material `Post-CF version`
-   mainly for `done` and `repeat`; for `final` and `delayed`, prefer
-   `Version outcome note: no material version change` unless an explicit new
-   snapshot is already known.
+   mainly for `done` and `repeat`; for `final` and `delayed` with
+   `Closure reason=inapplicable`, prefer `Version outcome note: no material
+   version change`; for `Closure reason=failed`, make the note depend on the
+   actual material change.

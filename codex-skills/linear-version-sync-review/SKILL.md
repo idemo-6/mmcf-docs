@@ -10,9 +10,9 @@ phase work on a single terminal issue.
 
 Read these delivery docs before acting:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Versioning-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
+- [MMCF-Delivery-Linear-Versioning-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Versioning-Profile.md)
+- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+- [MMCF-Delivery-Linear-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
 
 ## Workflow
 

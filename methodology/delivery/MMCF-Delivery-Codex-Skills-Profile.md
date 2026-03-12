@@ -61,8 +61,8 @@ Planning-profile `v1.1` считается аддитивным расширен
 
 1. нужно создать новую терминальную задачу под существующим epic;
 2. issue должен следовать правилам именования, шаблону body и правилам меток;
-3. `Artifact Type`, `Claim Mode` и ожидаемые нетривиальные `PT`-переходы уже
-   известны или могут быть выведены.
+3. `Work Domain`, `Artifact Type` при необходимости, `Claim Mode` и ожидаемые
+   нетривиальные `PT`-переходы уже известны или могут быть выведены.
 
 ### `linear-cf-advance`
 
@@ -126,20 +126,50 @@ Planning-profile `v1.1` считается аддитивным расширен
 
 ## 5. Расположение исходников
 
-Версионируемые исходники навыков для этого профиля лежат в:
+Публичный versioned source of truth для этого профиля лежит в:
 
 - `mmcf-docs/codex-skills/`
 
-Приватное устанавливаемое зеркало и установщик могут жить в:
+Приватное устанавливаемое зеркало и установщик живут в:
 
 - `mmcf-code/codex-skills/`
 - `mmcf-code/scripts/install_codex_skills.sh`
+- `mmcf-code/scripts/check_codex_skills_sync.py`
 - `mmcf-code/docs/CODEX_SKILLS_QUICKSTART.md`
 - `mmcf-code/docs/LINEAR_MMCF_SETUP.md`
 
 Целевой путь установки для живого использования Codex:
 
 - `$HOME/.codex/skills/`
+
+## 5.1 Sync policy
+
+Между `mmcf-docs/codex-skills/` и `mmcf-code/codex-skills/` действует такая
+дисциплина:
+
+1. `mmcf-docs/codex-skills/` остается публичным versioned source of truth по
+   смыслу и поведению навыков;
+2. `mmcf-code/codex-skills/` является installable private mirror для реального
+   развёртывания в Codex;
+3. допустимое расхождение между ними ограничено packaging-layer деталями:
+   bundled references, относительные vs installable link targets и похожие
+   транспортные различия;
+4. workflow/rules/metadata навыков не должны drift'овать между public source и
+   private mirror;
+5. изменение навыка считается завершённым только после sync обеих директорий.
+
+Минимальный drift-check step:
+
+```bash
+python3 ../mmcf-code/scripts/check_codex_skills_sync.py
+```
+
+Checker сверяет:
+
+1. одинаковый inventory навыков;
+2. совпадение `name` и `description`;
+3. совпадение нормализованного тела навыка после исключения reference-block
+   различий.
 
 ---
 

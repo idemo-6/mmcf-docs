@@ -26,21 +26,21 @@ Typical triggers:
 This skill is the entry point. It routes work to the narrower operational
 skills when needed.
 
-Canonical references:
+For the exact delivery schema, read:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md`
+- [MMCF-Delivery-Linear-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
+- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+- [MMCF-Delivery-PhaseTransition-Gateway-Profile](../../methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
+- [MMCF-Delivery-Linear-Planning-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
+- [MMCF-Delivery-Codex-Skills-Profile](../../methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md)
 
 Operational skill sources:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-intake/SKILL.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-advance/SKILL.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-close/SKILL.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-cf-repeat/SKILL.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/codex-skills/linear-version-sync-review/SKILL.md`
+- [linear-cf-intake](../linear-cf-intake/SKILL.md)
+- [linear-cf-advance](../linear-cf-advance/SKILL.md)
+- [linear-cf-close](../linear-cf-close/SKILL.md)
+- [linear-cf-repeat](../linear-cf-repeat/SKILL.md)
+- [linear-version-sync-review](../linear-version-sync-review/SKILL.md)
 
 ## Routing rules
 

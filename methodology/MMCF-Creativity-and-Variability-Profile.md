@@ -17,6 +17,11 @@ status: profile-draft
 Профиль используется для планирования времени/ресурсов по `CF1..CF6` и не
 переопределяет канон `ChangeFlow-6`.
 
+Для operational перевода этого профиля в issue-schema `delivery/linear`
+используйте:
+
+- [MMCF-Delivery-Planning-CI-V-Bridge](./delivery/MMCF-Delivery-Planning-CI-V-Bridge.md)
+
 ---
 
 ## 2. Canon Boundary
@@ -132,7 +137,7 @@ status: profile-draft
 - [MMCF-Canonical](./MMCF-Canonical.md)
 - [MMCF-Term-Legacy-Mapping](./MMCF-Term-Legacy-Mapping.md)
 - [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Delivery-Planning-CI-V-Bridge](./delivery/MMCF-Delivery-Planning-CI-V-Bridge.md)
 - [CDM ChangeFlow-6 Canonical](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Creative ChangeFlow Canonical](../../fcdm-core/theory/cdm/Specifications/System/CreativeChangeFlow-Canonical.md)
 - [CDM Creative ChangeFlow Model Core](../../fcdm-core/theory/cdm/Specifications/System/CreativeChangeFlow-Model-Core.md)
-

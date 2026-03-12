@@ -45,8 +45,9 @@ Issue не является узлом `LifeCycle`.
 1. title согласно правилам именования;
 2. `Parent Epic`;
 3. `LC Phase Snapshot`;
-4. `Artifact Type`;
-5. `Claim Mode`.
+4. `Work Domain`;
+5. `Artifact Type`, если `Work Domain=artifact`;
+6. `Claim Mode`.
 
 `Result` не является полем intake. Он выставляется только в `evaluate`.
 
@@ -74,10 +75,12 @@ Issue не является узлом `LifeCycle`.
 6. `Base intent`
 7. `Active context(s)`
 8. `LC phase snapshot`
-9. `Expected delta`
-10. `Success criteria`
-11. `Stop criteria`
-12. `Evidence refs`
+9. `Work domain`
+10. `Artifact type`, если `Work Domain=artifact`
+11. `Expected delta`
+12. `Success criteria`
+13. `Stop criteria`
+14. `Evidence refs`
 
 Рекомендуемый шаблон body задачи:
 
@@ -94,6 +97,7 @@ Issue не является узлом `LifeCycle`.
 - LC phase snapshot:
 
 ## Delivery
+- Work domain:
 - Artifact type:
 - Claim mode:
 - Expected delta:
@@ -113,6 +117,7 @@ Issue не является узлом `LifeCycle`.
 - Default PT scenario: event
 - Non-trivial transitions:
 - PT failure policy:
+- Negative result policy:
 - Approval refs / owners:
 - Claim refs / evidence refs:
 
@@ -160,6 +165,22 @@ Issue не является узлом `LifeCycle`.
 1. executor capability values;
 2. `Doubt` или `Subjectivity` bands как свойства задачи;
 3. candidate ranking или suitability scores.
+
+### 3.5 `Work Domain` vs `Artifact Type`
+
+`Work Domain` и `Artifact Type` в этом профиле являются разными осями.
+
+1. `Work Domain` отвечает на вопрос, относится ли поток к artifact-bearing
+   delivery или к meta-operational работе.
+2. `Artifact Type` отвечает только на вопрос, какой основной тип carrier
+   артефакта меняется.
+
+Нормативно:
+
+1. `Work Domain` обязателен для каждой terminal issue;
+2. `Artifact Type` обязателен только если `Work Domain=artifact`;
+3. для `Work Domain=meta-operational` не нужно искусственно выбирать
+   `Artifact Type`, если поток не меняет основной carrier artifact.
 
 ---
 
@@ -217,6 +238,7 @@ gateway. Явные gateway traces остаются отдельными, но `
 - PT trace refs:
 - PT summary:
 - Exit decision: done | repeat | final | delayed
+- Closure reason: success | inapplicable | failed | mixed
 - Zero class: AF_sem | AF_epi | AF_sto | mixed
 - Repeat reason:
 - Next CF issue:
@@ -233,6 +255,12 @@ gateway. Явные gateway traces остаются отдельными, но `
 
 1. `Failure class` объясняет, какой слой в первую очередь определил terminal
    outcome:
+2. если `CF5` породил evidence негативного исхода, но closure не предзадан,
+   `PT(CF5->CF6)` может быть `approve` или `approve+claim`, а authority verdict
+   выбирает `repeat`, `final` или `delayed`;
+3. `Closure reason` объясняет, почему выбран именно этот exit:
+   `success`, `inapplicable`, `failed` или `mixed`;
+4. `Zero class` заполняется только когда `Result=0`.
    - `phase-logic`
    - `applicability`
    - `gateway`
@@ -315,8 +343,8 @@ Attempt-level PT failures под активной retry policy также сам
 
 1. `Applicable=true`, `Result=+1`, но более узкая следующая дельта уже
    известна;
-2. `Applicable=true`, `Result=-1`, и корректирующий или компенсирующий поток должен
-   начаться немедленно;
+2. `Applicable=true`, `Result=-1`, и `negative_result_policy` либо authority
+   verdict на `PT(CF5->CF6)` выбирают немедленный corrective/compensating поток;
 3. `Applicable=false`, `Result=0`, и задача немедленно переформулируется в
    новый поток с другой выполнимой дельтой.
 
@@ -335,27 +363,30 @@ PT-aware note:
 
 Значение по умолчанию:
 
-- `Applicable=false`
-- `Result=0`
-- планируемого возврата нет
+- линия закрывается без немедленного или ожидаемого будущего продолжения
 
 Используйте `final`, когда текущий поток закрывает линию без немедленного или
 ожидаемого будущего продолжения.
 
 Типовые валидные случаи:
 
-1. canonical или управленческое решение установило реальную неприменимость;
-2. approval или review по claims завершились стабильным решением "не продолжать
+1. `Applicable=false`, `Result=0`, и canonical или управленческое решение
+   установило реальную неприменимость;
+2. `Applicable=true`, `Result=-1`, и `negative_result_policy` либо authority
+   verdict на `PT(CF5->CF6)` выбрали terminal stop;
+3. approval или review по claims завершились стабильным решением "не продолжать
    эту линию";
-3. текущая формулировка отклонена без планируемой reformulation.
+4. текущая формулировка отклонена без планируемой reformulation.
 
 PT-aware note:
 
 1. failed approval или claim transition не означает автоматически `final`;
-2. `final` корректен только тогда, когда исход transition устанавливает
-   стабильную неприменимость, а не просто задержку.
+2. `final` корректен только тогда, когда исход transition или policy
+   устанавливает terminal stop, а не просто задержку;
 3. для `delivery/linear` `final` по умолчанию сопровождается
-   `Version outcome note: no material version change`.
+   `Version outcome note: no material version change` только для ветки
+   `Result=0`; при `Result=-1` outcome note зависит от фактического material
+   change.
 
 Обязательно:
 
@@ -365,8 +396,7 @@ PT-aware note:
 
 Значение по умолчанию:
 
-- `Applicable=false`
-- `Result=0`
+- немедленный следующий поток не нужен
 - возврат ожидается позже
 
 Используйте `delayed`, когда текущий поток неприменим сейчас, но известен или
@@ -374,10 +404,13 @@ PT-aware note:
 
 Типовые валидные случаи:
 
-1. отсутствует заморозка вышестоящей спецификации;
-2. ожидается управленческое решение;
-3. не хватает evidence или завершения protocol;
-4. недоступна зависимость, окружение или окно ресурсов.
+1. `Applicable=false`, `Result=0`, и отсутствует заморозка вышестоящей
+   спецификации;
+2. `Applicable=true`, `Result=-1`, и `negative_result_policy` либо authority
+   verdict на `PT(CF5->CF6)` выбрали deferred return;
+3. ожидается управленческое решение;
+4. не хватает evidence или завершения protocol;
+5. недоступна зависимость, окружение или окно ресурсов.
 
 PT-aware note:
 
@@ -386,7 +419,9 @@ PT-aware note:
    следующий валидный ход зависит от более позднего условия, а не от
    немедленной корректирующей работы.
 3. для `delivery/linear` `delayed` по умолчанию сопровождается
-   `Version outcome note: no material version change`.
+   `Version outcome note: no material version change` только для ветки
+   `Result=0`; при `Result=-1` outcome note зависит от фактического material
+   change.
 
 Обязательно:
 
@@ -400,21 +435,24 @@ PT-aware note:
 
 1. `Result=+1` и немедленный следующий `CF` не нужен -> `done`
 2. `Result=+1` и нужен немедленный следующий `CF` -> `repeat`
-3. `Result=-1` и нужен немедленный corrective/compensating `CF` -> `repeat`
-4. `Result=0` и есть немедленно reformulated `CF` -> `repeat`
-5. `Result=0` и немедленного следующего `CF` нет, но ожидается будущий возврат ->
+3. `Result=-1` и `negative_result_policy` или authority verdict выбирают
+   немедленный corrective/compensating `CF` -> `repeat`
+4. `Result=-1` и `negative_result_policy` или authority verdict выбирают
+   terminal stop -> `final`
+5. `Result=-1` и `negative_result_policy` или authority verdict выбирают
+   deferred return -> `delayed`
+6. `Result=0` и есть немедленно reformulated `CF` -> `repeat`
+7. `Result=0` и немедленного следующего `CF` нет, но ожидается будущий возврат ->
    `delayed`
-6. `Result=0` и немедленного следующего `CF` нет, и возврат не планируется -> `final`
+8. `Result=0` и немедленного следующего `CF` нет, и возврат не планируется -> `final`
 
-Выделенного terminal stop status для `Result=-1` без немедленного следующего
-потока в `v1` не существует.
+Нормативно:
 
-Поэтому такие случаи должны оставаться в `evaluate`, пока не произойдет одно
-из следующих событий:
-
-1. создан корректирующий `repeat` issue;
-2. policy или governance переоформят кейс в `Applicable=false`, `Result=0`, а
-   затем закроют его как `final` или `delayed`.
+1. `done` используется только для `Result=+1`;
+2. при `Result=0` operationally играют только `repeat`, `final` и `delayed`;
+3. при `Result=-1` ожидается, что `CF5` дает evidence, `PT(CF5->CF6)`
+   разрешает exit через policy или authority verdict, а `CF6` фиксирует и
+   `Result=-1`, и выбранный exit.
 
 ---
 

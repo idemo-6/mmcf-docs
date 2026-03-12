@@ -26,7 +26,8 @@ Read these delivery docs before acting:
    - carrier entity
    - version source ref
    - contour prefix
-   - artifact type
+   - work domain
+   - artifact type when present
    - claim mode
    - planning custom fields when present
    - `Planning` block when present

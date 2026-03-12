@@ -204,8 +204,10 @@
 Для `delivery/linear` действует упрощающее правило:
 
 - при `done` и `repeat` обычно появляется новый material `Post-CF version`;
-- при `final` и `delayed` по умолчанию часто пишется:
-  `no material version change`
+- при `final` и `delayed` с причиной `inapplicable` по умолчанию часто пишется:
+  `no material version change`;
+- при `final` и `delayed` с причиной `failed` такой вывод автоматически
+  делать нельзя: `Version outcome note` зависит от фактического material change.
 
 Важно:
 

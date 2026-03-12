@@ -210,8 +210,11 @@ CDM/MMCF versioning остается state-derived, а не exit-derived.
 
 1. ожидает новый material `PostCFVersion` главным образом при `done` и
    `repeat`;
-2. по умолчанию трактует `final/delayed` как `no material version change`,
-   если это соответствует operational semantics данного инструмента.
+2. по умолчанию трактует `final/delayed` как `no material version change`
+   только для ветки `ClosureReason=inapplicable`, если это соответствует
+   operational semantics данного инструмента;
+3. при `ClosureReason=failed` не делает автоматического вывода об отсутствии
+   material change и требует явного `Version outcome note`.
 
 Такая оговорка относится к tool-profile, а не к канонической derivation rule.
 
@@ -258,6 +261,11 @@ derivation-oriented.
 2. недопустим ручной registry version numbers без связи с derivation rules;
 3. claim-style hooks могут служить governance-паттерном, но versioning-checker
    не должен быть простой копией claim registry validator.
+
+Текущий portable `Version Governance Pipeline v1` в `mmcf-code` нужно читать
+уже не как полный derivation replayer, а как continuity/snapshot checker.
+Полный CDM-level replay допустим как следующий слой автоматизации, но не
+должен молча предполагаться там, где он ещё не реализован.
 
 ---
 

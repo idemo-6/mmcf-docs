@@ -8,12 +8,12 @@ description: Create a new terminal ChangeFlow issue in Linear under an existing 
 Use this skill when the user wants a new terminal `ChangeFlow` issue created in
 Linear under an existing epic.
 
-This skill is project-specific. It assumes the delivery docs live at:
+Read these delivery docs before acting:
 
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md`
-- `/Volumes/WORK/Project/idemo_docs/mmcf-docs/methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md`
+- [MMCF-Delivery-Linear-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
+- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+- [MMCF-Delivery-PhaseTransition-Gateway-Profile](../../methodology/delivery/MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
+- [MMCF-Delivery-Linear-Planning-Profile](../../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
 
 ## Workflow
 
@@ -25,7 +25,8 @@ This skill is project-specific. It assumes the delivery docs live at:
    - parent epic
    - project/team
    - labels
-   - `LC Phase Snapshot`, `Artifact Type`, `Claim Mode` when supported
+   - `LC Phase Snapshot`, `Work Domain`, `Claim Mode` when supported
+   - `Artifact Type` when `Work Domain=artifact`
    - `Flow Mode`, `Variativity Target`, `Decide Policy` when
      the workspace uses planning `v1.1`
 4. Build the body from the terminal issue template:
