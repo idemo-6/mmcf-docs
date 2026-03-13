@@ -8,6 +8,10 @@ description: Create a new terminal ChangeFlow issue in Linear under an existing 
 Use this skill when the user wants a new terminal `ChangeFlow` issue created in
 Linear under an existing epic.
 
+Use `linear-work-object-intake` first when it is not yet clear whether the new
+object should be terminal `ChangeFlow`, `Epic`, coordination issue, `PTSubTask`,
+or should stay upstream as `DeltaRegistry` work.
+
 Read these delivery docs before acting:
 
 - [mmcf-linear-delivery.md](../linear-mmcf/references/mmcf-linear-delivery.md)
@@ -45,9 +49,12 @@ Read these delivery docs before acting:
 7. Materialize a `PTSubTask` during intake only when a transition is already
    known to require its own owner, queue, approval trail, or long-running
    process at creation time.
-8. Create the issue in `Queued` by default.
-9. Move directly to `Todo` only when the user explicitly requests immediate
-   admission to active work or the queue layer is intentionally skipped.
+8. Apply the current workspace status bridge:
+   - `Backlog` remains upstream `DeltaRegistry`, not a terminal issue status
+   - create the terminal issue in `Planning` by default as the current
+     collapsed pre-start alias of `Queued/Todo`
+9. Move directly to `In Progress` only when immediate admission to active phase
+   work is explicit.
 
 ## Rules
 
@@ -74,3 +81,7 @@ Read these delivery docs before acting:
     roles readable in the body.
 12. For non-`low-risk`, claim-bearing, or governance-heavy flow, do not omit
     the authority entries from `Roles / Authority` during intake.
+13. In the current workspace bridge, do not create terminal issues into
+    `Backlog`; `Backlog` belongs to upstream delta handling.
+14. `Planning` as a workflow status alias is distinct from the issue-side
+    `Planning` block and planning `v1.1` fields.

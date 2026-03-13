@@ -49,6 +49,13 @@ Issue не является узлом `LifeCycle`.
 4. прямое создание в `Todo` допустимо только когда queue-layer намеренно
    пропускается как локальное упрощение.
 
+Для текущего `Linear` workspace допустим такой bridge:
+
+1. `Backlog` читается как upstream `DeltaRegistry`;
+2. materialized terminal issue создается в `Planning` как collapsed alias
+   pre-start состояний `Queued/Todo`;
+3. active phase work начинается в `In Progress`.
+
 ---
 
 ## 3. Входные данные и шаблон body
@@ -90,6 +97,12 @@ Issue не является узлом `LifeCycle`.
 
 1. создавайте issue в `Queued` как в дефолтном состоянии;
 2. переводите в `Todo`, когда поток уже допускается к активному старту.
+
+Если workspace использует текущий `Linear` bridge вместо явного `Queued/Todo`:
+
+1. не создавайте terminal issue в `Backlog`;
+2. создавайте issue в `Planning` как default pre-start alias;
+3. переводите в `In Progress`, когда поток реально входит в active phase work.
 
 ### 3.2 Обязательные поля body
 
@@ -172,6 +185,15 @@ Issue не является узлом `LifeCycle`.
 - Constraints:
 ```
 
+Для текущего `Linear` workspace можно добавить в шаблон короткую operational note:
+
+```md
+## Workflow Bridge
+- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+```
+
+Эта note опциональна и не заменяет ни workflow status, ни planning fields.
+
 ### 3.3 Руководство по `PT / Gateways`
 
 Блок `PT / Gateways` используется для предварительного объявления
@@ -216,6 +238,11 @@ Issue не является узлом `LifeCycle`.
 1. executor capability values;
 2. `Doubt` или `Subjectivity` bands как свойства задачи;
 3. candidate ranking или suitability scores.
+
+Важно:
+
+- status alias `Planning` в текущем `Linear` bridge не равен body-блоку
+  `Planning`.
 
 ### 3.4 `assignee` и role trace
 

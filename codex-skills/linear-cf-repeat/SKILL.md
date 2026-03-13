@@ -43,8 +43,12 @@ Read these delivery docs before acting:
    - `Pre-CF version = previous Post-CF version` when known
 8. Carry forward PT intent only as planning context; do not copy old
    `PTSubTask` objects into the new flow.
-9. Create the next issue in `Queued` by default; move directly to `Todo` only
-   when immediate admission to active work is explicit.
+9. Apply the current workspace status bridge:
+   - do not create the next terminal issue in `Backlog`
+   - create the next issue in `Planning` by default as the current collapsed
+     pre-start alias of `Queued/Todo`
+   - move directly to `In Progress` only when immediate admission to active
+     phase work is explicit.
 
 ## Rules
 
@@ -63,3 +67,5 @@ Read these delivery docs before acting:
    object to be cloned.
 9. Preserve the `Roles / Authority` block only as the starting contour of the
    next flow; do not blindly copy stale authority conflicts or obsolete owners.
+10. `Planning` as a workflow status alias is distinct from the issue-side
+    `Planning` block and planning `v1.1` fields.

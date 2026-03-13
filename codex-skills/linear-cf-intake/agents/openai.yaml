@@ -1,7 +1,7 @@
 interface:
   display_name: "Linear CF Intake"
   short_description: "Create MMCF terminal ChangeFlow issues"
-  default_prompt: "Use $linear-cf-intake to create a new terminal ChangeFlow issue in Linear."
+  default_prompt: "Use $linear-cf-intake to create a new promoted terminal ChangeFlow issue in Linear and place it in Planning, not Backlog."
 
 dependencies:
   tools:

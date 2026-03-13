@@ -17,7 +17,7 @@ Use this reference for the exact project-specific Linear model.
 
 ## 2. Status model
 
-Pre-start states:
+Canonical MMCF pre-start states:
 
 - `Queued`
 - `Todo`
@@ -48,6 +48,28 @@ Default flow:
 - `decide -> implement` only if `Applicable=true`
 - `decide -> evaluate` if `Applicable=false`
 - `implement -> evaluate`
+
+### 2.1 Current workspace bridge
+
+For the current Linear workspace, use this operational bridge:
+
+- `Backlog` = upstream `DeltaRegistry` / delta backlog
+- `Planning` = collapsed pre-start alias for materialized terminal `ChangeFlow`
+  before active phase work
+- `In Progress` = active terminal flow work; exact phase may live either in
+  explicit phase statuses or in comment/body trace when the active layer is
+  collapsed
+
+Rules:
+
+1. do not create terminal `ChangeFlow` issues into `Backlog`
+2. create a newly materialized terminal issue in `Planning` by default in the
+   current workspace
+3. move from `Planning` to `In Progress` when active phase work actually starts
+4. if the workspace later exposes explicit `Queued/Todo` or explicit phase
+   statuses, they take precedence over the collapsed aliases above
+5. `Planning` as a workflow status alias is not the same thing as the
+   `Planning` block or planning `v1.1` custom fields on the issue
 
 ## 3. PhaseTransition and gateway
 
@@ -221,6 +243,8 @@ Operational boundary:
 2. repeat preserves planning data by default unless the new delta changes it
 3. advance and close do not silently rewrite planning assumptions
 4. executor matching and capability data stay outside the issue
+5. this issue-side planning contour is distinct from the workflow status alias
+   `Planning` used by the current workspace bridge
 
 ## 7. Body template
 
@@ -280,6 +304,16 @@ Operational boundary:
 - Related specs/docs:
 - Constraints:
 ```
+
+Optional current-workspace note:
+
+```md
+## Workflow Bridge
+- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+```
+
+This note is optional. It does not replace either the real workflow status or
+the issue-side planning block.
 
 ## 8. CF6 summary
 

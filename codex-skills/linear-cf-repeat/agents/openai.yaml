@@ -1,7 +1,7 @@
 interface:
   display_name: "Linear CF Repeat"
   short_description: "Spin out the next ChangeFlow"
-  default_prompt: "Use $linear-cf-repeat to create the next sibling ChangeFlow issue from an evaluated flow."
+  default_prompt: "Use $linear-cf-repeat to create the next sibling ChangeFlow issue from an evaluated flow in Planning, not Backlog."
 
 dependencies:
   tools:

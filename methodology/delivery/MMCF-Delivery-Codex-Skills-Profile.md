@@ -19,22 +19,29 @@ status: working-draft
 
 ## 2. Пакет навыков v1
 
-Начальный пакет содержит один входной навык и шесть узких навыков:
+Начальный пакет содержит один входной навык и восемь узких навыков:
 
 1. `linear-mmcf`
    Входной навык и маршрутизатор для MMCF-совместимой работы в Linear.
-2. `linear-cf-intake`
+2. `linear-work-object-intake`
+   Определяет, какой именно work object нужно создать в Linear:
+   `Epic`, terminal issue, `PTSubTask`, coordination issue или вовсе не
+   Linear issue, если работа еще остается на уровне `DeltaRegistry`.
+3. `linear-cf-intake`
    Создает новую терминальную задачу `ChangeFlow` под существующим `Epic`.
-3. `linear-cf-advance`
+4. `linear-cf-execute`
+   Выполняет текущую фазу terminal `ChangeFlow`, пишет phase comments и ведет
+   фазовую приемку через `PT`-совместимые команды.
+5. `linear-cf-advance`
    Продвигает терминальную задачу в следующую валидную фазу с учетом `PT`.
-4. `linear-cf-close`
+6. `linear-cf-close`
    Пишет сводку `CF6` и закрывает текущий поток с валидным terminal exit.
-5. `linear-cf-repeat`
+7. `linear-cf-repeat`
    Создает следующий соседний `ChangeFlow` issue из уже оцененного исходного потока.
-6. `linear-pt-subtask`
+8. `linear-pt-subtask`
    Создает или ведет explicit `PTSubTask` для нетривиального `PhaseTransition`
    под parent terminal flow.
-7. `linear-version-sync-review`
+9. `linear-version-sync-review`
    Проводит reconciliation `Epic`-уровня для `Observed version`,
    `Observed CF index` и `Version sync note`.
 
@@ -58,14 +65,41 @@ Planning-profile `v1.1` считается аддитивным расширен
    `repeat` или claim-aware delivery;
 3. в начале хода еще неясно, какой именно узкий навык нужен.
 
+### `linear-work-object-intake`
+
+Использовать, когда:
+
+1. пользователь хочет "создать задачу" в Linear, но правильный объект еще не
+   классифицирован;
+2. нужно выбрать между `Epic`, terminal issue, `PTSubTask`, coordination issue
+   или отсутствием Linear issue на текущем шаге;
+3. основная работа происходит на границе между `DeltaRegistry` и downstream
+   materialization в tool-layer.
+4. первичным decision-source должен быть
+   `WORK_OBJECT_FORMATION_QUICK_GUIDE_RU.md`, а не привычка автоматически
+   materialize'ить все в issue.
+
 ### `linear-cf-intake`
 
 Использовать, когда:
 
-1. нужно создать новую терминальную задачу под существующим epic;
+1. уже ясно, что нужен именно terminal `ChangeFlow` под существующим epic;
 2. issue должен следовать правилам именования, шаблону body и правилам меток;
 3. `Work Domain`, `Artifact Type` при необходимости, `Claim Mode` и ожидаемые
    нетривиальные `PT`-переходы уже известны или могут быть выведены.
+
+### `linear-cf-execute`
+
+Использовать, когда:
+
+1. Codex должен реально выполнить текущую фазу terminal issue, а не только
+   передвинуть статус;
+2. нужен structured phase comment для `collect`, `analyze`, `forecast`,
+   `decide`, `implement` или `evaluate`;
+3. фазовая приемка должна идти через явные команды вроде `submit_phase`,
+   `continue_phase`, `accept_phase`, `retry_gate` и `set_result`;
+4. нужно удержать различие между дополнительной работой внутри фазы, retry
+   внутри `PT` и новым `repeat` flow.
 
 ### `linear-cf-advance`
 
@@ -74,7 +108,8 @@ Planning-profile `v1.1` считается аддитивным расширен
 1. существующую терминальную задачу нужно перевести в следующую фазу;
 2. необходимо обеспечить порядок фаз и правила `Applicable`;
 3. узкие места, связанные с approval, claim или gateway, должны быть отражены
-   в comments и labels.
+   в comments и labels;
+4. phase work уже выполнена и отдельный execution-pass не нужен.
 
 ### `linear-cf-close`
 
@@ -131,10 +166,21 @@ Planning-profile `v1.1` считается аддитивным расширен
 9. трактовать `PTSubTask` как explicit transition object, а не как второй
    terminal flow.
 10. если workspace использует planning `v1.1`, навыки intake и repeat должны
-   заполнять или сохранять task-side planning-поля и blocks, а advance/close
-   не должны молча переписывать planning-assumptions.
+    заполнять или сохранять task-side planning-поля и blocks, а advance/close
+    не должны молча переписывать planning-assumptions.
 11. versioning-aware навыки должны различать `Observed version` на уровне epic и
-   `Pre-CF/Post-CF version` на уровне terminal issue.
+    `Pre-CF/Post-CF version` на уровне terminal issue.
+12. не моделировать "повтор фазы" как отдельный backward status move; для
+    дополнительной работы использовать продолжение внутри той же фазы, для
+    retry transition использовать `PT`, а для нового прохода использовать
+    `repeat` как новый sibling flow.
+13. при создании новых work objects сначала удерживать границу между
+    `DeltaRegistry`, `Epic`, terminal issue, `PTSubTask` и coordination issue,
+    а уже потом materialize'ить конкретный Linear object.
+14. для текущего Linear workspace skill-пакет должен читать bridge так:
+    `Backlog = DeltaRegistry`, `Planning = collapsed pre-start terminal CF`,
+    `In Progress = active CF work`; это не отменяет канонические
+    `Queued/Todo`, а задает текущий operational alias layer.
 
 Если Linear MCP не может напрямую выставить обязательное custom field, навык
 должен:

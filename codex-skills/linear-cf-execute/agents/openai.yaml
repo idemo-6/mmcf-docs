@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear CF Execute"
+  short_description: "Work the active ChangeFlow phase"
+  default_prompt: "Use $linear-cf-execute to execute the current phase of this terminal ChangeFlow issue, write the phase summary comment, and manage the next PT gate."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true

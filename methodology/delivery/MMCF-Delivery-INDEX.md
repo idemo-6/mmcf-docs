@@ -53,11 +53,28 @@ status: working-draft
 Для короткого пользовательского входа в versioning без чтения полного
 канонического профиля см.:
 
-- [Versioning Quick Guide](../../VERSIONING_QUICK_GUIDE_RU.md)
+- [Versioning Quick Guide](../../guides/VERSIONING_QUICK_GUIDE_RU.md)
 
 Для короткого пользовательского входа в правильное формирование work objects см.:
 
-- [Work Object Formation Quick Guide](../../WORK_OBJECT_FORMATION_QUICK_GUIDE_RU.md)
+- [Work Object Formation Quick Guide](../../guides/WORK_OBJECT_FORMATION_QUICK_GUIDE_RU.md)
+
+Для короткого пользовательского входа в workflow задачи см.:
+
+- [Task Workflow Guide (RU)](../../guides/TASK_WORKFLOW_GUIDE_RU.md)
+- [Task Workflow Guide (EN)](../../guides/TASK_WORKFLOW_GUIDE_EN.md)
+
+Для готового body template terminal issue под текущий `Linear` bridge см.:
+
+- [Linear Terminal CF Body Template (RU)](../../templates/LINEAR_TERMINAL_CF_BODY_TEMPLATE_RU.md)
+
+Для готовых body templates `Epic` и coordination issue см.:
+
+- [Linear Epic and Coordination Body Templates (RU)](../../templates/LINEAR_EPIC_AND_COORDINATION_BODY_TEMPLATES_RU.md)
+
+Для готового body template `PTSubTask` см.:
+
+- [Linear PTSubTask Body Template (RU)](../../templates/LINEAR_PTSUBTASK_BODY_TEMPLATE_RU.md)
 
 1. [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 2. [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)

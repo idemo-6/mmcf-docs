@@ -1,0 +1,15 @@
+interface:
+  display_name: "Linear Work Object Intake"
+  short_description: "Choose the right Linear work object"
+  default_prompt: "Use $linear-work-object-intake to classify this request with the MMCF work-object ladder and create the correct object in Linear."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "linear"
+      description: "Linear MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.linear.app/mcp"
+
+policy:
+  allow_implicit_invocation: true
