@@ -292,7 +292,7 @@ status: profile-draft
 - [MMCF-Minimal-Working-Model](./MMCF-Minimal-Working-Model.md)
 - [MMCF-Term-Legacy-Mapping](./MMCF-Term-Legacy-Mapping.md)
 - [MMCF-DomainLexicon-Software-v1](./MMCF-DomainLexicon-Software-v1.md)
-- [POSITIONING_AND_ADOPTION_ROADMAP](../POSITIONING_AND_ADOPTION_ROADMAP.md)
+- [POSITIONING_AND_ADOPTION_ROADMAP](../positioning/POSITIONING_AND_ADOPTION_ROADMAP.md)
 - [CDM DomainLexicon](../../fcdm-core/theory/cdm/DomainLexicon.md)
 - [FROR DomainLexicon](../../fcdm-core/theory/fror/FROR_DomainLexicon.md)
 - [CDM CF Domain: Management](../../fcdm-core/theory/cdm/DomainMapping/cf/CF-Domain-Management.md)

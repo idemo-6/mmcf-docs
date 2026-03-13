@@ -589,7 +589,7 @@ Authority mode не меняет каноническую фазу.
 - [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
 - [MMCF-Operational-Work-Unit-Contract](./MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Context-Coordination-and-Meta-Policy](./MMCF-Context-Coordination-and-Meta-Policy.md)
-- [POSITIONING_AND_ADOPTION_ROADMAP](../POSITIONING_AND_ADOPTION_ROADMAP.md)
+- [POSITIONING_AND_ADOPTION_ROADMAP](../positioning/POSITIONING_AND_ADOPTION_ROADMAP.md)
 - [CDM ChangeFlow-6](../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Intent](../../fcdm-core/theory/cdm/Specifications/Intent-1.1.5.md)
 - [CDM ChangeOperators Access & Phase Mapping](../../fcdm-core/theory/cdm/Specifications/Operators/ChangeOperators-Access-Profile.md)

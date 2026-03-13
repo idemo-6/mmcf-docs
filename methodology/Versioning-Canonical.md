@@ -21,7 +21,7 @@ status: profile-draft
 
 Для краткого пользовательского объяснения без полного канонического слоя см.:
 
-- [Versioning Quick Guide](../VERSIONING_QUICK_GUIDE_RU.md)
+- [Versioning Quick Guide](../guides/VERSIONING_QUICK_GUIDE_RU.md)
 
 ---
 

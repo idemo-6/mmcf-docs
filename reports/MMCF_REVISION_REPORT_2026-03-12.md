@@ -13,19 +13,19 @@
 
 Основной корпус проверки:
 
-- [MMCF-Canonical](./methodology/MMCF-Canonical.md)
-- [MMCF-Minimal-Working-Model](./methodology/MMCF-Minimal-Working-Model.md)
-- [MMCF-CDM-Alignment-Matrix](./methodology/MMCF-CDM-Alignment-Matrix.md)
-- [MMCF-Applicability-Result-Alignment-Matrix](./methodology/MMCF-Applicability-Result-Alignment-Matrix.md)
-- [MMCF-Operational-Roles-and-Gateways](./methodology/MMCF-Operational-Roles-and-Gateways.md)
-- [MMCF-Operational-Work-Unit-Contract](./methodology/MMCF-Operational-Work-Unit-Contract.md)
-- [Versioning-Canonical](./methodology/Versioning-Canonical.md)
-- [Claim-Maturity-Canonical](./methodology/Claim-Maturity-Canonical.md)
-- [MMCF-Delivery-Linear-Profile](./methodology/delivery/MMCF-Delivery-Linear-Profile.md)
-- [MMCF-Delivery-Terminal-ChangeFlow-Contract](./methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-- [MMCF-Delivery-Linear-Planning-Profile](./methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
-- [MMCF-Delivery-Linear-Versioning-Profile](./methodology/delivery/MMCF-Delivery-Linear-Versioning-Profile.md)
-- [MMCF-Delivery-Codex-Skills-Profile](./methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md)
+- [MMCF-Canonical](../methodology/MMCF-Canonical.md)
+- [MMCF-Minimal-Working-Model](../methodology/MMCF-Minimal-Working-Model.md)
+- [MMCF-CDM-Alignment-Matrix](../methodology/MMCF-CDM-Alignment-Matrix.md)
+- [MMCF-Applicability-Result-Alignment-Matrix](../methodology/MMCF-Applicability-Result-Alignment-Matrix.md)
+- [MMCF-Operational-Roles-and-Gateways](../methodology/MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Operational-Work-Unit-Contract](../methodology/MMCF-Operational-Work-Unit-Contract.md)
+- [Versioning-Canonical](../methodology/Versioning-Canonical.md)
+- [Claim-Maturity-Canonical](../methodology/Claim-Maturity-Canonical.md)
+- [MMCF-Delivery-Linear-Profile](../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
+- [MMCF-Delivery-Terminal-ChangeFlow-Contract](../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
+- [MMCF-Delivery-Linear-Planning-Profile](../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
+- [MMCF-Delivery-Linear-Versioning-Profile](../methodology/delivery/MMCF-Delivery-Linear-Versioning-Profile.md)
+- [MMCF-Delivery-Codex-Skills-Profile](../methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md)
 - [mmcf-code/README](../mmcf-code/README.md)
 - [CODEX_SKILLS_QUICKSTART](../mmcf-code/docs/CODEX_SKILLS_QUICKSTART.md)
 - [LINEAR_MMCF_SETUP](../mmcf-code/docs/LINEAR_MMCF_SETUP.md)
@@ -65,7 +65,7 @@
 
 ### 3.1 Сильные стороны
 
-1. `MMCF` правильно позиционируется как applied-layer над `CDM`, а не как конкурирующая онтология. Это видно в [MMCF-Canonical](./methodology/MMCF-Canonical.md) и поддерживается alignment-матрицами.
+1. `MMCF` правильно позиционируется как applied-layer над `CDM`, а не как конкурирующая онтология. Это видно в [MMCF-Canonical](../methodology/MMCF-Canonical.md) и поддерживается alignment-матрицами.
 2. Очень сильное место модели — разведение независимых осей:
    - `Result` vs terminal exit;
    - `Phase` vs `PhaseTransition`;
@@ -165,8 +165,8 @@
 
 Это явно зафиксировано в:
 
-- [MMCF-Operational-Work-Unit-Contract:150-154](./methodology/MMCF-Operational-Work-Unit-Contract.md#L150)
-- [MMCF-Delivery-Linear-Profile:155-161](./methodology/delivery/MMCF-Delivery-Linear-Profile.md#L155)
+- [MMCF-Operational-Work-Unit-Contract:150-154](../methodology/MMCF-Operational-Work-Unit-Contract.md#L150)
+- [MMCF-Delivery-Linear-Profile:155-161](../methodology/delivery/MMCF-Delivery-Linear-Profile.md#L155)
 
 Проблема в том, что такой поток зависает в `evaluate` не потому, что логика не знает исход, а потому что operational exit matrix неполна. Для живого delivery это слишком жёсткая рамка: часть отрицательных исходов реально требует terminal stop без немедленного повторного прохода.
 
@@ -179,7 +179,7 @@
 
 В `MMCF` versioning описан как applied governance profile поверх `CDM`:
 
-- [MMCF Versioning Governance Profile:10-12](./methodology/Versioning-Canonical.md#L10)
+- [MMCF Versioning Governance Profile:10-12](../methodology/Versioning-Canonical.md#L10)
 
 Но в `CDM` versioning file прямо написано обратное:
 
@@ -252,7 +252,7 @@ Checker не валидирует:
 
 Это явно видно в:
 
-- [MMCF-Delivery-Codex-Skills-Profile:127-138](./methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md#L127)
+- [MMCF-Delivery-Codex-Skills-Profile:127-138](../methodology/delivery/MMCF-Delivery-Codex-Skills-Profile.md#L127)
 
 Сама по себе схема рабочая, но в документации нет явного ответа на вопросы:
 
@@ -272,11 +272,11 @@ Checker не валидирует:
 В корневом слое `methodology` всё ещё живут одновременно:
 
 - `CI / V` как planning profile:
-  - [MMCF-Creativity-and-Variability-Profile:12-18](./methodology/MMCF-Creativity-and-Variability-Profile.md#L12)
-  - [MMCF-Creativity-and-Variability-Profile:95-105](./methodology/MMCF-Creativity-and-Variability-Profile.md#L95)
+  - [MMCF-Creativity-and-Variability-Profile:12-18](../methodology/MMCF-Creativity-and-Variability-Profile.md#L12)
+  - [MMCF-Creativity-and-Variability-Profile:95-105](../methodology/MMCF-Creativity-and-Variability-Profile.md#L95)
 - и новая boundary/model:
-  - [MMCF-Planning-Assignment-Capability-Boundary:46-68](./methodology/MMCF-Planning-Assignment-Capability-Boundary.md#L46)
-  - [MMCF-Delivery-Linear-Planning-Profile:68-91](./methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md#L68)
+  - [MMCF-Planning-Assignment-Capability-Boundary:46-68](../methodology/MMCF-Planning-Assignment-Capability-Boundary.md#L46)
+  - [MMCF-Delivery-Linear-Planning-Profile:68-91](../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md#L68)
 
 Сейчас это не прямое логическое противоречие, но translation layer не сформулирован до конца:
 
@@ -299,7 +299,7 @@ Checker не валидирует:
 
 Это зафиксировано в:
 
-- [MMCF-Delivery-Linear-Profile:194-197](./methodology/delivery/MMCF-Delivery-Linear-Profile.md#L194)
+- [MMCF-Delivery-Linear-Profile:194-197](../methodology/delivery/MMCF-Delivery-Linear-Profile.md#L194)
 
 Но сама практика уже вышла за эту тройку: настройка workspace, governance rollout, schema migration и другие meta-operational задачи в эту ось ложатся плохо.
 
