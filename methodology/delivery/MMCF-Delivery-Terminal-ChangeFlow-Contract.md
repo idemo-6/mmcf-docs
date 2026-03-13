@@ -52,7 +52,7 @@ Issue не является узлом `LifeCycle`.
 Для текущего `Linear` workspace допустим такой bridge:
 
 1. `Backlog` читается как upstream `DeltaRegistry`;
-2. materialized terminal issue создается в `Planning` как collapsed alias
+2. materialized terminal issue создается в `Todo` как visible alias
    pre-start состояний `Queued/Todo`;
 3. active phase work начинается в `In Progress`.
 
@@ -101,7 +101,7 @@ Issue не является узлом `LifeCycle`.
 Если workspace использует текущий `Linear` bridge вместо явного `Queued/Todo`:
 
 1. не создавайте terminal issue в `Backlog`;
-2. создавайте issue в `Planning` как default pre-start alias;
+2. создавайте issue в `Todo` как default visible pre-start alias;
 3. переводите в `In Progress`, когда поток реально входит в active phase work.
 
 ### 3.2 Обязательные поля body
@@ -189,7 +189,7 @@ Issue не является узлом `LifeCycle`.
 
 ```md
 ## Workflow Bridge
-- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+- Linear status bridge: `Backlog = DeltaRegistry`, `Todo = pre-start CF`, `In Progress = active CF`.
 ```
 
 Эта note опциональна и не заменяет ни workflow status, ни planning fields.
@@ -241,7 +241,7 @@ Issue не является узлом `LifeCycle`.
 
 Важно:
 
-- status alias `Planning` в текущем `Linear` bridge не равен body-блоку
+- workflow status `Todo` в текущем `Linear` bridge не равен body-блоку
   `Planning`.
 
 ### 3.4 `assignee` и role trace

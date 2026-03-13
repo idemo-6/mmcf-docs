@@ -21,13 +21,13 @@ status: working-draft
 Текущий `Linear` workspace bridge:
 
 1. `Backlog` = upstream `DeltaRegistry`
-2. `Planning` = pre-start materialized `ChangeFlow`
+2. `Todo` = pre-start materialized `ChangeFlow`
 3. `In Progress` = active phase work
 
 Важно:
 
-1. workflow status `Planning` не равен body-блоку `Planning`;
-2. planning custom fields тоже не равны workflow status `Planning`.
+1. workflow status `Todo` не равен body-блоку `Planning`;
+2. planning custom fields тоже не равны workflow status `Todo`.
 
 ---
 
@@ -35,7 +35,7 @@ status: working-draft
 
 ```md
 ## Workflow Bridge
-- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+- Linear status bridge: `Backlog = DeltaRegistry`, `Todo = pre-start CF`, `In Progress = active CF`.
 
 ## Canon
 - Parent Epic:
@@ -116,7 +116,7 @@ status: working-draft
 
 ```md
 ## Workflow Bridge
-- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+- Linear status bridge: `Backlog = DeltaRegistry`, `Todo = pre-start CF`, `In Progress = active CF`.
 
 ## Canon
 - Parent Epic:

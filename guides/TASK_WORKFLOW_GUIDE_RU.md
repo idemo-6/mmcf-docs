@@ -364,16 +364,16 @@ trace. Нетривиальный переход лучше materialize как e
 Для текущего `Linear` workspace используйте такой operational bridge:
 
 1. `Backlog` = upstream `DeltaRegistry`;
-2. `Planning` = collapsed pre-start alias для materialized terminal `CF`;
+2. `Todo` = visible pre-start alias для materialized terminal `CF`;
 3. `In Progress` = active terminal flow work;
 4. точную фазу внутри `In Progress` держите через explicit phase status, если
    он есть, иначе через comments/body trace.
 
 Важно:
 
-1. status alias `Planning` не равен issue-side `Planning` block;
+1. workflow status `Todo` не равен issue-side `Planning` block;
 2. planning custom fields `Flow Mode / Variativity Target / Decide Policy`
-   тоже не равны workflow status `Planning`.
+   тоже не равны workflow status `Todo`.
 
 Если workspace пока не использует даже такой bridge, допустим временный режим:
 
@@ -387,7 +387,7 @@ trace. Нетривиальный переход лучше materialize как e
 
 ## 10. Рекомендуемый минимальный loop
 
-1. если issue в `Planning`, сначала решить, готов ли поток войти в активную
+1. если issue в `Todo`, сначала решить, готов ли поток войти в активную
    фазовую работу;
 2. если issue в `In Progress`, понять текущую фазу по status или trace;
 3. открыть issue и понять текущую фазу;

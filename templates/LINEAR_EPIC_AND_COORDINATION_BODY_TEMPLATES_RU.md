@@ -25,7 +25,7 @@ status: working-draft
 
 Важно:
 
-1. `Workflow Bridge` c `Backlog = DeltaRegistry`, `Planning = pre-start CF`,
+1. `Workflow Bridge` c `Backlog = DeltaRegistry`, `Todo = pre-start CF`,
    `In Progress = active CF` относится только к terminal `ChangeFlow`;
 2. `Epic` и coordination issue не должны притворяться terminal `CF`.
 

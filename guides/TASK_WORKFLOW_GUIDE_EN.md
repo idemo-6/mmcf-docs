@@ -365,17 +365,17 @@ Ideal MMCF-compatible status model:
 For the current `Linear` workspace, use this operational bridge:
 
 1. `Backlog` = upstream `DeltaRegistry`;
-2. `Planning` = collapsed pre-start alias for a materialized terminal `CF`;
+2. `Todo` = visible pre-start alias for a materialized terminal `CF`;
 3. `In Progress` = active terminal flow work;
 4. the exact phase inside `In Progress` should live either in explicit phase
    status or in comment/body trace.
 
 Important:
 
-1. workflow status alias `Planning` is not the same thing as the issue-side
+1. workflow status `Todo` is not the same thing as the issue-side
    `Planning` block;
 2. planning custom fields such as `Flow Mode / Variativity Target / Decide Policy`
-   are also distinct from workflow status `Planning`.
+   are also distinct from workflow status `Todo`.
 
 If the workspace does not yet even use this bridge, a temporary mode is acceptable:
 
@@ -389,7 +389,7 @@ This should be treated only as transitional practice.
 
 ## 10. Recommended minimal loop
 
-1. if the issue is in `Planning`, first decide whether the flow is ready to
+1. if the issue is in `Todo`, first decide whether the flow is ready to
    enter active phase work;
 2. if the issue is in `In Progress`, identify the exact current phase from
    status or trace;

@@ -54,8 +54,9 @@ Default flow:
 For the current Linear workspace, use this operational bridge:
 
 - `Backlog` = upstream `DeltaRegistry` / delta backlog
-- `Planning` = collapsed pre-start alias for materialized terminal `ChangeFlow`
-  before active phase work
+- `Todo` = current visible pre-start state for a materialized terminal
+  `ChangeFlow`; in the current workspace it covers the collapsed
+  `Queued/Todo` distinction before active phase work
 - `In Progress` = active terminal flow work; exact phase may live either in
   explicit phase statuses or in comment/body trace when the active layer is
   collapsed
@@ -63,13 +64,13 @@ For the current Linear workspace, use this operational bridge:
 Rules:
 
 1. do not create terminal `ChangeFlow` issues into `Backlog`
-2. create a newly materialized terminal issue in `Planning` by default in the
+2. create a newly materialized terminal issue in `Todo` by default in the
    current workspace
-3. move from `Planning` to `In Progress` when active phase work actually starts
+3. move from `Todo` to `In Progress` when active phase work actually starts
 4. if the workspace later exposes explicit `Queued/Todo` or explicit phase
    statuses, they take precedence over the collapsed aliases above
-5. `Planning` as a workflow status alias is not the same thing as the
-   `Planning` block or planning `v1.1` custom fields on the issue
+5. workflow status `Todo` is not the same thing as the `Planning` block or
+   planning `v1.1` custom fields on the issue
 
 ## 3. PhaseTransition and gateway
 
@@ -243,8 +244,8 @@ Operational boundary:
 2. repeat preserves planning data by default unless the new delta changes it
 3. advance and close do not silently rewrite planning assumptions
 4. executor matching and capability data stay outside the issue
-5. this issue-side planning contour is distinct from the workflow status alias
-   `Planning` used by the current workspace bridge
+5. this issue-side planning contour is distinct from the workflow status
+   `Todo` used by the current workspace bridge
 
 ## 7. Body template
 
@@ -309,7 +310,7 @@ Optional current-workspace note:
 
 ```md
 ## Workflow Bridge
-- Linear status bridge: `Backlog = DeltaRegistry`, `Planning = pre-start CF`, `In Progress = active CF`.
+- Linear status bridge: `Backlog = DeltaRegistry`, `Todo = pre-start CF`, `In Progress = active CF`.
 ```
 
 This note is optional. It does not replace either the real workflow status or

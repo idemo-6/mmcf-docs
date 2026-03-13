@@ -45,7 +45,7 @@ Read these delivery docs before acting:
    `PTSubTask` objects into the new flow.
 9. Apply the current workspace status bridge:
    - do not create the next terminal issue in `Backlog`
-   - create the next issue in `Planning` by default as the current collapsed
+   - create the next issue in `Todo` by default as the current visible
      pre-start alias of `Queued/Todo`
    - move directly to `In Progress` only when immediate admission to active
      phase work is explicit.
@@ -67,5 +67,5 @@ Read these delivery docs before acting:
    object to be cloned.
 9. Preserve the `Roles / Authority` block only as the starting contour of the
    next flow; do not blindly copy stale authority conflicts or obsolete owners.
-10. `Planning` as a workflow status alias is distinct from the issue-side
-    `Planning` block and planning `v1.1` fields.
+10. Workflow status `Todo` is distinct from the issue-side `Planning` block
+    and planning `v1.1` fields.

@@ -238,7 +238,7 @@ through technical mapping rather than semantic deformation of the model.
 This is visible in mappings such as:
 
 - `Backlog` as upstream `DeltaRegistry`;
-- `Planning` as collapsed pre-start materialized `ChangeFlow`;
+- `Todo` as the current visible pre-start materialized `ChangeFlow`;
 - `In Progress` as active `ChangeFlow`;
 - comments, child issues, labels, and fields as carriers of phase, PT, and
   evaluate trace.

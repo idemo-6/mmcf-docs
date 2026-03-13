@@ -19,12 +19,12 @@ Read these delivery docs before acting:
 2. Confirm the issue is a terminal `ChangeFlow`.
 3. Enforce phase order:
    - canonical order: `Queued -> Todo -> collect -> analyze -> forecast -> decide`
-   - current workspace bridge: `Planning -> In Progress`, with the exact active
+   - current workspace bridge: `Todo -> In Progress`, with the exact active
      phase tracked either by explicit phase statuses or by comment/body trace
    - `decide -> implement` only if `Applicable=true`
    - `decide -> evaluate` if `Applicable=false`
    - `implement -> evaluate`
-4. Treat `Planning` as the current workspace alias of collapsed pre-start
+4. Treat `Todo` as the current workspace alias of collapsed pre-start
    `Queued/Todo`; do not treat `Backlog` as terminal issue pre-start.
 5. Read the `Roles / Authority` block and confirm `CFOwner`, current assignee,
    and relevant authority lines are still readable for the next move.

@@ -31,7 +31,7 @@ status: working-draft
 
 1. `PTSubTask` не является terminal `ChangeFlow`;
 2. `PTSubTask` не использует phase status model `collect/analyze/...`;
-3. `Workflow Bridge` вида `Backlog = DeltaRegistry`, `Planning = pre-start CF`,
+3. `Workflow Bridge` вида `Backlog = DeltaRegistry`, `Todo = pre-start CF`,
    `In Progress = active CF` относится к parent terminal flow, а не к
    `PTSubTask`.
 

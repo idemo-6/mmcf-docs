@@ -85,9 +85,9 @@ If the task spans several operations, execute them in this order:
 2. A terminal issue exists only after promotion from the upstream `DeltaRegistry`.
 3. In canonical MMCF, pre-start materialized flows use `Queued/Todo`; in the
    current workspace bridge, do not treat `Backlog` as a terminal issue
-   status and use `Planning` as the collapsed pre-start alias instead.
-4. `Planning` as a workflow status alias is distinct from planning `v1.1`
-   fields and the body `Planning` block.
+   status and use `Todo` as the visible pre-start alias instead.
+4. Workflow status `Todo` is distinct from planning `v1.1` fields and the
+   body `Planning` block.
 5. Issue status is the phase layer only.
 6. `PhaseTransition` state stays separate from phase status.
 7. Non-trivial `PT` may be materialized as a `PTSubTask`; this never creates a

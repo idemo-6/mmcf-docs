@@ -178,7 +178,7 @@ Planning-profile `v1.1` считается аддитивным расширен
     `DeltaRegistry`, `Epic`, terminal issue, `PTSubTask` и coordination issue,
     а уже потом materialize'ить конкретный Linear object.
 14. для текущего Linear workspace skill-пакет должен читать bridge так:
-    `Backlog = DeltaRegistry`, `Planning = collapsed pre-start terminal CF`,
+    `Backlog = DeltaRegistry`, `Todo = visible pre-start terminal CF`,
     `In Progress = active CF work`; это не отменяет канонические
     `Queued/Todo`, а задает текущий operational alias layer.
 

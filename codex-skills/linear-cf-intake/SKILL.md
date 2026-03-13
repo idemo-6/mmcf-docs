@@ -51,7 +51,7 @@ Read these delivery docs before acting:
    process at creation time.
 8. Apply the current workspace status bridge:
    - `Backlog` remains upstream `DeltaRegistry`, not a terminal issue status
-   - create the terminal issue in `Planning` by default as the current
+   - create the terminal issue in `Todo` by default as the current visible
      collapsed pre-start alias of `Queued/Todo`
 9. Move directly to `In Progress` only when immediate admission to active phase
    work is explicit.
@@ -83,5 +83,5 @@ Read these delivery docs before acting:
     the authority entries from `Roles / Authority` during intake.
 13. In the current workspace bridge, do not create terminal issues into
     `Backlog`; `Backlog` belongs to upstream delta handling.
-14. `Planning` as a workflow status alias is distinct from the issue-side
-    `Planning` block and planning `v1.1` fields.
+14. Workflow status `Todo` is distinct from the issue-side `Planning` block
+    and planning `v1.1` fields.
