@@ -88,7 +88,8 @@ status: working-draft
 10. [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 11. [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
 12. [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-13. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
+13. [MMCF-Delivery-Localization-Sync-Profile](./MMCF-Delivery-Localization-Sync-Profile.md)
+14. [MMCF-Delivery-AppliedRules-Integration-Profile](./MMCF-Delivery-AppliedRules-Integration-Profile.md)
 
 ---
 
