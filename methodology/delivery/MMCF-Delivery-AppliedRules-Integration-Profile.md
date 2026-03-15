@@ -90,7 +90,7 @@ CDM `AppliedRules`, не повторяя их полный контент.
 ## 7. Ссылки
 
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
-- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../operational/MMCF-Operational-Gateway-Scenario-Profile.md)
 - [CDM PhaseTransition-CF](../../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md)
 - [CDM RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md)
 - [CDM ROS Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/ROS-Profile.md)

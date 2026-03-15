@@ -13,14 +13,14 @@
 
 Основной корпус проверки:
 
-- [MMCF-Canonical](../methodology/MMCF-Canonical.md)
-- [MMCF-Minimal-Working-Model](../methodology/MMCF-Minimal-Working-Model.md)
-- [MMCF-CDM-Alignment-Matrix](../methodology/MMCF-CDM-Alignment-Matrix.md)
-- [MMCF-Applicability-Result-Alignment-Matrix](../methodology/MMCF-Applicability-Result-Alignment-Matrix.md)
-- [MMCF-Operational-Roles-and-Gateways](../methodology/MMCF-Operational-Roles-and-Gateways.md)
-- [MMCF-Operational-Work-Unit-Contract](../methodology/MMCF-Operational-Work-Unit-Contract.md)
-- [Versioning-Canonical](../methodology/Versioning-Canonical.md)
-- [Claim-Maturity-Canonical](../methodology/Claim-Maturity-Canonical.md)
+- [MMCF-Canonical](../methodology/core/MMCF-Canonical.md)
+- [MMCF-Minimal-Working-Model](../methodology/core/MMCF-Minimal-Working-Model.md)
+- [MMCF-CDM-Alignment-Matrix](../methodology/core/MMCF-CDM-Alignment-Matrix.md)
+- [MMCF-Applicability-Result-Alignment-Matrix](../methodology/core/MMCF-Applicability-Result-Alignment-Matrix.md)
+- [MMCF-Operational-Roles-and-Gateways](../methodology/operational/MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Operational-Work-Unit-Contract](../methodology/operational/MMCF-Operational-Work-Unit-Contract.md)
+- [Versioning-Canonical](../methodology/governance/Versioning-Canonical.md)
+- [Claim-Maturity-Canonical](../methodology/governance/Claim-Maturity-Canonical.md)
 - [MMCF-Delivery-Linear-Profile](../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Linear-Planning-Profile](../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md)
@@ -65,7 +65,7 @@
 
 ### 3.1 Сильные стороны
 
-1. `MMCF` правильно позиционируется как applied-layer над `CDM`, а не как конкурирующая онтология. Это видно в [MMCF-Canonical](../methodology/MMCF-Canonical.md) и поддерживается alignment-матрицами.
+1. `MMCF` правильно позиционируется как applied-layer над `CDM`, а не как конкурирующая онтология. Это видно в [MMCF-Canonical](../methodology/core/MMCF-Canonical.md) и поддерживается alignment-матрицами.
 2. Очень сильное место модели — разведение независимых осей:
    - `Result` vs terminal exit;
    - `Phase` vs `PhaseTransition`;
@@ -165,7 +165,7 @@
 
 Это явно зафиксировано в:
 
-- [MMCF-Operational-Work-Unit-Contract:150-154](../methodology/MMCF-Operational-Work-Unit-Contract.md#L150)
+- [MMCF-Operational-Work-Unit-Contract:150-154](../methodology/operational/MMCF-Operational-Work-Unit-Contract.md#L150)
 - [MMCF-Delivery-Linear-Profile:155-161](../methodology/delivery/MMCF-Delivery-Linear-Profile.md#L155)
 
 Проблема в том, что такой поток зависает в `evaluate` не потому, что логика не знает исход, а потому что operational exit matrix неполна. Для живого delivery это слишком жёсткая рамка: часть отрицательных исходов реально требует terminal stop без немедленного повторного прохода.
@@ -179,7 +179,7 @@
 
 В `MMCF` versioning описан как applied governance profile поверх `CDM`:
 
-- [MMCF Versioning Governance Profile:10-12](../methodology/Versioning-Canonical.md#L10)
+- [MMCF Versioning Governance Profile:10-12](../methodology/governance/Versioning-Canonical.md#L10)
 
 Но в `CDM` versioning file прямо написано обратное:
 
@@ -272,10 +272,10 @@ Checker не валидирует:
 В корневом слое `methodology` всё ещё живут одновременно:
 
 - `CI / V` как planning profile:
-  - [MMCF-Creativity-and-Variability-Profile:12-18](../methodology/MMCF-Creativity-and-Variability-Profile.md#L12)
-  - [MMCF-Creativity-and-Variability-Profile:95-105](../methodology/MMCF-Creativity-and-Variability-Profile.md#L95)
+  - [MMCF-Creativity-and-Variability-Profile:12-18](../methodology/domain/MMCF-Creativity-and-Variability-Profile.md#L12)
+  - [MMCF-Creativity-and-Variability-Profile:95-105](../methodology/domain/MMCF-Creativity-and-Variability-Profile.md#L95)
 - и новая boundary/model:
-  - [MMCF-Planning-Assignment-Capability-Boundary:46-68](../methodology/MMCF-Planning-Assignment-Capability-Boundary.md#L46)
+  - [MMCF-Planning-Assignment-Capability-Boundary:46-68](../methodology/operational/MMCF-Planning-Assignment-Capability-Boundary.md#L46)
   - [MMCF-Delivery-Linear-Planning-Profile:68-91](../methodology/delivery/MMCF-Delivery-Linear-Planning-Profile.md#L68)
 
 Сейчас это не прямое логическое противоречие, но translation layer не сформулирован до конца:

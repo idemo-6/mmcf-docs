@@ -18,7 +18,7 @@ status: profile-draft
 Профиль не переопределяет CDM state-derived versioning и не заменяет
 корневой governance-профиль:
 
-- [Versioning-Canonical](../Versioning-Canonical.md)
+- [Versioning-Canonical](../governance/Versioning-Canonical.md)
 
 ---
 
@@ -317,8 +317,8 @@ Versioning block можно опустить, если:
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
-- [Versioning-Canonical](../Versioning-Canonical.md)
-- [Claim-Maturity-Canonical](../Claim-Maturity-Canonical.md)
-- [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
+- [Versioning-Canonical](../governance/Versioning-Canonical.md)
+- [Claim-Maturity-Canonical](../governance/Claim-Maturity-Canonical.md)
+- [MMCF-Claim-Governance-Applicability-Profile](../governance/MMCF-Claim-Governance-Applicability-Profile.md)
 - [CDM Versioning Canonical](../../../fcdm-core/theory/cdm/Specifications/Versioning/Versioning-Canonical.md)
 - [CDM Version Derivation Policy](../../../fcdm-core/theory/cdm/Specifications/Versioning/Version-Derivation-Policy.md)

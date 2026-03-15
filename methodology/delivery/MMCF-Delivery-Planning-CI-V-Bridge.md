@@ -134,6 +134,6 @@ status: working-draft
 
 ## 7. Ссылки
 
-- [MMCF-Creativity-and-Variability-Profile](../MMCF-Creativity-and-Variability-Profile.md)
+- [MMCF-Creativity-and-Variability-Profile](../domain/MMCF-Creativity-and-Variability-Profile.md)
 - [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)

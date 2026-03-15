@@ -7,7 +7,8 @@
 
 ## Назначение
 
-Этот документ фиксирует текущее позиционирование `CDM/MMCF`:
+Этот документ фиксирует текущее позиционирование `MMCF` как applied-layer,
+строящегося на фундаменте `FROR/CDM`:
 
 1. относительно существующих методологий и workflow-фреймворков;
 2. относительно текущей реализации `delivery` через `Linear`;
@@ -20,6 +21,7 @@
 отдельный документ:
 
 - [MMCF_COMPATIBILITY_AND_ADOPTION_MODES](./MMCF_COMPATIBILITY_AND_ADOPTION_MODES.md)
+- [MMCF-Repo-First-Knowledge-Repository-Profile](../methodology/domain/MMCF-Repo-First-Knowledge-Repository-Profile.md)
 
 Первый доказательный compatibility-case по tool-layer вынесен отдельно:
 
@@ -31,6 +33,13 @@
 - [MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE](../cases/MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE.md)
 
 ## Рабочий тезис
+
+### 0. `FROR`
+
+`FROR` является фундаментальным инвариантным слоем.
+
+Он задает базовые ограничения ресурса различения, фиксации, цены и
+эффективной необратимости, на которых далее строятся `CDM` и `MMCF`.
 
 ### 1. `CDM`
 
@@ -69,7 +78,8 @@ gateway-traces и delivery-evidence.
 
 Это не означает, что `Linear` является финальным или привилегированным
 инструментом.
-Это означает, что уже описанная часть `CDM/MMCF` показала практическую
+Это означает, что уже описанная часть applied-layer `MMCF` поверх
+`FROR/CDM` показала практическую
 операционную совместимость с реальной рабочей системой.
 
 Подробно этот первый кейс зафиксирован в:
@@ -108,6 +118,23 @@ gateway-traces и delivery-evidence.
 
 `CDM/MMCF` дополняет и усиливает существующую практику, а не требует отказа
 от нее.
+
+### 2b. Неконкурентное позиционирование относительно инструментов
+
+Та же рамка должна применяться и к tool-layer.
+
+`CDM/MMCF` и связанный `Repo-First` слой не должны подаваться как требование
+заменить существующие инструменты единым новым приложением.
+
+Корректная формула:
+
+- не замена `Linear`, `Obsidian`, `Codex`, `CLI`, git-hosting или editor stack;
+- не привилегирование одного UI как новой “единственной системы”;
+- а объединение этих инструментов вокруг общего рабочего пространства
+  артефактов и единого semantic/governance layer.
+
+Именно поэтому для adoption важен не message “переходим в новый tool”, а
+message “сохраняем знакомые интерфейсы, но связываем их одним source of truth”.
 
 ### 3. Что имеется в виду под редукцией
 
@@ -176,6 +203,12 @@ workflow-execution и observability.
 То, работает ли команда в `Scrum`-like, `Kanban`-like или смешанном режиме,
 вторично по отношению к более глубокой семантике, которую несет `MMCF`.
 
+Точно так же `Linear` не должен пониматься как новый монопольный источник
+истины.
+
+Он является одной из tool-проекций рабочего контура, наряду с docs repo,
+editors, агентами и repo-level governance.
+
 ### 3. Стратегический смысл
 
 Хорошее наложение `MMCF` на `Linear` стратегически важно, потому что оно
@@ -183,6 +216,10 @@ workflow-execution и observability.
 необходимости сначала строить собственную платформу.
 
 Поэтому `Linear delivery` лучше понимать как bootstrap-адаптер.
+
+А `Repo-First` слой в этой картине лучше понимать как структурную рамку,
+которая позволяет нескольким инструментам работать над одним knowledge/delivery
+workspace, а не как конкурирующий продуктовый UI.
 
 ## Будущие workflow-режимы
 
@@ -362,9 +399,9 @@ workflow-execution и observability.
 
 ## Ссылки
 
-- [MMCF Canonical](../methodology/MMCF-Canonical.md)
-- [MMCF Minimal Working Model](../methodology/MMCF-Minimal-Working-Model.md)
-- [MMCF Operational Roles and Gateways](../methodology/MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF Canonical](../methodology/core/MMCF-Canonical.md)
+- [MMCF Minimal Working Model](../methodology/core/MMCF-Minimal-Working-Model.md)
+- [MMCF Operational Roles and Gateways](../methodology/operational/MMCF-Operational-Roles-and-Gateways.md)
 - [MMCF Delivery Index](../methodology/delivery/MMCF-Delivery-INDEX.md)
 - [MMCF Delivery: Linear Profile](../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
 - [Post-Anthropocentric Computing: A Manifesto](../idemo-docs/vision/Post-Anthropocentric_Computing_Manifesto.md)

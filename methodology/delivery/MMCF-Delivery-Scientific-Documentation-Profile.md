@@ -232,14 +232,15 @@ Terminal issue отслеживает один `ChangeFlow`.
 
 ## 9. Ссылки
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Linear-Versioning-Profile](./MMCF-Delivery-Linear-Versioning-Profile.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-- [Claim-Maturity-Canonical](../Claim-Maturity-Canonical.md)
-- [Versioning-Canonical](../Versioning-Canonical.md)
-- [MMCF-CDM-Alignment-Matrix](../MMCF-CDM-Alignment-Matrix.md)
+- [MMCF-Repo-First-Knowledge-Repository-Profile](../domain/MMCF-Repo-First-Knowledge-Repository-Profile.md)
+- [Claim-Maturity-Canonical](../governance/Claim-Maturity-Canonical.md)
+- [Versioning-Canonical](../governance/Versioning-Canonical.md)
+- [MMCF-CDM-Alignment-Matrix](../core/MMCF-CDM-Alignment-Matrix.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Experience](../../../fcdm-core/theory/cdm/Specifications/Experience/Experience-Canonical.md)

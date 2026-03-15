@@ -1,0 +1,7 @@
+interface:
+  display_name: "Text Corpus Analysis"
+  short_description: "Review large text corpora with layered memory"
+  default_prompt: "Use $analyze-text-corpus to analyze a directory of related text files with corpus-context, research-context, and scratchpad layers, then summarize the core thesis, coherence, contradictions, and outliers."
+
+policy:
+  allow_implicit_invocation: true

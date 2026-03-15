@@ -46,6 +46,37 @@ status: working-draft
 Это сохраняет различие между `LifeCycle` и `ChangeFlow` в операционной
 практике.
 
+### 2.1 `Delivery` как поверхность валидации канона
+
+Раздел `delivery` нужен не только как набор прикладных профилей для
+существующих инструментов.
+
+Он также выступает как практическая поверхность проверки того, выдерживает ли
+канон MMCF столкновение с внешними operational systems без утраты собственной
+структуры.
+
+Практический критерий здесь такой:
+
+1. если внешний tool или workflow не выражает каноническое различие;
+2. и это различие приходится восстанавливать через bridge-layer, template,
+   explicit child object, secondary axis или отдельную trace-дисциплину;
+
+то это является эмпирическим подтверждением того, что источник смысла живет в
+каноне, а не во внешней системе.
+
+Именно так следует читать кейсы этого раздела:
+
+1. `Linear` не определяет `ChangeFlow`, `PhaseTransition` или gateway semantics;
+2. delivery-профили лишь materialize'ят канон в ограниченной object model
+   внешнего инструмента;
+3. если для сохранения канонического различия приходится вводить `PTSubTask`,
+   gateway trace или template binding, это подтверждает первичность канона, а
+   не опровергает ее.
+
+Общий методологический принцип этого вынесен отдельно в:
+
+- [MMCF-Canonical-to-External-System-Mapping-Profile](../operational/MMCF-Canonical-to-External-System-Mapping-Profile.md)
+
 ---
 
 ## 3. Текущие документы
@@ -105,21 +136,22 @@ status: working-draft
 корневой слой `methodology/`, а не в `delivery`, потому что он не привязан к
 одному tool-profile:
 
-- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../operational/MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 
 ---
 
 ## 5. Нормативная база
 
-- [MMCF-Canonical](../MMCF-Canonical.md)
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
-- [MMCF-Minimal-Working-Model](../MMCF-Minimal-Working-Model.md)
-- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
-- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
-- [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
-- [MMCF-Planning-Assignment-Capability-Boundary](../MMCF-Planning-Assignment-Capability-Boundary.md)
-- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
-- [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Canonical](../core/MMCF-Canonical.md)
+- [MMCF-Canonical-to-External-System-Mapping-Profile](../operational/MMCF-Canonical-to-External-System-Mapping-Profile.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Minimal-Working-Model](../core/MMCF-Minimal-Working-Model.md)
+- [MMCF-Operational-Work-Unit-Contract](../operational/MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../operational/MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Claim-Governance-Applicability-Profile](../governance/MMCF-Claim-Governance-Applicability-Profile.md)
+- [MMCF-Planning-Assignment-Capability-Boundary](../operational/MMCF-Planning-Assignment-Capability-Boundary.md)
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../operational/MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
+- [MMCF-Operational-Roles-and-Gateways](../operational/MMCF-Operational-Roles-and-Gateways.md)
 - [CDM LifeCycle-6](../../../fcdm-core/theory/cdm/Specifications/LifeCycle-6_v2.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM RLC-CC Profile](../../../fcdm-core/theory/cdm/Specifications/AppliedRules/RLC-CC-Profile.md)

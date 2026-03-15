@@ -16,8 +16,8 @@ status: working-draft
 
 Общий MMCF-смысл operational work unit и terminal exit semantics вынесен в:
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
-- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Operational-Work-Unit-Contract](../operational/MMCF-Operational-Work-Unit-Contract.md)
 
 ---
 
@@ -627,12 +627,12 @@ PT-aware note:
 
 ## 9. Ссылки
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
-- [MMCF-Operational-Work-Unit-Contract](../MMCF-Operational-Work-Unit-Contract.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Operational-Work-Unit-Contract](../operational/MMCF-Operational-Work-Unit-Contract.md)
 - [MMCF-Delivery-Linear-Planning-Profile](./MMCF-Delivery-Linear-Planning-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
-- [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
-- [MMCF-Conflict-and-Applicability-Profile](../MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Operational-Roles-and-Gateways](../operational/MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Conflict-and-Applicability-Profile](../context/MMCF-Conflict-and-Applicability-Profile.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM CF-LC Evaluate](../../../fcdm-core/theory/cdm/Specifications/CF-LC-Evaluate.md)

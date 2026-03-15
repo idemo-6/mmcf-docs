@@ -19,7 +19,7 @@ status: profile-draft
 
 Общий MMCF-профиль применимости claim-governance вынесен в:
 
-- [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
+- [MMCF-Claim-Governance-Applicability-Profile](../governance/MMCF-Claim-Governance-Applicability-Profile.md)
 
 ---
 
@@ -158,9 +158,9 @@ status: profile-draft
 
 ## 8. Ссылки
 
-- [MMCF-Claim-Governance-Applicability-Profile](../MMCF-Claim-Governance-Applicability-Profile.md)
-- [Claim-Maturity-Canonical](../Claim-Maturity-Canonical.md)
-- [Versioning-Canonical](../Versioning-Canonical.md)
+- [MMCF-Claim-Governance-Applicability-Profile](../governance/MMCF-Claim-Governance-Applicability-Profile.md)
+- [Claim-Maturity-Canonical](../governance/Claim-Maturity-Canonical.md)
+- [Versioning-Canonical](../governance/Versioning-Canonical.md)
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 - [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
 - [MMCF-Delivery-Software-Profile](./MMCF-Delivery-Software-Profile.md)

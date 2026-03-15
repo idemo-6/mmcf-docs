@@ -15,19 +15,24 @@ status: working-draft
 Практическая цель проста: отделить время исполнения фазы от времени на
 переход, передачу, согласование и принятие.
 
+Общий принцип того, почему канонически самостоятельная сущность не должна
+редуцироваться под object model внешнего инструмента, вынесен отдельно в:
+
+- [MMCF-Canonical-to-External-System-Mapping-Profile](../operational/MMCF-Canonical-to-External-System-Mapping-Profile.md)
+
 Общий MMCF-профиль operational scenarios для gateway-layer вынесен в:
 
-- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../operational/MMCF-Operational-Gateway-Scenario-Profile.md)
 
 Методологическое разделение между `phase state` и `transition state`,
 которое этот tool-profile обязан сохранять, вынесено отдельно в:
 
-- [MMCF-Phase-and-Transition-State-Separation-Profile](../MMCF-Phase-and-Transition-State-Separation-Profile.md)
+- [MMCF-Phase-and-Transition-State-Separation-Profile](../operational/MMCF-Phase-and-Transition-State-Separation-Profile.md)
 
 Reusable шаблонный слой поверх канона `PT` и над explicit `PTSubTask`
 вынесен отдельно в:
 
-- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-PT-Template-Catalog-Profile](../operational/MMCF-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-PT-Template-Catalog-Profile](./MMCF-Delivery-PT-Template-Catalog-Profile.md)
 
 ---
@@ -53,6 +58,14 @@ Reusable шаблонный слой поверх канона `PT` и над ex
    phase-oriented UI;
 3. tool mapping может быть упрощенным, но не должен скрывать сам факт
    отдельного runtime-перехода.
+
+Это является частным случаем более общего правила MMCF:
+
+1. канон не подгоняется под ограничения внешней системы;
+2. если инструмент не выражает каноническое различие напрямую, bridge-layer
+   должен materialize'ить это различие отдельно;
+3. `PTSubTask` в этом профиле является именно такой bridge-формой, а не новой
+   канонической сущностью.
 
 ---
 
@@ -308,12 +321,13 @@ transitions:
 
 ## 8. Ссылки
 
-- [MMCF-Operational-Gateway-Scenario-Profile](../MMCF-Operational-Gateway-Scenario-Profile.md)
-- [MMCF-Phase-and-Transition-State-Separation-Profile](../MMCF-Phase-and-Transition-State-Separation-Profile.md)
-- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-Canonical-to-External-System-Mapping-Profile](../operational/MMCF-Canonical-to-External-System-Mapping-Profile.md)
+- [MMCF-Operational-Gateway-Scenario-Profile](../operational/MMCF-Operational-Gateway-Scenario-Profile.md)
+- [MMCF-Phase-and-Transition-State-Separation-Profile](../operational/MMCF-Phase-and-Transition-State-Separation-Profile.md)
+- [MMCF-PT-Template-Catalog-Profile](../operational/MMCF-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-PT-Template-Catalog-Profile](./MMCF-Delivery-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
-- [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Operational-Roles-and-Gateways](../operational/MMCF-Operational-Roles-and-Gateways.md)
 - [CDM PhaseTransition Overview](../../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition_Overview.md)
 - [CDM PhaseTransition-CF](../../../fcdm-core/theory/cdm/Specifications/PhaseTransition_Specifications/PhaseTransition-CF.md)

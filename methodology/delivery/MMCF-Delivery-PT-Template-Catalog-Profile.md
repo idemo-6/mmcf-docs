@@ -14,7 +14,7 @@ tools, прежде всего в `Linear`.
 
 Он строится поверх:
 
-- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-PT-Template-Catalog-Profile](../operational/MMCF-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 
@@ -199,7 +199,7 @@ first-class config/runtime objects.
 
 ## 9. References
 
-- [MMCF-PT-Template-Catalog-Profile](../MMCF-PT-Template-Catalog-Profile.md)
+- [MMCF-PT-Template-Catalog-Profile](../operational/MMCF-PT-Template-Catalog-Profile.md)
 - [MMCF-Delivery-PhaseTransition-Gateway-Profile](./MMCF-Delivery-PhaseTransition-Gateway-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Codex-Skills-Profile](./MMCF-Delivery-Codex-Skills-Profile.md)

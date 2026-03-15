@@ -285,8 +285,8 @@ Repo-specific recommendations вынесены в:
 
 ## 13. Normative References
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
-- [Versioning-Canonical](../Versioning-Canonical.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [Versioning-Canonical](../governance/Versioning-Canonical.md)
 - [MMCF-Delivery-Documentation-Profile](./MMCF-Delivery-Documentation-Profile.md)
 - [MMCF-Delivery-Scientific-Documentation-Profile](./MMCF-Delivery-Scientific-Documentation-Profile.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)

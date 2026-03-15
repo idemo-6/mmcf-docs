@@ -2,7 +2,7 @@
 
 Derived from:
 
-- `mmcf-docs/methodology/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md`
+- `mmcf-docs/methodology/operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md`
 
 Use this reference when the request may still be upstream of terminal issue
 materialization.

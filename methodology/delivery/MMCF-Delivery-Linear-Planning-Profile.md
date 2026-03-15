@@ -22,8 +22,8 @@ delivery.
 Общая MMCF-граница между task planning, executor matching и measured capability
 определена отдельно в:
 
-- [MMCF-Planning-Assignment-Capability-Boundary](../MMCF-Planning-Assignment-Capability-Boundary.md)
-- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
+- [MMCF-Planning-Assignment-Capability-Boundary](../operational/MMCF-Planning-Assignment-Capability-Boundary.md)
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../operational/MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 
 Этот профиль покрывает только task-side planning signals, которые действительно
 имеет смысл хранить на issue.
@@ -269,13 +269,13 @@ TODO:
 
 ## 11. Нормативные ссылки
 
-- [MMCF-Planning-Assignment-Capability-Boundary](../MMCF-Planning-Assignment-Capability-Boundary.md)
-- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
+- [MMCF-Planning-Assignment-Capability-Boundary](../operational/MMCF-Planning-Assignment-Capability-Boundary.md)
+- [MMCF-Executor-Matching-and-Capability-Registry-Profile](../operational/MMCF-Executor-Matching-and-Capability-Registry-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Planning-CI-V-Bridge](./MMCF-Delivery-Planning-CI-V-Bridge.md)
-- [MMCF-Creativity-and-Variability-Profile](../MMCF-Creativity-and-Variability-Profile.md)
-- [MMCF-Operational-Roles-and-Gateways](../MMCF-Operational-Roles-and-Gateways.md)
+- [MMCF-Creativity-and-Variability-Profile](../domain/MMCF-Creativity-and-Variability-Profile.md)
+- [MMCF-Operational-Roles-and-Gateways](../operational/MMCF-Operational-Roles-and-Gateways.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Creative ChangeFlow Canonical](../../../fcdm-core/theory/cdm/Specifications/System/CreativeChangeFlow-Canonical.md)
 - [CDM Doubt Canonical](../../../fcdm-core/theory/cdm/Specifications/System/Doubt-Canonical.md)

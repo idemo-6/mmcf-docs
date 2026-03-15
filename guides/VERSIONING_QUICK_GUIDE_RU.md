@@ -276,6 +276,6 @@ Claim status отвечает на вопрос:
 
 ## 11. Куда идти дальше
 
-- Канонический профиль: [Versioning-Canonical](../methodology/Versioning-Canonical.md)
+- Канонический профиль: [Versioning-Canonical](../methodology/governance/Versioning-Canonical.md)
 - Профиль для Linear: [MMCF-Delivery-Linear-Versioning-Profile](../methodology/delivery/MMCF-Delivery-Linear-Versioning-Profile.md)
 - Контракт terminal issue: [MMCF-Delivery-Terminal-ChangeFlow-Contract](../methodology/delivery/MMCF-Delivery-Terminal-ChangeFlow-Contract.md)

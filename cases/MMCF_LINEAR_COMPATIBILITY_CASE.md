@@ -22,7 +22,7 @@
 
 - [POSITIONING_AND_ADOPTION_ROADMAP](../positioning/POSITIONING_AND_ADOPTION_ROADMAP.md)
 - [MMCF_COMPATIBILITY_AND_ADOPTION_MODES](../positioning/MMCF_COMPATIBILITY_AND_ADOPTION_MODES.md)
-- [MMCF-Domain-Pack-Profile](../methodology/MMCF-Domain-Pack-Profile.md)
+- [MMCF-Domain-Pack-Profile](../methodology/domain/MMCF-Domain-Pack-Profile.md)
 - [MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE](./MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE.md)
 - [MMCF-Delivery-Linear-Profile](../methodology/delivery/MMCF-Delivery-Linear-Profile.md)
 
@@ -204,7 +204,7 @@
 
 ## 9. Связь с Domain Pack
 
-Кейс `Linear` также подтверждает важность [MMCF-Domain-Pack-Profile](../methodology/MMCF-Domain-Pack-Profile.md).
+Кейс `Linear` также подтверждает важность [MMCF-Domain-Pack-Profile](../methodology/domain/MMCF-Domain-Pack-Profile.md).
 
 Почему:
 

@@ -1,62 +1,88 @@
 # mmcf-docs
 
-Публичная методология управления изменениями.
+Applied-layer документация поверх `fcdm-core`.
+
+Короткая вертикаль:
+
+1. `FROR` — фундаментальный инвариантный слой;
+2. `CDM` — канонический execution layer;
+3. `MMCF` — applied management/governance/operational layer;
+4. `delivery` и tool profiles — внешние operational projections.
+
+Следовательно, `mmcf-docs` не следует читать как автономный фундамент корпуса.
+Это applied documentation layer, который:
+
+1. строится на `FROR/CDM`;
+2. materialize'ит канон в governance и delivery-практике;
+3. связывает канон с реальными внешними workflow-системами и инструментами.
+
+## С чего начать
+
+- [MMCF applied status and positioning](./MMCF_APPLIED_STATUS_AND_POSITIONING.md)
+- [MMCF Methodology Index](./methodology/README.md)
+- [MMCF Delivery Index](./methodology/delivery/MMCF-Delivery-INDEX.md)
+- [Positioning and adoption roadmap](./positioning/POSITIONING_AND_ADOPTION_ROADMAP.md)
+
+Если нужен фундамент, сначала идите в:
+
+- [Stack positioning and reading path](../STACK_POSITIONING_AND_READING_PATH.md)
+- [fcdm-core/README](../fcdm-core/README.md)
+- [FROR <-> CDM bridge](../fcdm-core/theory/cdm/bridge/FROR_CDM_bridge.md)
+
+## Что такое `MMCF`
+
+`MMCF` в этом корпусе следует понимать как applied layer, который добавляет:
+
+1. management/governance semantics;
+2. operational work-unit formation;
+3. planning and authority contours;
+4. versioning and claim-governance overlays;
+5. delivery bridges в реальные инструменты и execution surfaces.
+
+`MMCF` не заменяет `CDM`, а использует его как каноническую основу.
+
+## Что `MMCF` не должен подменять
+
+`MMCF` не должен:
+
+1. переписывать `FROR`-инварианты;
+2. менять канон `CDM` под ограничения tool-layer;
+3. притворяться завершенной теорией без опоры на фундаментальный слой;
+4. подаваться как конкурент `Scrum`, `Kanban`, `Agile`, `Linear` и других
+   внешних operational systems.
+
+Корректная формула:
+
+- не замена привычных методик и инструментов;
+- а более глубокий applied semantic/governance layer над ними.
 
 ## Main Entry Points
 
-- [[methodology/MMCF-Canonical|MMCF-Canonical]]
-- [[methodology/delivery/MMCF-Delivery-INDEX|MMCF-Delivery-INDEX]]
-- [[CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_RU|CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_RU]]
-- [[CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_EN|CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_EN]]
-- [[localization/ROOT_DIRECTORY_LOCALIZATION_INDEX_RU|ROOT_DIRECTORY_LOCALIZATION_INDEX_RU]]
-- [[guides/WORK_OBJECT_FORMATION_QUICK_GUIDE_RU|WORK_OBJECT_FORMATION_QUICK_GUIDE_RU]]
-- [[guides/TASK_WORKFLOW_GUIDE_RU|TASK_WORKFLOW_GUIDE_RU]]
-- [[guides/TASK_WORKFLOW_GUIDE_EN|TASK_WORKFLOW_GUIDE_EN]]
-- [[guides/VERSIONING_QUICK_GUIDE_RU|VERSIONING_QUICK_GUIDE_RU]]
+- [MMCF applied status and positioning](./MMCF_APPLIED_STATUS_AND_POSITIONING.md)
+- [MMCF Methodology Index](./methodology/README.md)
+- [MMCF-Canonical](./methodology/core/MMCF-Canonical.md)
+- [MMCF Delivery Index](./methodology/delivery/MMCF-Delivery-INDEX.md)
+- [CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_RU](./CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_RU.md)
+- [CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_EN](./CDM_MMCF_POSITIONING_RELATIVE_TO_SCRUM_KANBAN_OODA_EN.md)
+- [ROOT_DIRECTORY_LOCALIZATION_INDEX_RU](./localization/ROOT_DIRECTORY_LOCALIZATION_INDEX_RU.md)
+
+## Practical Guides
+
+- [WORK_OBJECT_FORMATION_QUICK_GUIDE_RU](./guides/WORK_OBJECT_FORMATION_QUICK_GUIDE_RU.md)
+- [TASK_WORKFLOW_GUIDE_RU](./guides/TASK_WORKFLOW_GUIDE_RU.md)
+- [TASK_WORKFLOW_GUIDE_EN](./guides/TASK_WORKFLOW_GUIDE_EN.md)
+- [VERSIONING_QUICK_GUIDE_RU](./guides/VERSIONING_QUICK_GUIDE_RU.md)
+- [CORPUS_REVIEW_LAYERED_MEMORY_GUIDE_RU](./guides/CORPUS_REVIEW_LAYERED_MEMORY_GUIDE_RU.md)
 
 ## Templates
 
-- [[templates/LINEAR_TERMINAL_CF_BODY_TEMPLATE_RU|LINEAR_TERMINAL_CF_BODY_TEMPLATE_RU]]
-- [[templates/LINEAR_EPIC_AND_COORDINATION_BODY_TEMPLATES_RU|LINEAR_EPIC_AND_COORDINATION_BODY_TEMPLATES_RU]]
-- [[templates/LINEAR_PTSUBTASK_BODY_TEMPLATE_RU|LINEAR_PTSUBTASK_BODY_TEMPLATE_RU]]
+- [LINEAR_TERMINAL_CF_BODY_TEMPLATE_RU](./templates/LINEAR_TERMINAL_CF_BODY_TEMPLATE_RU.md)
+- [LINEAR_EPIC_AND_COORDINATION_BODY_TEMPLATES_RU](./templates/LINEAR_EPIC_AND_COORDINATION_BODY_TEMPLATES_RU.md)
+- [LINEAR_PTSUBTASK_BODY_TEMPLATE_RU](./templates/LINEAR_PTSUBTASK_BODY_TEMPLATE_RU.md)
 
-## Positioning
+## Positioning and Cases
 
-- [[positioning/POSITIONING_AND_ADOPTION_ROADMAP|POSITIONING_AND_ADOPTION_ROADMAP]]
-- [[positioning/MMCF_COMPATIBILITY_AND_ADOPTION_MODES|MMCF_COMPATIBILITY_AND_ADOPTION_MODES]]
-
-## Cases
-
-- [[cases/MMCF_LINEAR_COMPATIBILITY_CASE|MMCF_LINEAR_COMPATIBILITY_CASE]]
-- [[cases/MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE|MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE]]
-
-## Methodology
-
-- [[methodology/Versioning-Canonical|Versioning-Canonical]]
-- [[methodology/Claim-Maturity-Canonical|Claim-Maturity-Canonical]]
-- [[methodology/MMCF-Legacy-INDEX-Migration-Plan|MMCF-Legacy-INDEX-Migration-Plan]]
-- [[methodology/MMCF-Term-Legacy-Mapping|MMCF-Term-Legacy-Mapping]]
-- [[methodology/MMCF-Domain-Pack-Profile|MMCF-Domain-Pack-Profile]]
-- [[methodology/MMCF-Conflict-and-Applicability-Profile|MMCF-Conflict-and-Applicability-Profile]]
-- [[methodology/MMCF-Operational-Roles-and-Gateways|MMCF-Operational-Roles-and-Gateways]]
-- [[methodology/MMCF-Phase-and-Transition-State-Separation-Profile|MMCF-Phase-and-Transition-State-Separation-Profile]]
-- [[methodology/MMCF-PT-Template-Catalog-Profile|MMCF-PT-Template-Catalog-Profile]]
-- [[methodology/MMCF-Role-Composition-and-Authority-Patterns-Profile|MMCF-Role-Composition-and-Authority-Patterns-Profile]]
-- [[methodology/MMCF-Executor-Matching-and-Capability-Registry-Profile|MMCF-Executor-Matching-and-Capability-Registry-Profile]]
-- [[methodology/MMCF-Creativity-and-Variability-Profile|MMCF-Creativity-and-Variability-Profile]]
-- [[methodology/MMCF-Time-and-Cost-FROR-Alignment|MMCF-Time-and-Cost-FROR-Alignment]]
-- [[methodology/MMCF-DomainLexicon-Software-v1|MMCF-DomainLexicon-Software-v1]]
-- [[methodology/MMCF-Context-Canonical|MMCF-Context-Canonical]]
-- [[methodology/MMCF-Context-Examples-Sales-CRM|MMCF-Context-Examples-Sales-CRM]]
-- [[methodology/MMCF-Context-Examples-Product-Platform|MMCF-Context-Examples-Product-Platform]]
-- [[methodology/MMCF-Context-Coordination-and-Meta-Policy|MMCF-Context-Coordination-and-Meta-Policy]]
-- [[methodology/MMCF-Minimal-Working-Model|MMCF-Minimal-Working-Model]]
-
-## Reports
-
-- [[reports/MMCF_REVISION_REPORT_2026-03-12|MMCF_REVISION_REPORT_2026-03-12]]
-- [[reports/CDM_FROR_CONFLICT_AUDIT_2026-03-12|CDM_FROR_CONFLICT_AUDIT_2026-03-12]]
-
-## Engineering
-
-- [[engineering/ENGINEERING_COLLABORATION|ENGINEERING_COLLABORATION]]
+- [POSITIONING_AND_ADOPTION_ROADMAP](./positioning/POSITIONING_AND_ADOPTION_ROADMAP.md)
+- [MMCF_COMPATIBILITY_AND_ADOPTION_MODES](./positioning/MMCF_COMPATIBILITY_AND_ADOPTION_MODES.md)
+- [MMCF_LINEAR_COMPATIBILITY_CASE](./cases/MMCF_LINEAR_COMPATIBILITY_CASE.md)
+- [MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE](./cases/MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE.md)

@@ -10,13 +10,17 @@
 
 - не ломать устоявшуюся парадигму пользователя без необходимости;
 - не конкурировать с существующими методологиями;
+- не конкурировать с существующими рабочими инструментами без необходимости;
 - встраиваться в них как более глубокий слой change-semantics и governance;
+- собирать их вокруг общего repo-centric рабочего пространства, когда это
+  релевантно;
 - по мере пользы постепенно раскрывать собственные `MMCF`-механизмы.
 
 Документ дополняет:
 
 - [POSITIONING_AND_ADOPTION_ROADMAP](./POSITIONING_AND_ADOPTION_ROADMAP.md)
-- [MMCF-Domain-Pack-Profile](../methodology/MMCF-Domain-Pack-Profile.md)
+- [MMCF-Domain-Pack-Profile](../methodology/domain/MMCF-Domain-Pack-Profile.md)
+- [MMCF-Repo-First-Knowledge-Repository-Profile](../methodology/domain/MMCF-Repo-First-Knowledge-Repository-Profile.md)
 - [MMCF_LINEAR_COMPATIBILITY_CASE](../cases/MMCF_LINEAR_COMPATIBILITY_CASE.md)
 - [MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE](../cases/MMCF_SELF_HOSTING_AND_SELF_REFERENCE_CASE.md)
 
@@ -38,8 +42,31 @@ workflow-языка, ролей и ритуалов.
 - не `MMCF versus Scrum`;
 - не `MMCF versus Agile`;
 - не `MMCF versus OODA`;
+- не `MMCF versus Obsidian/Linear/Codex/CLI`;
 - а `Scrum/Agile/OODA/...` как совместимые внешние режимы поверх более
   глубокого change-layer.
+- а привычные инструменты как совместимые операторы над общим рабочим
+  пространством артефактов.
+
+### 1.1 Tool stance
+
+Та же логика относится и к инструментам.
+
+Корректное сообщение для принятия:
+
+1. не “сначала переезжаем в новый специальный инструмент”;
+2. а “сохраняем привычные интерфейсы, но связываем их единым
+   source-of-truth и общим semantic/governance layer”.
+
+Следовательно, при хорошем внедрении команда может продолжать работать через:
+
+1. `Linear` как operational delivery surface;
+2. `Obsidian` или editor как документационный интерфейс;
+3. `Codex` и `CLI` как агентный/automation слой;
+4. git и hooks как repo-level enforcement.
+
+Вместо конкуренции между этими инструментами возникает единое рабочее
+пространство, где они работают над одним контуром артефактов.
 
 ---
 
@@ -177,7 +204,8 @@ profiles, которые могут быть реализованы поверх
 2. сохранить привычный cadence;
 3. сохранить привычные доски и workflow;
 4. сохранить привычные названия состояний и ритуалов;
-5. использовать только те `MMCF`-элементы, которые уже дают ясную пользу.
+5. сохранить привычные инструменты;
+6. использовать только те `MMCF`-элементы, которые уже дают ясную пользу.
 
 То есть вход в систему не должен звучать как:
 
@@ -187,6 +215,8 @@ profiles, которые могут быть реализованы поверх
 
 - “продолжайте работать как обычно, а мы постепенно добавим глубину, traceability
   и governance там, где это действительно полезно”.
+- “ваши текущие инструменты не выбрасываются, а связываются общим рабочим
+  пространством и единым контуром артефактов”.
 
 ---
 

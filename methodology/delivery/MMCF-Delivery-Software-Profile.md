@@ -231,11 +231,11 @@ Software-интерпретация:
 
 ## 8. Ссылки
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-- [MMCF-DomainLexicon-Software-v1](../MMCF-DomainLexicon-Software-v1.md)
-- [MMCF-Time-and-Cost-FROR-Alignment](../MMCF-Time-and-Cost-FROR-Alignment.md)
+- [MMCF-DomainLexicon-Software-v1](../domain/MMCF-DomainLexicon-Software-v1.md)
+- [MMCF-Time-and-Cost-FROR-Alignment](../governance/MMCF-Time-and-Cost-FROR-Alignment.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Experience](../../../fcdm-core/theory/cdm/Specifications/Experience/Experience-Canonical.md)

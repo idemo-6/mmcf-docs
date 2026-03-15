@@ -1,0 +1,142 @@
+---
+title: "MMCF: Context Profile (CDM/CTxL-aligned)"
+date: 2026-03-05
+tags: [MMCF, CDM, Context, CtxL, Applicability, profile]
+status: profile-draft
+---
+
+# MMCF: Context Profile
+
+## 1. Назначение
+
+Документ фиксирует профильные правила контекстов в MMCF как прикладном
+слое CDM/CTxL.
+
+Цель:
+
+1. формально разделять контексты задачи;
+2. управлять мультиконтекстностью без размывания ответственности;
+3. корректно связывать контекст с `Applicable` и `Result`.
+
+---
+
+## 2. Профильный принцип
+
+Контекст в MMCF — это не подразделение и не орг-юнит сам по себе, а
+система ограничений, правил принятия решений и критериев успеха.
+
+Следствие:
+
+1. один отдел может участвовать в нескольких контекстах;
+2. один контекст может включать несколько подразделений;
+3. истинность и применимость утверждений контекстно-зависимы.
+
+---
+
+## 3. Базовые объекты
+
+Для задачи/изменения:
+
+1. `C_candidates` — множество релевантных контекстов.
+2. `C_active^k` — активный контекст в ветке `k`.
+3. `C_coord` — механизм разрешения `context-conflict` и
+   `constraint-conflict` между кандидатами.
+4. `C_meta` — политика приоритизации и эскалации контекстов.
+
+Правило исполнения:
+
+- в одной ветке исполнения активен один `C_active^k`;
+- мультиконтекстность реализуется через несколько веток и координацию.
+
+---
+
+## 4. Независимый и составной контекст
+
+### 4.1 Независимые контексты
+
+Контексты считаются независимыми, если выполняется хотя бы одно:
+
+1. различаются целевые функции успеха;
+2. различаются hard-ограничения применимости;
+3. различаются владельцы финального решения;
+4. решение может быть применимо в одном контексте и неприменимо в другом.
+
+### 4.2 Составной контекст
+
+Контексты допускается объединять в составной, если одновременно:
+
+1. согласована единая целевая функция задачи;
+2. сняты конфликтующие ограничения;
+3. назначен единый owner финального решения;
+4. возможно единое `Applicable`-решение без потери смысла.
+
+Объединение действует на конкретный flow и не отменяет исходные контексты
+как отдельные сущности.
+
+---
+
+## 5. Applicability и Result
+
+Норматив:
+
+1. `Result=0 <=> ApplicabilityFailure(Intent, C_active, LC_phase)`.
+2. `Result=0` не трактуется как \"нейтральный успех\".
+3. Если `Applicable=true`, тогда `Result in {+1,-1}`.
+
+Следствие:
+
+- неприменимость должна указывать контекстную причину (semantic/epistemic/
+  stochastic), а не описываться как \"ошибка команды\" по умолчанию.
+
+---
+
+## 6. Контекстный decision protocol (минимум)
+
+Перед `CF3/CF4` для каждой задачи фиксируются:
+
+1. список `C_candidates`;
+2. критерий выбора `C_active`;
+3. политика разрешения `context-conflict` и `constraint-conflict`;
+4. критерий эскалации в `C_meta`.
+
+Если `context-conflict` или `constraint-conflict` неразрешим в рамках
+текущих ограничений:
+
+- `Applicable=false`;
+- ветка `CF4 => CF6 (inapplicable)`;
+- `Result=0`.
+
+---
+
+## 7. Контекстный anti-patterns
+
+Запрещено:
+
+1. подменять контекст организационной иерархией;
+2. смешивать разные ограничения в один контекст без явной политики merge;
+3. использовать `Result=0` как общий \"технический fail\" без ссылки на
+   контекстную неприменимость;
+4. игнорировать `C_meta` при повторяющихся `context-conflict`.
+
+---
+
+## 8. Acceptance checklist
+
+1. Для задачи явно задан `C_candidates`.
+2. Для ветки задан `C_active^k` и rule выбора.
+3. Зафиксирована политика `context-conflict` / `constraint-conflict`
+   (`C_coord`/`C_meta`).
+4. Семантика `Result=0` соответствует `ApplicabilityFailure`.
+5. Есть трассировка между контекстом и фазовыми решениями `CF3/CF4`.
+
+---
+
+## 9. Normative references
+
+- [MMCF-Canonical](../core/MMCF-Canonical.md)
+- [MMCF-Conflict-and-Applicability-Profile](./MMCF-Conflict-and-Applicability-Profile.md)
+- [MMCF-Conflict-Taxonomy-Canonical](./MMCF-Conflict-Taxonomy-Canonical.md)
+- [MMCF-Operational-Roles-and-Gateways](../operational/MMCF-Operational-Roles-and-Gateways.md)
+- [CDM CtxL Canonical](../../../fcdm-core/theory/cdm/Specifications/CtxL/CtxL-Canonical.md)
+- [CDM Context Canonical](../../../fcdm-core/theory/cdm/Specifications/Context/Context-Canonical.md)
+- [CDM Context Coordination Protocol](../../../fcdm-core/theory/cdm/Specifications/Context/Context-Coordination-Protocol.md)

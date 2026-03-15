@@ -223,11 +223,11 @@ Terminal issue по-прежнему представляет один `ChangeFl
 
 ## 8. Ссылки
 
-- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
+- [MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile](../operational/MMCF-Delta-Registry-and-ChangeFlow-Promotion-Profile.md)
 - [MMCF-Delivery-Linear-Profile](./MMCF-Delivery-Linear-Profile.md)
 - [MMCF-Delivery-Terminal-ChangeFlow-Contract](./MMCF-Delivery-Terminal-ChangeFlow-Contract.md)
 - [MMCF-Delivery-Claim-Maturity-Applicability-Profile](./MMCF-Delivery-Claim-Maturity-Applicability-Profile.md)
-- [MMCF-Term-Legacy-Mapping](../MMCF-Term-Legacy-Mapping.md)
-- [MMCF-CDM-Alignment-Matrix](../MMCF-CDM-Alignment-Matrix.md)
+- [MMCF-Term-Legacy-Mapping](../governance/MMCF-Term-Legacy-Mapping.md)
+- [MMCF-CDM-Alignment-Matrix](../core/MMCF-CDM-Alignment-Matrix.md)
 - [CDM ChangeFlow-6](../../../fcdm-core/theory/cdm/Specifications/ChangeFlow-6_v3.md)
 - [CDM Experience](../../../fcdm-core/theory/cdm/Specifications/Experience/Experience-Canonical.md)
